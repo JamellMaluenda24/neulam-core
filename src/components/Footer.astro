@@ -1,0 +1,41 @@
+---
+---
+<style>
+  footer {
+    padding: 48px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { color: var(--muted); font-size: 13px; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  @media (max-width: 900px) {
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  }
+</style>
+
+<footer>
+  <a href="#" class="footer-logo">Neulam<span>Core</span></a>
+  <ul class="footer-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#app">Ascend</a></li>
+    <li><a href="#privacy">Privacidad</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Neulam Core · Hecho con ♥ en Chile 🇨🇱</span>
+</footer>

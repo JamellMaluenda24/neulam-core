@@ -1,0 +1,211 @@
+---
+const features = [
+  { icon: '🔥', title: 'Rachas y consistencia', desc: 'El sistema de rachas te mantiene comprometido. Perder una es doloroso — de eso se trata.' },
+  { icon: '🧠', title: 'Diseñado con psicología', desc: 'Basado en el loop hábito-recompensa. Notificaciones no invasivas, progreso visible y pequeños logros.' },
+  { icon: '📅', title: 'Vista semanal y mensual', desc: 'Analiza tus patrones. Saber cuándo fallas es tan valioso como saber cuándo aciertas.' },
+  { icon: '🎯', title: 'Sin suscripciones', desc: 'Ascend es completamente gratuito. Sin premium oculto, sin límites artificiales.' },
+  { icon: '🌙', title: 'Dark mode nativo', desc: 'Interfaz oscura pensada para el bienestar visual. Tus ojos lo agradecerán a las 11pm.' },
+];
+---
+<style>
+  .app-section {
+    padding: 140px 60px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(79,255,176,0.04) 0%, transparent 60%);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .feature-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(79,255,176,0.2);
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(79,255,176,0.08), transparent 60%);
+    transition: opacity 0.3s;
+  }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .feature-card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+  .feature-card.big {
+    grid-column: span 2;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+  .feature-card.big .feature-visual { flex: 1; min-width: 0; }
+  .feature-card.big .feature-content { flex: 1; }
+
+  /* Mockup */
+  .app-mockup {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    font-size: 12px;
+  }
+  .mockup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .mockup-dots { display: flex; gap: 6px; }
+  .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .d1 { background: #ff5f57; }
+  .d2 { background: #febc2e; }
+  .d3 { background: #28c840; }
+  .habit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .habit-name { color: var(--text); font-size: 13px; }
+  .habit-streak { color: var(--accent); font-weight: 600; font-size: 12px; font-family: 'Syne', sans-serif; }
+  .habit-check {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--bg);
+  }
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.05);
+    border-radius: 100px;
+    height: 4px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    animation: fill-bar 2s ease infinite alternate;
+  }
+  .mockup-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .mockup-footer span:first-child { color: var(--muted); font-size: 11px; }
+  .mockup-footer span:last-child { color: var(--accent); font-size: 11px; font-weight: 600; font-family: 'Syne', sans-serif; }
+
+  @media (max-width: 900px) {
+    .app-section { padding: 80px 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card.big { flex-direction: column; grid-column: 1; }
+  }
+</style>
+
+<section class="app-section" id="app">
+  <div class="section-header">
+    <span class="label">// La app</span>
+    <h2>Ascend Habit Tracker</h2>
+    <p>Más que un tracker. Una herramienta de construcción personal diseñada para hacerte consistente, no solo motivado.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card big">
+      <div class="feature-visual">
+        <div class="app-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span class="d1"></span><span class="d2"></span><span class="d3"></span>
+            </div>
+            <span style="color: var(--muted); font-size: 11px; font-family: 'Syne', sans-serif;">Ascend · Hoy</span>
+          </div>
+          <div class="habit-row">
+            <span class="habit-name">🌅 Meditar 10 min</span>
+            <span class="habit-streak">🔥 12d</span>
+            <span class="habit-check">✓</span>
+          </div>
+          <div class="habit-row">
+            <span class="habit-name">📚 Leer 30 páginas</span>
+            <span class="habit-streak">🔥 7d</span>
+            <span class="habit-check">✓</span>
+          </div>
+          <div class="habit-row" style="opacity: 0.5;">
+            <span class="habit-name">💧 Tomar 2L agua</span>
+            <span class="habit-streak">🔥 3d</span>
+            <span style="width:22px;height:22px;border-radius:6px;border:1px solid var(--border);"></span>
+          </div>
+          <div class="habit-row" style="opacity: 0.5;">
+            <span class="habit-name">🏃 Ejercicio</span>
+            <span class="habit-streak">🔥 0d</span>
+            <span style="width:22px;height:22px;border-radius:6px;border:1px solid var(--border);"></span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill"></div>
+          </div>
+          <div class="mockup-footer">
+            <span>Progreso hoy</span>
+            <span>2/4 completados</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-icon">📊</span>
+        <h3>Panel de hábitos intuitivo</h3>
+        <p>Visualiza tu progreso diario de forma clara. Cada hábito, su racha y tu avance del día en una sola pantalla sin fricción.</p>
+      </div>
+    </div>
+
+    {features.map(f => (
+      <div class="feature-card">
+        <span class="feature-icon">{f.icon}</span>
+        <h3>{f.title}</h3>
+        <p>{f.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  gsap.utils.toArray('.feature-card').forEach((el, i) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      opacity: 1, y: 0,
+      duration: 0.6,
+      delay: (i % 3) * 0.1,
+      ease: 'power2.out'
+    });
+  });
+  gsap.utils.toArray('.section-header').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 80%' },
+      opacity: 0, y: 30, duration: 0.7, ease: 'power2.out'
+    });
+  });
+</script>

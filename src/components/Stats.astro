@@ -1,0 +1,82 @@
+---
+const stats = [
+  { num: 100, suffix: '%', label: 'Open Source' },
+  { num: 21, suffix: '', label: 'Días para crear un hábito' },
+  { num: 7, suffix: '', label: 'Categorías de hábitos' },
+  { num: 0, suffix: '', label: 'Costo — Para siempre', display: 'Free' },
+];
+---
+<style>
+  .stats-bar {
+    padding: 32px 60px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,16,32,0.6);
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .stat-item {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+  @media (max-width: 900px) {
+    .stats-bar { gap: 40px; padding: 32px 24px; }
+  }
+</style>
+
+<div class="stats-bar">
+  {stats.map((s, i) => (
+    <div class="stat-item">
+      <span class="stat-num" data-count={s.num} data-suffix={s.suffix} data-display={s.display || ''}>
+        {s.display || s.num + s.suffix}
+      </span>
+      <div class="stat-label">{s.label}</div>
+    </div>
+  ))}
+</div>
+
+<script>
+  gsap.utils.toArray('.stat-item').forEach((el, i) => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      onEnter: () => {
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power2.out' });
+        const numEl = el.querySelector('.stat-num');
+        const target = parseInt(numEl.dataset.count);
+        const display = numEl.dataset.display;
+        const suffix = numEl.dataset.suffix;
+        if (display) { numEl.textContent = display; return; }
+        gsap.to({ val: 0 }, {
+          val: target,
+          duration: 1.5,
+          delay: i * 0.1,
+          ease: 'power2.out',
+          onUpdate: function() {
+            numEl.textContent = Math.round(this.targets()[0].val) + suffix;
+          }
+        });
+      }
+    });
+  });
+</script>

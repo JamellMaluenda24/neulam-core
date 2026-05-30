@@ -1,0 +1,104 @@
+---
+const blocks = [
+  {
+    title: '¿Qué datos recopilamos?',
+    content: 'Ascend Habit Tracker opera principalmente de forma local en tu dispositivo. Los únicos datos que podemos recopilar son: nombre y correo electrónico si nos contactas voluntariamente, y métricas anónimas de uso para mejorar la aplicación (sin información personal identificable).'
+  },
+  {
+    title: '¿Cómo usamos tus datos?',
+    content: 'Los datos de contacto se usan únicamente para responder a tus consultas. Jamás vendemos, compartimos ni transferimos tu información a terceros con fines comerciales. Las métricas de uso son agregadas y completamente anónimas.'
+  },
+  {
+    title: 'Almacenamiento y seguridad',
+    content: 'Tus hábitos y progreso se almacenan localmente en tu dispositivo. No tenemos acceso a tus datos de hábitos personales. Si en el futuro implementamos sincronización en la nube, será opt-in y comunicado con transparencia.'
+  },
+  {
+    title: 'Cookies y rastreo',
+    content: 'Este sitio web utiliza cookies estrictamente necesarias para su funcionamiento. No utilizamos cookies de seguimiento publicitario ni compartimos datos con redes de anuncios.'
+  },
+  {
+    title: 'Tus derechos',
+    content: 'Tienes derecho a solicitar, corregir o eliminar cualquier dato personal que hayamos recopilado. Para ejercer estos derechos, contáctanos directamente a través del formulario de contacto o por correo electrónico.'
+  },
+  {
+    title: 'Contacto',
+    content: '¿Preguntas sobre privacidad? Escríbenos a través del formulario de contacto o visita el portafolio de Jamell Maluenda.'
+  },
+];
+---
+<style>
+  .privacy {
+    padding: 120px 60px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .privacy-inner { max-width: 800px; margin: 0 auto; }
+  .privacy h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+  .privacy-intro {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .privacy-block {
+    border-left: 2px solid var(--border);
+    padding-left: 28px;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .privacy-block h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .privacy-block p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+  .privacy-footer {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 900px) { .privacy { padding: 80px 24px; } }
+</style>
+
+<section class="privacy" id="privacy">
+  <div class="privacy-inner">
+    <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;">// Legal</div>
+    <h2>Política de Privacidad</h2>
+    <p class="privacy-intro">En Neulam Core creemos que tu privacidad es fundamental. Aquí explicamos de forma clara y directa cómo manejamos tu información.</p>
+
+    {blocks.map(b => (
+      <div class="privacy-block">
+        <h3>{b.title}</h3>
+        <p>{b.content}</p>
+      </div>
+    ))}
+
+    <p class="privacy-footer">Última actualización: Mayo 2026 · Neulam Core · Chile</p>
+  </div>
+</section>
+
+<script>
+  gsap.utils.toArray('.privacy-block').forEach((el, i) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%' },
+      opacity: 1, x: 0,
+      duration: 0.5,
+      delay: i * 0.08,
+      ease: 'power2.out'
+    });
+  });
+</script>
