@@ -206,19 +206,42 @@
     opacity: 0, x: 30, duration: 0.7, ease: 'power2.out'
   });
 
-  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+  document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const msg = document.getElementById('formMsg');
     const btn = document.querySelector('.form-submit');
     btn.textContent = 'Enviando...';
     btn.disabled = true;
-    setTimeout(() => {
+
+    const formData = {
+      access_key: '3912b8ee-eee0-4155-9dc9-7abc0ddcaf39',
+      name: document.getElementById('fname').value,
+      email: document.getElementById('femail').value,
+      subject: document.getElementById('fsubject').value || 'Mensaje desde Neulam Core',
+      message: document.getElementById('fmessage').value,
+    };
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        msg.className = 'form-msg success';
+        msg.textContent = '✓ Mensaje enviado. Te responderemos pronto.';
+        document.getElementById('contactForm').reset();
+        setTimeout(() => { msg.className = 'form-msg'; msg.textContent = ''; }, 5000);
+      } else {
+        throw new Error(data.message || 'Error al enviar');
+      }
+    } catch (err) {
+      msg.className = 'form-msg error';
+      msg.textContent = '✗ Hubo un error al enviar. Inténtalo de nuevo.';
+    } finally {
       btn.textContent = 'Enviar mensaje →';
       btn.disabled = false;
-      msg.className = 'form-msg success';
-      msg.textContent = '✓ Mensaje enviado. Te responderemos pronto.';
-      document.getElementById('contactForm').reset();
-      setTimeout(() => { msg.className = 'form-msg'; msg.textContent = ''; }, 5000);
-    }, 1200);
+    }
   });
 </script>
