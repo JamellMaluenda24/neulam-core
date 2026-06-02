@@ -1,10 +1,5 @@
 ---
-const stats = [
-  { num: 100, suffix: '%', label: 'Open Source' },
-  { num: 21, suffix: '', label: 'Días para crear un hábito' },
-  { num: 7, suffix: '', label: 'Categorías de hábitos' },
-  { num: 0, suffix: '', label: 'Costo — Para siempre', display: 'Free' },
-];
+import { stats } from '../../data/stats';
 ---
 <style>
   .stats-bar {
@@ -40,12 +35,24 @@ const stats = [
     margin-top: 4px;
   }
   @media (max-width: 900px) {
-    .stats-bar { gap: 40px; padding: 32px 24px; }
+    .stats-bar { gap: 32px 48px; padding: 32px 24px; }
+    .stat-num { font-size: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 28px 20px;
+    }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 11px; }
   }
 </style>
 
 <div class="stats-bar">
-  {stats.map((s, i) => (
+  {stats.map((s) => (
     <div class="stat-item">
       <span class="stat-num" data-count={s.num} data-suffix={s.suffix} data-display={s.display || ''}>
         {s.display || s.num + s.suffix}

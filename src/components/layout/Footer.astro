@@ -25,7 +25,15 @@
   .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
   @media (max-width: 900px) {
-    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; gap: 16px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    footer { padding: 28px 20px; }
+    .footer-links { gap: 12px 20px; }
+    .footer-links a { font-size: 12px; }
+    .footer-copy { font-size: 12px; }
   }
 </style>
 

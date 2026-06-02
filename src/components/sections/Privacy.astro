@@ -71,7 +71,18 @@ const blocks = [
     padding-top: 24px;
     border-top: 1px solid var(--border);
   }
-  @media (max-width: 900px) { .privacy { padding: 80px 24px; } }
+  @media (max-width: 900px) {
+    .privacy { padding: 80px 24px; }
+    .privacy h2 { font-size: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .privacy { padding: 60px 20px; }
+    .privacy h2 { font-size: 28px; letter-spacing: -1px; }
+    .privacy-intro { font-size: 15px; margin-bottom: 32px; }
+    .privacy-block { padding-left: 20px; margin-bottom: 28px; }
+    .privacy-block h3 { font-size: 15px; }
+  }
 </style>
 
 <section class="privacy" id="privacy">

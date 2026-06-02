@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
 
 const { title = 'Neulam Core — Ascend Habit Tracker' } = Astro.props;
 ---
@@ -14,6 +14,9 @@ const { title = 'Neulam Core — Ascend Habit Tracker' } = Astro.props;
   <meta property="og:title" content="Neulam Core — Ascend" />
   <meta property="og:description" content="Una herramienta de seguimiento de hábitos diseñada para quienes toman su crecimiento en serio." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="/favicon.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
   <title>{title}</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>
