@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — Ascend Habit Tracker · Neulam Core</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #050810;
+      --surface:  #0c1020;
+      --surface2: #111827;
+      --accent:   #4fffb0;
+      --accent2:  #7c6fff;
+      --accent3:  #ff6b6b;
+      --text:     #e8eaf6;
+      --muted:    #6b7280;
+      --border:   rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 14px;
+    }
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    header p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+    .version-badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(79,255,176,0.08);
+      border: 1px solid rgba(79,255,176,0.2);
+      color: var(--accent);
+      border-radius: 100px;
+      padding: 4px 16px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .intro {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .intro strong { color: var(--text); font-weight: 500; }
+
+    /* ── TABLE OF CONTENTS ── */
+    .toc {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+    .toc-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .toc ol {
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .toc li { font-size: 13px; color: var(--muted); }
+    .toc a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .toc a:hover { color: var(--accent); }
+
+    /* ── BLOCKS ── */
+    .privacy-block {
+      border-left: 2px solid var(--border);
+      padding-left: 28px;
+      margin-bottom: 48px;
+      transition: border-color 0.3s ease;
+      scroll-margin-top: 24px;
+    }
+    .privacy-block:hover { border-color: rgba(79,255,176,0.35); }
+
+    .block-num {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .privacy-block h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .privacy-block h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 20px 0 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .privacy-block p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+      margin-bottom: 10px;
+    }
+    .privacy-block p:last-child { margin-bottom: 0; }
+    .privacy-block p strong { color: var(--text); font-weight: 500; }
+
+    /* ── LIST ── */
+    .privacy-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .privacy-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .privacy-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    ol.steps {
+      margin: 12px 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    ol.steps li {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 6px;
+    }
+    ol.steps li strong { color: var(--text); font-weight: 500; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(79,255,176,0.08);
+      border: 1px solid rgba(79,255,176,0.2);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .badge.green  { background: rgba(79,255,176,0.1);  border-color: rgba(79,255,176,0.3);  color: var(--accent); }
+    .badge.purple { background: rgba(124,111,255,0.1); border-color: rgba(124,111,255,0.3); color: var(--accent2); }
+    .badge.red    { background: rgba(255,107,107,0.1); border-color: rgba(255,107,107,0.3); color: var(--accent3); }
+    .badge.gray   { background: rgba(255,255,255,0.05); border-color: var(--border);        color: var(--muted); }
+
+    /* ── INFO BOX ── */
+    .info-box {
+      background: rgba(79,255,176,0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .info-box strong { color: var(--text); font-weight: 500; }
+
+    /* ── NOTE BOX ── */
+    .privacy-note {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      background: rgba(79,255,176,0.05);
+      border: 1px solid rgba(79,255,176,0.1);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 13px;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--accent);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .data-table td strong { color: var(--text); font-weight: 500; }
+    .data-table td code {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 12px;
+      color: var(--accent);
+      font-family: 'DM Mono', 'Courier New', monospace;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* ── CONTACT BOX ── */
+    .contact-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 16px;
+      transition: border-color 0.3s ease;
+    }
+    .contact-box:hover { border-color: rgba(79,255,176,0.2); }
+    .contact-box p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+    .contact-box p:last-child { margin-bottom: 0; }
+    .contact-box strong { color: var(--text); font-weight: 600; }
+    .contact-box a { color: var(--accent); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    /* ── PAGE FOOTER ── */
+    .privacy-footer {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      main { padding: 36px 20px 60px; }
+      .privacy-block { padding-left: 18px; margin-bottom: 36px; }
+      .privacy-block h2 { font-size: 16px; }
+      .badge { font-size: 9px; padding: 2px 6px; }
+      .contact-box, .toc { padding: 18px 20px; }
+      .data-table { font-size: 12px; }
+      .data-table th, .data-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="header-label">Legal</span>
+  <h1>Política de Privacidad</h1>
+  <p>Ascend Habit Tracker &nbsp;·&nbsp; Neulam Core</p>
+  <span class="version-badge">Versión 2.0 &nbsp;·&nbsp; 2 de junio de 2026</span>
+</header>
+
+<main>
+
+  <p class="intro">
+    Esta Política de Privacidad describe detalladamente cómo <strong>Neulam Core</strong>
+    recopila, usa, almacena y protege tu información cuando utilizas
+    <strong>Ascend Habit Tracker</strong>
+    (<em>com.neulamcore.ascendhabittracker</em>), disponible en Google Play Store.
+    Al usar la app aceptas los términos descritos aquí.
+  </p>
+
+  <!-- TABLA DE CONTENIDOS -->
+  <div class="toc">
+    <span class="toc-label">Contenido</span>
+    <ol>
+      <li><a href="#datos">Información que recopilamos</a></li>
+      <li><a href="#uso">Cómo usamos tu información</a></li>
+      <li><a href="#sync">Almacenamiento y sincronización</a></li>
+      <li><a href="#terceros">Servicios de terceros (Firebase)</a></li>
+      <li><a href="#analytics">Analytics y diagnóstico</a></li>
+      <li><a href="#consentimiento">Consentimiento y control del usuario</a></li>
+      <li><a href="#retencion">Retención de datos</a></li>
+      <li><a href="#derechos">Tus derechos (GDPR / CCPA)</a></li>
+      <li><a href="#eliminacion">Eliminación de cuenta y datos</a></li>
+      <li><a href="#seguridad">Seguridad técnica</a></li>
+      <li><a href="#permisos">Permisos Android</a></li>
+      <li><a href="#menores">Privacidad de menores</a></li>
+      <li><a href="#cambios">Cambios a esta política</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ol>
+  </div>
+
+  <!-- 01 -->
+  <div class="privacy-block" id="datos">
+    <span class="block-num">01</span>
+    <h2>Información que recopilamos</h2>
+    <p>Recopilamos solo la información necesaria para el funcionamiento de la app. Nunca recopilamos datos que no estén listados aquí.</p>
+
+    <h3>1.1 Datos de cuenta</h3>
+    <ul class="privacy-list">
+      <li>
+        <span class="badge">Cuenta</span>
+        <span>Nombre completo, dirección de correo electrónico y foto de perfil, obtenidos de tu cuenta de Google únicamente si eliges iniciar sesión con <strong>Google Sign-In</strong>. El uso de la app en modo sin conexión no requiere cuenta.</span>
+      </li>
+    </ul>
+
+    <h3>1.2 Datos de hábitos</h3>
+    <ul class="privacy-list">
+      <li>
+        <span class="badge">Hábitos</span>
+        <span>Nombre, categoría, color, icono, días de repetición, horarios de notificación y fecha de creación de cada hábito que crees.</span>
+      </li>
+      <li>
+        <span class="badge">Registros</span>
+        <span>Marcas de completado diario por hábito e historial de rachas (streaks).</span>
+      </li>
+      <li>
+        <span class="badge">Notas</span>
+        <span>Notas de texto libre que escribas voluntariamente en cada día del registro. <strong>Son de carácter personal</strong> y se sincronizan en la nube si tienes sesión iniciada.</span>
+      </li>
+      <li>
+        <span class="badge">Estado de ánimo</span>
+        <span>Puntuación numérica (1–5) y etiquetas emocionales que registres voluntariamente. <strong>Son datos sensibles</strong> y se sincronizan en la nube si tienes sesión iniciada.</span>
+      </li>
+    </ul>
+
+    <h3>1.3 Datos de diagnóstico (opcionales)</h3>
+    <ul class="privacy-list">
+      <li>
+        <span class="badge gray">Diagnóstico</span>
+        <span>Informes de errores que incluyen traza del error, versión de la app, versión de Android y modelo del dispositivo. Recopilados mediante <strong>Firebase Crashlytics</strong>. <strong>Solo si das tu consentimiento.</strong></span>
+      </li>
+      <li>
+        <span class="badge gray">Uso</span>
+        <span>Datos anónimos sobre pantallas visitadas y funciones utilizadas, recopilados mediante <strong>Firebase Analytics</strong>. <strong>Solo si das tu consentimiento.</strong></span>
+      </li>
+    </ul>
+
+    <div class="info-box">
+      <strong>Nota:</strong> Los datos de diagnóstico y uso están desactivados por defecto.
+      Solo se recopilan si los activas desde <em>Ajustes → Privacidad → Analytics y diagnóstico</em>.
+      Puedes cambiar tu preferencia en cualquier momento.
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="privacy-block" id="uso">
+    <span class="block-num">02</span>
+    <h2>Cómo usamos tu información</h2>
+    <table class="data-table">
+      <tr>
+        <th>Dato</th>
+        <th>Finalidad</th>
+        <th>Base legal</th>
+      </tr>
+      <tr>
+        <td>Nombre / Email de Google</td>
+        <td>Identificarte y asociar tus datos en la nube</td>
+        <td>Ejecución del contrato</td>
+      </tr>
+      <tr>
+        <td>Hábitos y registros</td>
+        <td>Mostrarte tu progreso, estadísticas y rachas</td>
+        <td>Ejecución del contrato</td>
+      </tr>
+      <tr>
+        <td>Notas personales</td>
+        <td>Permitirte llevar un diario personal dentro de la app</td>
+        <td>Consentimiento explícito</td>
+      </tr>
+      <tr>
+        <td>Estado de ánimo</td>
+        <td>Mostrar correlaciones entre ánimo y desempeño de hábitos</td>
+        <td>Consentimiento explícito</td>
+      </tr>
+      <tr>
+        <td>Datos de diagnóstico</td>
+        <td>Detectar y corregir errores en la app</td>
+        <td>Consentimiento explícito</td>
+      </tr>
+      <tr>
+        <td>Datos de uso anónimos</td>
+        <td>Mejorar funcionalidades y experiencia de usuario</td>
+        <td>Consentimiento explícito</td>
+      </tr>
+    </table>
+    <div class="privacy-note"><strong>No usamos ningún dato para publicidad. No vendemos datos a terceros.</strong> No compartimos información personal con ninguna empresa fuera del ecosistema Google/Firebase.</div>
+  </div>
+
+  <!-- 03 -->
+  <div class="privacy-block" id="sync">
+    <span class="block-num">03</span>
+    <h2>Almacenamiento y sincronización de datos</h2>
+
+    <h3>3.1 Almacenamiento local</h3>
+    <p>Todos tus datos se almacenan localmente en tu dispositivo utilizando <strong>Hive</strong>, una base de datos local cifrada con <strong>AES-256</strong>. La clave de cifrado se genera aleatoriamente en tu dispositivo y se guarda en el <strong>Android Keystore</strong> del sistema operativo, inaccesible para otras apps.</p>
+
+    <h3>3.2 Sincronización en la nube</h3>
+    <p>Si inicias sesión con Google, los siguientes datos se sincronizan automáticamente con <strong>Google Cloud Firestore</strong> para permitirte acceder desde múltiples dispositivos:</p>
+    <ul class="privacy-list">
+      <li><span>Definición de tus hábitos (nombre, categoría, color, días, horarios)</span></li>
+      <li><span>Historial de completado diario por hábito</span></li>
+      <li><span>Notas personales diarias (texto libre, si las escribes)</span></li>
+      <li><span>Puntuaciones de estado de ánimo y etiquetas emocionales (si las registras)</span></li>
+      <li><span>Nombre y correo de tu cuenta de Google (solo para identificación)</span></li>
+      <li><span>Estadísticas de totales diarios</span></li>
+    </ul>
+    <p>La sincronización ocurre en segundo plano con un retardo de 800 ms tras cada cambio. <strong>Toda comunicación con la nube usa cifrado TLS 1.2+</strong>. Los datos en Firestore están protegidos por reglas de seguridad que garantizan que solo tú, correctamente autenticado, puedas leerlos o modificarlos.</p>
+
+    <h3>3.3 Sin sincronización (modo sin conexión)</h3>
+    <p>Si no inicias sesión, todos tus datos permanecen exclusivamente en tu dispositivo. No se envía ningún dato a la nube.</p>
+  </div>
+
+  <!-- 04 -->
+  <div class="privacy-block" id="terceros">
+    <span class="block-num">04</span>
+    <h2>Servicios de terceros (Firebase / Google)</h2>
+    <p>La app utiliza exclusivamente servicios de <strong>Google LLC</strong>. No utiliza SDKs de publicidad, rastreo de terceros ni redes de datos externas.</p>
+    <table class="data-table">
+      <tr>
+        <th>Servicio</th>
+        <th>Función</th>
+        <th>Datos que recibe</th>
+        <th>Obligatorio</th>
+      </tr>
+      <tr>
+        <td><strong>Firebase Authentication</strong></td>
+        <td>Inicio de sesión con Google</td>
+        <td>Email, nombre, UID</td>
+        <td>Solo si usas cuenta</td>
+      </tr>
+      <tr>
+        <td><strong>Cloud Firestore</strong></td>
+        <td>Sincronización en la nube</td>
+        <td>Hábitos, registros, notas, mood</td>
+        <td>Solo si usas cuenta</td>
+      </tr>
+      <tr>
+        <td><strong>Firebase Analytics</strong></td>
+        <td>Análisis de uso anónimo</td>
+        <td>Eventos de uso, propiedades anónimas</td>
+        <td><strong>Opcional</strong> (opt-in)</td>
+      </tr>
+      <tr>
+        <td><strong>Firebase Crashlytics</strong></td>
+        <td>Informes de errores</td>
+        <td>Traza de error, versión, modelo de dispositivo</td>
+        <td><strong>Opcional</strong> (opt-in)</td>
+      </tr>
+    </table>
+    <p>Todos estos servicios se rigen por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de Privacidad de Google</a> y el <a href="https://firebase.google.com/terms" target="_blank" rel="noopener noreferrer">Acuerdo de Servicio de Firebase</a>.</p>
+  </div>
+
+  <!-- 05 -->
+  <div class="privacy-block" id="analytics">
+    <span class="block-num">05</span>
+    <h2>Analytics y diagnóstico</h2>
+    <p><strong>Ambos servicios están desactivados por defecto.</strong> Solo se habilitan con tu consentimiento explícito.</p>
+
+    <h3>5.1 Firebase Analytics</h3>
+    <p>Si lo activas, recopila eventos anónimos como: pantallas visitadas, hábitos creados/completados (sin contenido personal), funciones premium utilizadas y eventos de exportación. <strong>No recopila el contenido de tus notas ni tus datos de ánimo.</strong> Los eventos se agregan y no permiten identificarte individualmente.</p>
+
+    <h3>5.2 Firebase Crashlytics</h3>
+    <p>Si lo activas, recopila automáticamente informes cuando la app falla. Estos incluyen: traza del error, versión de la app, versión de Android, modelo del dispositivo y memoria disponible. <strong>No incluyen datos personales como tu nombre, email, notas o hábitos.</strong></p>
+
+    <h3>5.3 Cómo cambiar tu preferencia</h3>
+    <p>Puedes activar o desactivar la recopilación en cualquier momento desde: <strong>Perfil → Privacidad → Analytics y diagnóstico</strong>.</p>
+  </div>
+
+  <!-- 06 -->
+  <div class="privacy-block" id="consentimiento">
+    <span class="block-num">06</span>
+    <h2>Consentimiento y control del usuario</h2>
+    <ul class="privacy-list">
+      <li><span><strong>Analytics y Crashlytics:</strong> desactivados por defecto. Requieren activación manual desde Ajustes.</span></li>
+      <li><span><strong>Google Sign-In:</strong> completamente opcional. La app funciona sin cuenta.</span></li>
+      <li><span><strong>Sincronización en la nube:</strong> solo ocurre si tienes sesión iniciada.</span></li>
+      <li><span><strong>Notas personales y estado de ánimo:</strong> son funciones que tú inicias voluntariamente. Si no los usas, no se recopilan.</span></li>
+      <li><span><strong>Notificaciones:</strong> requieren permiso explícito del sistema Android. Puedes revocarlas en Ajustes del dispositivo en cualquier momento.</span></li>
+    </ul>
+  </div>
+
+  <!-- 07 -->
+  <div class="privacy-block" id="retencion">
+    <span class="block-num">07</span>
+    <h2>Retención de datos</h2>
+    <table class="data-table">
+      <tr>
+        <th>Tipo de dato</th>
+        <th>Dónde se guarda</th>
+        <th>Retención</th>
+      </tr>
+      <tr>
+        <td>Hábitos y registros</td>
+        <td>Local (Hive) + Firestore</td>
+        <td>Hasta que elimines la cuenta</td>
+      </tr>
+      <tr>
+        <td>Notas personales</td>
+        <td>Local (Hive) + Firestore</td>
+        <td>Hasta que elimines la cuenta</td>
+      </tr>
+      <tr>
+        <td>Estado de ánimo</td>
+        <td>Local (Hive) + Firestore</td>
+        <td>Hasta que elimines la cuenta</td>
+      </tr>
+      <tr>
+        <td>Datos de Analytics</td>
+        <td>Firebase (Google)</td>
+        <td>14 meses (política de Firebase)</td>
+      </tr>
+      <tr>
+        <td>Informes de crash</td>
+        <td>Firebase Crashlytics</td>
+        <td>90 días (política de Firebase)</td>
+      </tr>
+      <tr>
+        <td>Cuenta de Google</td>
+        <td>Firebase Auth</td>
+        <td>Hasta que elimines la cuenta</td>
+      </tr>
+    </table>
+    <p>Tras la eliminación de cuenta, los datos en Firestore se borran en un plazo máximo de <strong>30 días</strong>.</p>
+  </div>
+
+  <!-- 08 -->
+  <div class="privacy-block" id="derechos">
+    <span class="block-num">08</span>
+    <h2>Tus derechos (GDPR / CCPA)</h2>
+    <p>Independientemente de tu ubicación, tienes los siguientes derechos:</p>
+    <ul class="privacy-list">
+      <li>
+        <span class="badge green">Acceso</span>
+        <span>Solicitar una copia de los datos que tenemos sobre ti.</span>
+      </li>
+      <li>
+        <span class="badge purple">Rectificación</span>
+        <span>Corregir datos incorrectos o incompletos.</span>
+      </li>
+      <li>
+        <span class="badge red">Eliminación</span>
+        <span>Solicitar la eliminación completa de tus datos (derecho al olvido). Disponible directamente en la app.</span>
+      </li>
+      <li>
+        <span class="badge">Portabilidad</span>
+        <span>Exportar tus datos en formato PDF o CSV desde la sección de Exportar en el perfil.</span>
+      </li>
+      <li>
+        <span class="badge">Oposición</span>
+        <span>Oponerte a la recopilación de analytics/diagnóstico desactivando el toggle en Ajustes → Privacidad.</span>
+      </li>
+      <li>
+        <span class="badge gray">Limitación</span>
+        <span>Solicitar que limitemos el uso de tus datos.</span>
+      </li>
+    </ul>
+    <div class="privacy-note">
+      <strong>Usuarios de California (CCPA):</strong> No vendemos datos personales. Puedes optar por no participar en analytics desde Ajustes → Privacidad en cualquier momento, sin ninguna penalización.
+    </div>
+    <p style="margin-top:14px;">Para ejercer cualquier derecho, escríbenos a <a href="mailto:maluendajamell@gmail.com" style="color:var(--accent);">maluendajamell@gmail.com</a>.</p>
+  </div>
+
+  <!-- 09 -->
+  <div class="privacy-block" id="eliminacion">
+    <span class="block-num">09</span>
+    <h2>Eliminación de cuenta y datos</h2>
+    <p>Puedes eliminar completamente tu cuenta y todos tus datos directamente desde la app, sin necesidad de contactarnos:</p>
+    <ol class="steps">
+      <li>Ve a <strong>Perfil → Zona de peligro → Eliminar cuenta</strong>.</li>
+      <li>Confirma la acción en los dos diálogos de seguridad.</li>
+      <li>La app eliminará en orden: datos en Firestore, datos locales, notificaciones programadas y tu cuenta de Firebase Auth.</li>
+    </ol>
+    <div class="info-box" style="margin-top:16px;">
+      Este proceso es <strong>irreversible</strong>. Todos tus hábitos, registros, notas y datos de ánimo serán eliminados permanentemente.
+      Los datos de Analytics y Crashlytics (si estaban activos) se eliminan según los plazos de retención de Firebase mencionados en la sección 7.
+    </div>
+    <p style="margin-top:14px;">También puedes solicitar la eliminación escribiendo a <a href="mailto:maluendajamell@gmail.com" style="color:var(--accent);">maluendajamell@gmail.com</a>. Procesaremos tu solicitud en un máximo de <strong>30 días</strong>.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="privacy-block" id="seguridad">
+    <span class="block-num">10</span>
+    <h2>Seguridad técnica</h2>
+    <ul class="privacy-list">
+      <li><span><strong>Cifrado local:</strong> AES-256 mediante Hive + Android Keystore. La clave nunca abandona tu dispositivo.</span></li>
+      <li><span><strong>Cifrado en tránsito:</strong> TLS 1.2+ para toda comunicación con Firebase.</span></li>
+      <li><span><strong>Control de acceso:</strong> Reglas de Firestore garantizan que solo el propietario autenticado puede leer o escribir sus datos.</span></li>
+      <li><span><strong>Sin acceso de empleados:</strong> Neulam Core no tiene acceso directo a los datos individuales de los usuarios almacenados en Firestore.</span></li>
+      <li><span><strong>Firma del APK:</strong> La app está firmada con un certificado privado RSA-2048 único de Neulam Core, garantizando su autenticidad.</span></li>
+    </ul>
+  </div>
+
+  <!-- 11 -->
+  <div class="privacy-block" id="permisos">
+    <span class="block-num">11</span>
+    <h2>Permisos Android</h2>
+    <table class="data-table">
+      <tr>
+        <th>Permiso</th>
+        <th>Por qué se necesita</th>
+      </tr>
+      <tr>
+        <td><code>INTERNET</code></td>
+        <td>Sincronización con Firebase, Google Sign-In y Analytics.</td>
+      </tr>
+      <tr>
+        <td><code>POST_NOTIFICATIONS</code></td>
+        <td>Enviar recordatorios de hábitos que configures. Requiere aprobación explícita en Android 13+.</td>
+      </tr>
+      <tr>
+        <td><code>RECEIVE_BOOT_COMPLETED</code></td>
+        <td>Reprogramar notificaciones automáticamente tras reiniciar el dispositivo.</td>
+      </tr>
+      <tr>
+        <td><code>USE_EXACT_ALARM</code> / <code>SCHEDULE_EXACT_ALARM</code></td>
+        <td>Enviar notificaciones en el horario exacto que configures.</td>
+      </tr>
+      <tr>
+        <td><code>VIBRATE</code></td>
+        <td>Vibración al recibir notificaciones.</td>
+      </tr>
+      <tr>
+        <td><code>BILLING</code></td>
+        <td>Gestionar la compra del plan Premium a través de Google Play.</td>
+      </tr>
+    </table>
+    <div class="privacy-note">La app <strong>no solicita</strong> permisos de ubicación, cámara, micrófono, contactos, almacenamiento externo ni llamadas telefónicas.</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="privacy-block" id="menores">
+    <span class="block-num">12</span>
+    <h2>Privacidad de menores</h2>
+    <p>Ascend Habit Tracker <strong>no está dirigida a menores de 13 años</strong> y no recopilamos intencionalmente información de niños menores de esa edad. Si eres padre, madre o tutor y crees que un menor ha proporcionado información personal, contáctanos para eliminarla inmediatamente.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="privacy-block" id="cambios">
+    <span class="block-num">13</span>
+    <h2>Cambios a esta política</h2>
+    <p>Podemos actualizar esta Política de Privacidad ocasionalmente. Cuando realicemos cambios significativos, te notificaremos mediante una actualización de la app o un aviso en esta página. La fecha de "Última actualización" en el encabezado siempre reflejará la versión vigente.</p>
+    <p>El uso continuado de la app después de publicar cambios implica la aceptación de la nueva política.</p>
+  </div>
+
+  <!-- 14 -->
+  <div class="privacy-block" id="contacto">
+    <span class="block-num">14</span>
+    <h2>Contacto</h2>
+    <p>Si tienes preguntas, comentarios o solicitudes relacionadas con tu privacidad o el ejercicio de tus derechos:</p>
+    <div class="contact-box">
+      <p><strong>Neulam Core</strong></p>
+      <p>Desarrollador independiente &nbsp;·&nbsp; Calama, Región de Antofagasta, Chile</p>
+      <p>Email: <a href="mailto:maluendajamell@gmail.com">maluendajamell@gmail.com</a></p>
+      <p>App: Ascend Habit Tracker</p>
+      <p>Package: <em>com.neulamcore.ascendhabittracker</em></p>
+      <p>Sitio web: <a href="https://neulam-core.vercel.app" target="_blank" rel="noopener noreferrer">neulam-core.vercel.app</a></p>
+    </div>
+  </div>
+
+  <p class="privacy-footer">&copy; 2026 Neulam Core &nbsp;·&nbsp; Ascend Habit Tracker &nbsp;·&nbsp; Todos los derechos reservados</p>
+
+</main>
+
+<footer>
+  &copy; 2026 Neulam Core &nbsp;·&nbsp; Ascend Habit Tracker &nbsp;·&nbsp; Todos los derechos reservados
+  &nbsp;·&nbsp; <a href="mailto:maluendajamell@gmail.com">maluendajamell@gmail.com</a>
+</footer>
+
+</body>
+</html>

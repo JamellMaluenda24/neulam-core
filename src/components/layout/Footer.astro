@@ -21,9 +21,11 @@
   }
   .footer-logo span { color: var(--accent); }
   .footer-copy { color: var(--muted); font-size: 13px; }
-  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
   .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
+  .footer-links .footer-legal { border-left: 1px solid var(--border); padding-left: 24px; margin-left: 4px; }
+  @media (max-width: 900px) { .footer-links .footer-legal { border-left: none; padding-left: 0; margin-left: 0; } }
   @media (max-width: 900px) {
     footer { padding: 32px 24px; flex-direction: column; text-align: center; gap: 16px; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
@@ -38,12 +40,13 @@
 </style>
 
 <footer>
-  <a href="#" class="footer-logo">Neulam<span>Core</span></a>
+  <a href="/" class="footer-logo">Neulam<span>Core</span></a>
   <ul class="footer-links">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#app">Ascend</a></li>
-    <li><a href="#privacy">Privacidad</a></li>
-    <li><a href="#contact">Contacto</a></li>
+    <li><a href="/#about">Nosotros</a></li>
+    <li><a href="/#app">Ascend</a></li>
+    <li><a href="/#contact">Contacto</a></li>
+    <li class="footer-legal"><a href="/privacy">Privacidad</a></li>
+    <li><a href="/permissions">Permisos</a></li>
   </ul>
   <span class="footer-copy">© 2026 Neulam Core · Hecho con ♥ en Chile 🇨🇱</span>
 </footer>

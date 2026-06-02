@@ -1,31 +1,15 @@
 ---
-const blocks = [
-  {
-    title: '¿Qué datos recopilamos?',
-    content: 'Ascend Habit Tracker opera principalmente de forma local en tu dispositivo. Los únicos datos que podemos recopilar son: nombre y correo electrónico si nos contactas voluntariamente, y métricas anónimas de uso para mejorar la aplicación (sin información personal identificable).'
-  },
-  {
-    title: '¿Cómo usamos tus datos?',
-    content: 'Los datos de contacto se usan únicamente para responder a tus consultas. Jamás vendemos, compartimos ni transferimos tu información a terceros con fines comerciales. Las métricas de uso son agregadas y completamente anónimas.'
-  },
-  {
-    title: 'Almacenamiento y seguridad',
-    content: 'Tus hábitos y progreso se almacenan localmente en tu dispositivo. No tenemos acceso a tus datos de hábitos personales. Si en el futuro implementamos sincronización en la nube, será opt-in y comunicado con transparencia.'
-  },
-  {
-    title: 'Cookies y rastreo',
-    content: 'Este sitio web utiliza cookies estrictamente necesarias para su funcionamiento. No utilizamos cookies de seguimiento publicitario ni compartimos datos con redes de anuncios.'
-  },
-  {
-    title: 'Tus derechos',
-    content: 'Tienes derecho a solicitar, corregir o eliminar cualquier dato personal que hayamos recopilado. Para ejercer estos derechos, contáctanos directamente a través del formulario de contacto o por correo electrónico.'
-  },
-  {
-    title: 'Contacto',
-    content: '¿Preguntas sobre privacidad? Escríbenos a través del formulario de contacto o visita el portafolio de Jamell Maluenda.'
-  },
+const items = [
+  { num: '01', title: 'Datos del Usuario',                               desc: 'Recopilación mínima, transparente y con consentimiento explícito.' },
+  { num: '02', title: 'Permisos y API — Información Sensible',           desc: '6 permisos, todos justificados y solicitados contextualmente.' },
+  { num: '03', title: 'Abuso de Redes y Dispositivos',                   desc: 'Sin procesos abusivos en segundo plano ni consumo excesivo de red.' },
+  { num: '04', title: 'Comportamiento Engañoso',                         desc: 'La app hace exactamente lo que describe. Sin dark patterns.' },
+  { num: '05', title: 'Tergiversación',                                  desc: 'Ficha de Google Play precisa. Identidad del desarrollador pública.' },
+  { num: '06', title: 'Política de Nivel de API Objetivo',               desc: 'API objetivo siempre actualizada según los requisitos de Google Play.' },
+  { num: '07', title: 'Engaño y Abuso de Dispositivos',                  desc: 'Sin malware, spyware ni accesos encubiertos al dispositivo.' },
 ];
 ---
+
 <style>
   .privacy {
     padding: 120px 60px;
@@ -35,80 +19,180 @@ const blocks = [
     position: relative;
     z-index: 1;
   }
-  .privacy-inner { max-width: 800px; margin: 0 auto; }
-  .privacy h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin-bottom: 16px;
-  }
-  .privacy-intro {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.7;
+  .privacy-inner { max-width: 860px; margin: 0 auto; }
+
+  .privacy-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
     margin-bottom: 48px;
-    font-weight: 300;
+    flex-wrap: wrap;
   }
-  .privacy-block {
-    border-left: 2px solid var(--border);
-    padding-left: 28px;
-    margin-bottom: 36px;
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  .privacy-block h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
+  .privacy-head .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: block;
     margin-bottom: 10px;
   }
-  .privacy-block p { color: var(--muted); font-size: 14px; line-height: 1.8; }
-  .privacy-footer {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+  .privacy-head h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
   }
-  @media (max-width: 900px) {
-    .privacy { padding: 80px 24px; }
-    .privacy h2 { font-size: 32px; }
+  .privacy-head-sub {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 220px;
+    text-align: right;
   }
 
+  /* LIST */
+  .policy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .policy-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .policy-row:first-child { border-top: 1px solid var(--border); }
+  .policy-row:hover .policy-title { color: var(--accent); }
+
+  .policy-num {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    width: 28px;
+    flex-shrink: 0;
+  }
+  .policy-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    transition: color 0.2s;
+    flex: 1;
+  }
+  .policy-desc {
+    font-size: 13px;
+    color: var(--muted);
+    flex: 1.2;
+    line-height: 1.5;
+  }
+  .policy-arrow {
+    color: var(--border);
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .policy-row:hover .policy-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  /* CTA */
+  .privacy-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+  .privacy-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(79,255,176,0.07);
+    border: 1px solid rgba(79,255,176,0.2);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .privacy-cta-btn:hover {
+    background: rgba(79,255,176,0.13);
+    border-color: rgba(79,255,176,0.35);
+    transform: translateY(-1px);
+  }
+  .privacy-cta-btn.secondary {
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .privacy-cta-btn.secondary:hover {
+    border-color: rgba(255,255,255,0.15);
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .privacy { padding: 80px 24px; }
+    .privacy-head { align-items: flex-start; }
+    .privacy-head-sub { text-align: left; max-width: none; }
+    .policy-desc { display: none; }
+  }
   @media (max-width: 480px) {
     .privacy { padding: 60px 20px; }
-    .privacy h2 { font-size: 28px; letter-spacing: -1px; }
-    .privacy-intro { font-size: 15px; margin-bottom: 32px; }
-    .privacy-block { padding-left: 20px; margin-bottom: 28px; }
-    .privacy-block h3 { font-size: 15px; }
+    .privacy-head h2 { font-size: 26px; }
   }
 </style>
 
 <section class="privacy" id="privacy">
   <div class="privacy-inner">
-<h2>Política de Privacidad</h2>
-    <p class="privacy-intro">En Neulam Core creemos que tu privacidad es fundamental. Aquí explicamos de forma clara y directa cómo manejamos tu información.</p>
 
-    {blocks.map(b => (
-      <div class="privacy-block">
-        <h3>{b.title}</h3>
-        <p>{b.content}</p>
+    <div class="privacy-head">
+      <div>
+        <span class="label">Google Play · Cumplimiento</span>
+        <h2>Privacidad &<br/>Políticas</h2>
       </div>
-    ))}
+      <p class="privacy-head-sub">7 áreas de política que cubre Ascend Habit Tracker.</p>
+    </div>
 
-    <p class="privacy-footer">Última actualización: Mayo 2026 · Neulam Core · Chile</p>
+    <div class="policy-list">
+      {items.map(item => (
+        <div class="policy-row">
+          <span class="policy-num">{item.num}</span>
+          <span class="policy-title">{item.title}</span>
+          <span class="policy-desc">{item.desc}</span>
+          <span class="policy-arrow">→</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="privacy-cta">
+      <a href="/privacy" class="privacy-cta-btn">Ver política detallada →</a>
+      <a href="/permissions" class="privacy-cta-btn secondary">Declaración de permisos →</a>
+    </div>
+
   </div>
 </section>
 
 <script>
-  gsap.utils.toArray('.privacy-block').forEach((el, i) => {
+  gsap.utils.toArray('.policy-row').forEach((el, i) => {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 90%' },
+      scrollTrigger: { trigger: el, start: 'top 92%' },
       opacity: 1, x: 0,
-      duration: 0.5,
-      delay: i * 0.08,
-      ease: 'power2.out'
+      duration: 0.4,
+      delay: i * 0.06,
+      ease: 'power2.out',
     });
   });
 </script>

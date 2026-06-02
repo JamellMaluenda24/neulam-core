@@ -1,0 +1,651 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Datos del Usuario',
+    label: 'Recopilación mínima y transparente',
+    summary: 'Ascend solo recopila los datos imprescindibles para cada función. Nada se recopila sin tu conocimiento ni se vende a terceros.',
+    index: [
+      'Tipos de datos recopilados',
+      'Finalidad y base legal de cada dato',
+      'Almacenamiento local vs. sincronización en la nube',
+      'Retención y plazo de eliminación',
+      'Derecho a exportar y eliminar tus datos',
+    ],
+    points: [
+      { strong: 'Cuenta (opcional):', text: ' Nombre, email y foto de perfil de Google. Solo si el usuario elige Sign-In. La app funciona 100% offline sin cuenta.' },
+      { strong: 'Hábitos:', text: ' Nombre, categoría, color, icono, días de repetición y horarios de notificación de cada hábito creado.' },
+      { strong: 'Registros:', text: ' Marcas de completado diario por hábito e historial de rachas (streaks).' },
+      { strong: 'Notas y mood (opcionales):', text: ' Notas de texto libre y puntuación de estado de ánimo iniciadas voluntariamente por el usuario.' },
+      { strong: 'Diagnóstico y uso (opt-in):', text: ' Firebase Crashlytics y Analytics, desactivados por defecto. Requieren activación manual en Ajustes → Privacidad.' },
+      { strong: 'Eliminación:', text: ' Disponible directamente en la app (Perfil → Zona de peligro). Borrado completo en la nube en máx. 30 días.' },
+    ],
+    link: null,
+  },
+  {
+    num: '02',
+    title: 'Permisos y API que Acceden a Información Sensible',
+    label: '6 permisos — todos justificados y contextuales',
+    summary: 'La app solicita únicamente los permisos necesarios, de forma contextual y con explicación previa al usuario.',
+    index: [
+      'Lista completa de permisos declarados',
+      'Justificación individual de cada permiso',
+      'Momento en que se solicita cada permiso',
+      'Permisos que la app NO solicita',
+      'Cómo revocar permisos desde el sistema',
+    ],
+    points: [
+      { strong: 'INTERNET:', text: ' Sincronización con Firebase y Google Sign-In. Sin él la app funciona en modo local.' },
+      { strong: 'POST_NOTIFICATIONS:', text: ' Recordatorios de hábitos. Se pide en tiempo de ejecución con explicación, nunca al instalar. Android 13+.' },
+      { strong: 'RECEIVE_BOOT_COMPLETED:', text: ' Reprogramar notificaciones automáticamente tras reiniciar el dispositivo.' },
+      { strong: 'USE_EXACT_ALARM / SCHEDULE_EXACT_ALARM:', text: ' Notificaciones en el horario exacto que el usuario configura.' },
+      { strong: 'VIBRATE:', text: ' Vibración al recibir notificaciones de hábitos.' },
+      { strong: 'BILLING:', text: ' Solo se activa cuando el usuario pulsa "Obtener Premium" voluntariamente.' },
+      { strong: 'NO se solicitan:', text: ' Ubicación, cámara, micrófono, contactos, almacenamiento externo, SMS ni llamadas.' },
+    ],
+    link: { href: '/permissions', text: 'Ver declaración completa de permisos' },
+  },
+  {
+    num: '03',
+    title: 'Abuso de Redes y Dispositivos',
+    label: 'Uso eficiente y declarado de recursos',
+    summary: 'Ascend no consume recursos del dispositivo más allá de lo necesario para sus funciones declaradas.',
+    index: [
+      'Uso de red y tráfico con Firebase',
+      'Procesos en segundo plano',
+      'Consumo de batería y CPU',
+      'Wake locks y alarmas exactas',
+      'Ausencia de procesos no declarados',
+    ],
+    points: [
+      { strong: 'Tráfico de red:', text: ' Exclusivo para sincronización con Firebase, Google Sign-In y diagnóstico opcional. Sin SDKs de terceros externos.' },
+      { strong: 'Debounce de 800 ms:', text: ' La sincronización agrupa cambios rápidos para evitar peticiones redundantes a Firestore.' },
+      { strong: 'Sin minería ni abuso:', text: ' No se ejecutan procesos de criptominería, scraping ni tareas intensivas en segundo plano.' },
+      { strong: 'Wake locks acotados:', text: ' Se usan exclusivamente para disparar alarmas de notificación exactas, sin mantener el CPU activo innecesariamente.' },
+      { strong: 'Sin acceso no declarado:', text: ' La app no modifica configuraciones del sistema ni interfiere con otras aplicaciones.' },
+    ],
+    link: null,
+  },
+  {
+    num: '04',
+    title: 'Comportamiento Engañoso',
+    label: 'Sin patrones oscuros ni manipulación',
+    summary: 'La app se comporta exactamente como se describe. No hay funcionalidad oculta, dark patterns ni técnicas de manipulación.',
+    index: [
+      'Correspondencia entre descripción y comportamiento real',
+      'Transparencia en el onboarding',
+      'Diferenciación honesta de funciones Premium',
+      'Ausencia de dark patterns',
+      'Flujo de compra estándar de Google Play',
+    ],
+    points: [
+      { strong: 'Funciones declaradas:', text: ' Todo lo que hace la app está descrito en la ficha de Google Play. Sin comportamiento oculto ni sorpresivo.' },
+      { strong: 'Onboarding claro:', text: ' No se ocultan costos, no se fuerzan permisos ni suscripciones durante la configuración inicial.' },
+      { strong: 'Premium diferenciado:', text: ' Las funciones de pago están claramente marcadas sin urgencia falsa ni timers engañosos.' },
+      { strong: 'Sin dark patterns:', text: ' El botón de cancelación o rechazo siempre es igual de visible que el de aceptación.' },
+      { strong: 'Google Play Billing:', text: ' El flujo de compra usa la API estándar de Google Play sin pasos confusos ni cargos inesperados.' },
+    ],
+    link: null,
+  },
+  {
+    num: '05',
+    title: 'Tergiversación',
+    label: 'Identidad y contenido auténticos',
+    summary: 'La ficha de Google Play representa fielmente la app. La identidad del desarrollador es pública y verificable.',
+    index: [
+      'Exactitud de la descripción en Google Play',
+      'Autenticidad de capturas y video de vista previa',
+      'Identidad verificable del desarrollador',
+      'Nombre del paquete coherente con el branding',
+      'Ausencia de prácticas de manipulación de reseñas',
+    ],
+    points: [
+      { strong: 'Descripción precisa:', text: ' La ficha de Google Play enumera con exactitud todas las funciones disponibles en la versión publicada.' },
+      { strong: 'Capturas reales:', text: ' Las capturas de pantalla y el video de vista previa reflejan la interfaz real de la aplicación.' },
+      { strong: 'Desarrollador:', text: ' Neulam Core — Jamell Maluenda, Calama, Región de Antofagasta, Chile.' },
+      { strong: 'Paquete coherente:', text: ' com.neulamcore.ascendhabittracker coincide con el nombre y branding declarados.' },
+      { strong: 'Sin manipulación:', text: ' No se realizan prácticas de reseñas falsas, ratings artificiales ni incentivos por puntuaciones.' },
+    ],
+    link: null,
+  },
+  {
+    num: '06',
+    title: 'Política de Nivel de API Objetivo de Google Play',
+    label: 'API objetivo siempre actualizada',
+    summary: 'La app cumple con los requisitos anuales de nivel de API y se actualiza dentro del plazo establecido por Google Play.',
+    index: [
+      'Nivel de API objetivo actual',
+      'Compatibilidad con el modelo de permisos moderno',
+      'Requisitos de comportamiento del nivel de API',
+      'Plan de actualización anual',
+      'Compatibilidad con versiones anteriores de Android',
+    ],
+    points: [
+      { strong: 'API objetivo:', text: ' Configurada para cumplir el nivel mínimo requerido por Google Play para nuevas actualizaciones y envíos.' },
+      { strong: 'Permisos modernos:', text: ' Usa runtime permissions compatibles con el modelo de Android declarado en el targetSdkVersion.' },
+      { strong: 'Requisitos de comportamiento:', text: ' Cumple con las restricciones específicas del nivel de API: almacenamiento con ámbito, accesos en segundo plano, etc.' },
+      { strong: 'Actualizaciones regulares:', text: ' Se realizan actualizaciones para mantener cumplimiento dentro del plazo anual de Google Play.' },
+      { strong: 'minSdkVersion:', text: ' La app declara una versión mínima de Android compatible coherente con las funciones ofrecidas.' },
+    ],
+    link: null,
+  },
+  {
+    num: '07',
+    title: 'Engaño y Abuso de Dispositivos',
+    label: 'Código limpio y comportamiento transparente',
+    summary: 'Ascend no contiene código malicioso, accesos encubiertos ni modificaciones no declaradas del dispositivo o del sistema.',
+    index: [
+      'Ausencia de malware o código dañino',
+      'Sin acceso encubierto a datos del dispositivo',
+      'Recopilación opcional siempre con consentimiento',
+      'Integridad y autenticidad del APK',
+      'Sin modificación del sistema operativo',
+    ],
+    points: [
+      { strong: 'Sin malware:', text: ' El código no contiene spyware, adware, ransomware ni ningún tipo de software dañino.' },
+      { strong: 'Sin acceso encubierto:', text: ' No se accede a datos del dispositivo en segundo plano fuera del propósito declarado (notificaciones de hábitos).' },
+      { strong: 'Analytics opt-in:', text: ' Firebase Analytics y Crashlytics están desactivados por defecto. Solo se activan con consentimiento explícito.' },
+      { strong: 'APK firmado:', text: ' El APK está firmado con certificado RSA-2048 exclusivo de Neulam Core, garantizando su autenticidad.' },
+      { strong: 'Sin modificación del sistema:', text: ' La app no altera configuraciones del SO, no instala perfiles ni interfiere con otras aplicaciones.' },
+    ],
+    link: null,
+  },
+];
+---
+
+<Layout title="Política de Privacidad — Ascend Habit Tracker · Neulam Core">
+<style>
+  /* ── HERO ── */
+  .legal-hero {
+    padding: 140px 60px 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .legal-hero-inner { max-width: 900px; margin: 0 auto; }
+  .legal-hero .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .legal-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .legal-hero-meta {
+    color: var(--muted);
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .version-badge {
+    background: rgba(79,255,176,0.08);
+    border: 1px solid rgba(79,255,176,0.2);
+    color: var(--accent);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ── BODY ── */
+  .legal-body {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+  }
+  .legal-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 64px 60px 100px;
+  }
+
+  /* ── STEPPER RAIL ── */
+  .stepper-rail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    margin-bottom: 48px;
+  }
+  .stepper-rail::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .stepper-rail::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), rgba(79,255,176,0.4));
+    z-index: 0;
+    transition: width 0.4s ease;
+    width: var(--progress, 0%);
+  }
+
+  .step-btn {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .step-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.25s ease;
+  }
+  .step-btn:hover .step-dot {
+    border-color: rgba(79,255,176,0.4);
+    color: var(--text);
+  }
+  .step-btn.active .step-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    box-shadow: 0 0 24px rgba(79,255,176,0.45);
+    font-weight: 700;
+  }
+  .step-btn.done .step-dot {
+    background: rgba(79,255,176,0.1);
+    border-color: rgba(79,255,176,0.3);
+    color: var(--accent);
+  }
+  .step-short {
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
+    max-width: 72px;
+    transition: color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .step-btn.active .step-short { color: var(--accent); font-weight: 500; }
+
+  /* ── CONTENT PANEL ── */
+  .step-panel {
+    position: relative;
+    min-height: 420px;
+  }
+  .step-card {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .step-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    position: relative;
+  }
+
+  .step-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .step-card-grid:hover { border-color: rgba(79,255,176,0.15); }
+
+  /* LEFT: meta + index */
+  .card-left {
+    padding: 36px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+  .card-num {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(17px, 2vw, 22px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .card-label {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.75;
+    margin-bottom: 16px;
+  }
+  .card-summary {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* INDEX */
+  .card-index-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .card-index {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-index li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .card-index li::before {
+    content: '—';
+    color: rgba(79,255,176,0.4);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .card-link:hover { opacity: 1; text-decoration: underline; }
+
+  /* RIGHT: bullet points */
+  .card-right {
+    padding: 36px;
+    background: var(--surface2);
+  }
+  .card-points-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .card-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card-points li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+  }
+  .card-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+  .card-points li strong { color: var(--text); font-weight: 500; }
+
+  /* ── NAV ── */
+  .step-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .step-nav-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 100px;
+    padding: 9px 20px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .step-nav-btn:hover:not(:disabled) {
+    border-color: rgba(79,255,176,0.3);
+    color: var(--text);
+  }
+  .step-nav-btn:disabled { opacity: 0.2; cursor: default; }
+  .step-nav-count {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .step-nav-count strong { color: var(--accent); }
+
+  /* ── BOTTOM ── */
+  .see-also {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .see-also a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,255,176,0.06);
+    border: 1px solid rgba(79,255,176,0.15);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .see-also a:hover {
+    background: rgba(79,255,176,0.12);
+    border-color: rgba(79,255,176,0.3);
+    transform: translateY(-1px);
+  }
+  .see-also a.muted {
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .see-also a.muted:hover {
+    border-color: rgba(255,255,255,0.15);
+    color: var(--text);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .legal-hero { padding: 120px 24px 48px; }
+    .legal-inner { padding: 40px 24px 72px; }
+    .step-card-grid { grid-template-columns: 1fr; }
+    .card-left { border-right: none; border-bottom: 1px solid var(--border); }
+    .step-short { display: none; }
+    .step-dot { width: 34px; height: 34px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .legal-hero { padding: 100px 20px 36px; }
+    .legal-inner { padding: 32px 20px 60px; }
+    .card-left, .card-right { padding: 24px 20px; }
+    .step-panel { min-height: auto; }
+  }
+</style>
+
+<div class="legal-hero">
+  <div class="legal-hero-inner">
+    <span class="label">Google Play · Cumplimiento</span>
+    <h1>Privacidad &<br/>Políticas</h1>
+    <div class="legal-hero-meta">
+      <span>Ascend Habit Tracker · <em>com.neulamcore.ascendhabittracker</em></span>
+      <span class="version-badge">Versión 2.0 · 2 de junio de 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="legal-inner">
+
+    <!-- STEPPER RAIL -->
+    <div class="stepper-rail" id="stepRail">
+      {steps.map((s, i) => (
+        <button class={`step-btn${i === 0 ? ' active' : ''}`} data-i={i} type="button" aria-label={s.title}>
+          <span class="step-dot">{s.num}</span>
+          <span class="step-short">{s.title.split(' ').slice(0, 2).join(' ')}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- CARDS -->
+    <div class="step-panel" id="stepPanel">
+      {steps.map((s, i) => (
+        <div class={`step-card${i === 0 ? ' active' : ''}`} data-i={i}>
+          <div class="step-card-grid">
+
+            <div class="card-left">
+              <span class="card-num">{s.num} / 07</span>
+              <h2 class="card-title">{s.title}</h2>
+              <p class="card-label">{s.label}</p>
+              <p class="card-summary">{s.summary}</p>
+
+              <span class="card-index-label">Índice</span>
+              <ul class="card-index">
+                {s.index.map(item => <li>{item}</li>)}
+              </ul>
+
+              {s.link && <a href={s.link.href} class="card-link">{s.link.text} →</a>}
+            </div>
+
+            <div class="card-right">
+              <span class="card-points-label">Detalle de cumplimiento</span>
+              <ul class="card-points">
+                {s.points.map(p => (
+                  <li><strong>{p.strong}</strong>{p.text}</li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- NAV -->
+    <div class="step-nav">
+      <button class="step-nav-btn" id="prevBtn" type="button" disabled>← Anterior</button>
+      <span class="step-nav-count"><strong id="currentNum">1</strong> / 7</span>
+      <button class="step-nav-btn" id="nextBtn" type="button">Siguiente →</button>
+    </div>
+
+    <div class="see-also">
+      <a href="/permissions">Ver declaración de permisos →</a>
+      <a href="/" class="muted">← Volver al inicio</a>
+    </div>
+
+  </div>
+</div>
+</Layout>
+
+<script>
+  const TOTAL = 7;
+  let cur = 0;
+
+  const btns  = Array.from(document.querySelectorAll('#stepRail .step-btn'));
+  const cards = Array.from(document.querySelectorAll('#stepPanel .step-card'));
+  const rail  = document.getElementById('stepRail');
+  const prev  = document.getElementById('prevBtn');
+  const next  = document.getElementById('nextBtn');
+  const num   = document.getElementById('currentNum');
+
+  function go(i) {
+    btns.forEach((b, idx) => {
+      b.classList.toggle('active', idx === i);
+      b.classList.toggle('done',   idx < i);
+    });
+    cards.forEach((c, idx) => c.classList.toggle('active', idx === i));
+    rail.style.setProperty('--progress', TOTAL > 1 ? (i / (TOTAL - 1)) * 100 + '%' : '0%');
+    num.textContent = i + 1;
+    prev.disabled = i === 0;
+    next.disabled = i === TOTAL - 1;
+    cur = i;
+  }
+
+  btns.forEach((b, i) => b.addEventListener('click', () => go(i)));
+  prev.addEventListener('click', () => go(Math.max(0, cur - 1)));
+  next.addEventListener('click', () => go(Math.min(TOTAL - 1, cur + 1)));
+
+  go(0);
+</script>
