@@ -15,8 +15,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(79,255,176,0.08);
-    border: 1px solid rgba(79,255,176,0.2);
+    background: rgba(0,212,200,0.08);
+    border: 1px solid rgba(0,212,200,0.2);
     color: var(--accent);
     padding: 7px 16px;
     border-radius: 100px;
@@ -66,32 +66,6 @@
     opacity: 0;
     flex-wrap: wrap;
   }
-  .btn-gplay {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 14px 24px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: none;
-    cursor: default;
-    transition: all 0.2s;
-    position: relative;
-  }
-  .btn-gplay svg { width: 18px; height: 18px; flex-shrink: 0; }
-  .btn-gplay .gplay-label { display: flex; flex-direction: column; text-align: left; gap: 1px; }
-  .btn-gplay .gplay-soon {
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .btn-gplay .gplay-store { font-size: 14px; font-weight: 500; color: var(--text); font-family: 'Syne', sans-serif; }
   .freemium-note {
     width: 100%;
     text-align: center;
@@ -105,7 +79,7 @@
     position: absolute;
     top: 30%; left: 10%;
     width: 400px; height: 400px;
-    background: rgba(79,255,176,0.05);
+    background: rgba(0,212,200,0.05);
     border-radius: 50%;
     filter: blur(100px);
     pointer-events: none;
@@ -114,7 +88,7 @@
     position: absolute;
     top: 20%; right: 5%;
     width: 300px; height: 300px;
-    background: rgba(124,111,255,0.06);
+    background: rgba(0,181,170,0.06);
     border-radius: 50%;
     filter: blur(80px);
     pointer-events: none;
@@ -135,7 +109,6 @@
     .hero-inner { width: 100%; }
     .hero h1 { letter-spacing: -1.5px; }
     .hero-sub { font-size: 15px; }
-    .btn-gplay { width: 100%; justify-content: center; }
     .hero-scroll { display: none; }
   }
 </style>
@@ -153,18 +126,6 @@
     <p class="hero-sub">Una herramienta de seguimiento de hábitos diseñada para quienes toman su crecimiento en serio. <span style="color:var(--text);font-weight:400;">Gratis para empezar. Premium para los que van en serio.</span></p>
     <div class="hero-actions">
       <a href="#app" class="btn-primary">Explorar Ascend ↓</a>
-      <a class="btn-gplay" title="Próximamente en Google Play">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.18 1.37C2.8 1.76 2.57 2.38 2.57 3.18v17.64c0 .8.23 1.42.62 1.81l.09.08 9.88-9.88v-.23L3.27 1.29l-.09.08Z" fill="#4FC3F7"/>
-          <path d="M16.45 15.76l-3.29-3.29v-.24l3.29-3.29.07.04 3.9 2.21c1.11.63 1.11 1.67 0 2.3l-3.9 2.22-.07.05Z" fill="#FFD740"/>
-          <path d="m16.52 15.71-3.36-3.36-9.98 9.98c.37.39.97.44 1.65.05l11.69-6.67Z" fill="#F44336"/>
-          <path d="M16.52 8.29 4.83 1.62C4.15 1.23 3.55 1.28 3.18 1.67l9.98 9.98 3.36-3.36Z" fill="#4CAF50"/>
-        </svg>
-        <span class="gplay-label">
-          <span class="gplay-soon">Próximamente</span>
-          <span class="gplay-store">Google Play</span>
-        </span>
-      </a>
       <p class="freemium-note"><span>Gratis</span> para siempre · Desbloquea más con <span>Premium</span></p>
     </div>
   </div>

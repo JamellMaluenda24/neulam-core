@@ -1,12 +1,12 @@
----
+﻿---
 const items = [
-  { num: '01', title: 'Datos del Usuario',                               desc: 'Recopilación mínima, transparente y con consentimiento explícito.' },
-  { num: '02', title: 'Permisos y API — Información Sensible',           desc: '6 permisos, todos justificados y solicitados contextualmente.' },
+  { num: '01', title: 'Datos del Usuario',                               desc: 'RecopilaciÃ³n mÃ­nima, transparente y con consentimiento explÃ­cito.' },
+  { num: '02', title: 'Permisos y API â€” InformaciÃ³n Sensible',           desc: '6 permisos, todos justificados y solicitados contextualmente.' },
   { num: '03', title: 'Abuso de Redes y Dispositivos',                   desc: 'Sin procesos abusivos en segundo plano ni consumo excesivo de red.' },
-  { num: '04', title: 'Comportamiento Engañoso',                         desc: 'La app hace exactamente lo que describe. Sin dark patterns.' },
-  { num: '05', title: 'Tergiversación',                                  desc: 'Ficha de Google Play precisa. Identidad del desarrollador pública.' },
-  { num: '06', title: 'Política de Nivel de API Objetivo',               desc: 'API objetivo siempre actualizada según los requisitos de Google Play.' },
-  { num: '07', title: 'Engaño y Abuso de Dispositivos',                  desc: 'Sin malware, spyware ni accesos encubiertos al dispositivo.' },
+  { num: '04', title: 'Comportamiento EngaÃ±oso',                         desc: 'La app hace exactamente lo que describe. Sin dark patterns.' },
+  { num: '05', title: 'TergiversaciÃ³n',                                  desc: 'Ficha de Google Play precisa. Identidad del desarrollador pÃºblica.' },
+  { num: '06', title: 'PolÃ­tica de Nivel de API Objetivo',               desc: 'API objetivo siempre actualizada segÃºn los requisitos de Google Play.' },
+  { num: '07', title: 'EngaÃ±o y Abuso de Dispositivos',                  desc: 'Sin malware, spyware ni accesos encubiertos al dispositivo.' },
 ];
 ---
 
@@ -118,8 +118,8 @@ const items = [
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(79,255,176,0.07);
-    border: 1px solid rgba(79,255,176,0.2);
+    background: rgba(0,212,200,0.07);
+    border: 1px solid rgba(0,212,200,0.2);
     color: var(--accent);
     text-decoration: none;
     padding: 10px 20px;
@@ -129,8 +129,8 @@ const items = [
     transition: all 0.2s ease;
   }
   .privacy-cta-btn:hover {
-    background: rgba(79,255,176,0.13);
-    border-color: rgba(79,255,176,0.35);
+    background: rgba(0,212,200,0.13);
+    border-color: rgba(0,212,200,0.35);
     transform: translateY(-1px);
   }
   .privacy-cta-btn.secondary {
@@ -160,10 +160,10 @@ const items = [
 
     <div class="privacy-head">
       <div>
-        <span class="label">Google Play · Cumplimiento</span>
-        <h2>Privacidad &<br/>Políticas</h2>
+        <span class="label">Google Play Â· Cumplimiento</span>
+        <h2>Privacidad &<br/>PolÃ­ticas</h2>
       </div>
-      <p class="privacy-head-sub">7 áreas de política que cubre Ascend Habit Tracker.</p>
+      <p class="privacy-head-sub">7 Ã¡reas de polÃ­tica que cubre Ascend Habit Tracker.</p>
     </div>
 
     <div class="policy-list">
@@ -172,14 +172,14 @@ const items = [
           <span class="policy-num">{item.num}</span>
           <span class="policy-title">{item.title}</span>
           <span class="policy-desc">{item.desc}</span>
-          <span class="policy-arrow">→</span>
+          <span class="policy-arrow">â†’</span>
         </div>
       ))}
     </div>
 
     <div class="privacy-cta">
-      <a href="/privacy" class="privacy-cta-btn">Ver política detallada →</a>
-      <a href="/permissions" class="privacy-cta-btn secondary">Declaración de permisos →</a>
+      <a href="/privacy" class="privacy-cta-btn">Ver polÃ­tica detallada â†’</a>
+      <a href="/permissions" class="privacy-cta-btn secondary">DeclaraciÃ³n de permisos â†’</a>
     </div>
 
   </div>
@@ -196,3 +196,4 @@ const items = [
     });
   });
 </script>
+

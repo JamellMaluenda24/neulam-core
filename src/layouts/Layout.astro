@@ -1,11 +1,11 @@
----
+﻿---
 import '../styles/global.css';
 import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 
 const {
   title = 'Ascend - Habit Tracker',
-  description = 'Neulam Core — Ascend Habit Tracker. Construye hábitos. Asciende sin límites.',
+  description = 'Neulam Core â€” Ascend Habit Tracker. Construye hÃ¡bitos. Asciende sin lÃ­mites.',
 } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -14,8 +14,8 @@ const {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <meta property="og:title" content="Neulam Core — Ascend" />
-  <meta property="og:description" content="Una herramienta de seguimiento de hábitos diseñada para quienes toman su crecimiento en serio." />
+  <meta property="og:title" content="Neulam Core â€” Ascend" />
+  <meta property="og:description" content="Una herramienta de seguimiento de hÃ¡bitos diseÃ±ada para quienes toman su crecimiento en serio." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/favicon.png" />
   <link rel="icon" type="image/png" href="/favicon.png" />
@@ -49,7 +49,7 @@ const {
       for (let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 120;
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      const mat = new THREE.PointsMaterial({ color: 0x4fffb0, size: 0.15, transparent: true, opacity: 0.5 });
+      const mat = new THREE.PointsMaterial({ color: 0x00d4c8, size: 0.15, transparent: true, opacity: 0.5 });
       const particles = new THREE.Points(geo, mat);
       scene.add(particles);
       const gridGeo = new THREE.BufferGeometry();
@@ -59,7 +59,7 @@ const {
         gridVerts.push(-60, -30, i * 5, 60, -30, i * 5);
       }
       gridGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(gridVerts), 3));
-      const gridMat = new THREE.LineBasicMaterial({ color: 0x4fffb0, transparent: true, opacity: 0.04 });
+      const gridMat = new THREE.LineBasicMaterial({ color: 0x00d4c8, transparent: true, opacity: 0.04 });
       scene.add(new THREE.LineSegments(gridGeo, gridMat));
       let mouse = { x: 0, y: 0 };
       document.addEventListener('mousemove', e => {
@@ -107,3 +107,4 @@ const {
   </script>
 </body>
 </html>
+

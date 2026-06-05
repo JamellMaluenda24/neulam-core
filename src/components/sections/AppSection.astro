@@ -4,7 +4,7 @@ import { features } from '../../data/features';
 <style>
   .app-section {
     padding: 140px 60px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(79,255,176,0.04) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,212,200,0.04) 0%, transparent 60%);
   }
   .features-grid {
     display: grid;
@@ -26,14 +26,14 @@ import { features } from '../../data/features';
   }
   .feature-card:hover {
     transform: translateY(-4px) !important;
-    border-color: rgba(79,255,176,0.2);
+    border-color: rgba(0,212,200,0.2);
   }
   .feature-card::before {
     content: '';
     position: absolute;
     inset: 0;
     opacity: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(79,255,176,0.08), transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(0,212,200,0.08), transparent 60%);
     transition: opacity 0.3s;
   }
   .feature-card:hover::before { opacity: 1; }
@@ -57,9 +57,9 @@ import { features } from '../../data/features';
     border-radius: 100px;
   }
   .badge-free {
-    background: rgba(79,255,176,0.1);
-    border: 1px solid rgba(79,255,176,0.2);
-    color: #4FFFB0;
+    background: rgba(0,212,200,0.1);
+    border: 1px solid rgba(0,212,200,0.2);
+    color: var(--accent);
   }
   .badge-premium {
     background: rgba(212,160,23,0.12);
