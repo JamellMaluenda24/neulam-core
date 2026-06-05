@@ -35,8 +35,12 @@ const {
   <Footer />
 
   <script>
-    // Three.js particles
+    // Three.js particles — skip on mobile for performance
     (function() {
+      if (window.innerWidth < 768) {
+        document.getElementById('canvas-bg').style.display = 'none';
+        return;
+      }
       const canvas = document.getElementById('canvas-bg');
       const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));

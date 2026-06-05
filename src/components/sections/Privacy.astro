@@ -145,13 +145,24 @@ const items = [
 
   @media (max-width: 900px) {
     .privacy { padding: 80px 24px; }
-    .privacy-head { align-items: flex-start; }
+    .privacy-head { align-items: flex-start; flex-direction: column; gap: 12px; }
     .privacy-head-sub { text-align: left; max-width: none; }
     .policy-desc { display: none; }
   }
+
   @media (max-width: 480px) {
     .privacy { padding: 60px 20px; }
-    .privacy-head h2 { font-size: 26px; }
+    .privacy-head h2 { letter-spacing: -0.5px; }
+    .policy-row { gap: 12px; padding: 14px 0; }
+    .policy-num { font-size: 10px; width: 22px; }
+    .policy-title { font-size: 13px; }
+    .privacy-cta { flex-direction: column; }
+    .privacy-cta-btn { width: 100%; justify-content: center; text-align: center; }
+  }
+
+  @media (max-width: 375px) {
+    .privacy { padding: 48px 16px; }
+    .policy-title { font-size: 12px; }
   }
 </style>
 

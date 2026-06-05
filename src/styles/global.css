@@ -21,6 +21,8 @@ body {
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
   cursor: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* CURSOR */
@@ -185,4 +187,9 @@ section { position: relative; z-index: 1; }
     padding: 15px 20px;
   }
   .section-header { margin-bottom: 36px; }
+}
+
+@media (max-width: 375px) {
+  .section-header h2 { font-size: 26px; letter-spacing: -0.5px; }
+  .section-header p { font-size: 14px; }
 }

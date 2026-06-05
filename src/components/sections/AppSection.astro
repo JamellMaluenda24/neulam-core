@@ -140,22 +140,32 @@ import { features } from '../../data/features';
   @media (max-width: 900px) {
     .app-section { padding: 80px 24px; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
-    .feature-card.big { flex-direction: column; grid-column: span 2; }
+    .feature-card.big { flex-direction: column; grid-column: span 2; gap: 24px; }
     .feature-card { padding: 28px; }
   }
 
   @media (max-width: 600px) {
-    .features-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; gap: 16px; }
     .feature-card.big { grid-column: 1; }
     .feature-card { padding: 24px; border-radius: 16px; }
     .feature-icon { font-size: 26px; margin-bottom: 14px; }
     .feature-card h3 { font-size: 16px; }
+    .feature-card p { font-size: 13px; }
   }
 
   @media (max-width: 480px) {
     .app-section { padding: 60px 20px; }
-    .app-mockup { padding: 16px; }
+    .app-mockup { padding: 14px; }
     .habit-name { font-size: 12px; }
+    .mockup-header { margin-bottom: 14px; }
+    .habit-row { padding: 8px 10px; }
+    .feature-badge { top: 14px; right: 14px; }
+  }
+
+  @media (max-width: 375px) {
+    .app-section { padding: 48px 16px; }
+    .feature-card { padding: 20px; }
+    .feature-card.big { gap: 16px; }
   }
 </style>
 
