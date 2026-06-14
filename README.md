@@ -1,6 +1,6 @@
 # Neulam Core — Landing Page
 
-Landing page oficial de **Neulam Core** y **Ascend Habit Tracker**.
+Landing page oficial de **Neulam Core** y **Auctus Habit Tracker**.
 
 ## 🚀 Stack
 

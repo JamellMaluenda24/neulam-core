@@ -16,7 +16,7 @@ const indexItems = [
 ];
 ---
 
-<Layout title="Privacidad & Políticas — Ascend Habit Tracker · Neulam Core">
+<Layout title="Privacidad & Políticas — Auctus Habit Tracker · Neulam Core">
 <style>
   /* ── HERO ── */
   .lhero {
@@ -263,8 +263,8 @@ const indexItems = [
     <span class="label">Google Play · Cumplimiento</span>
     <h1>Privacidad &<br/>Políticas</h1>
     <div class="lhero-meta">
-      <span>Ascend Habit Tracker · <em>com.neulamcore.ascendhabittracker</em></span>
-      <span class="vbadge">Versión 2.0 · 2 de junio de 2026</span>
+      <span>Auctus Habit Tracker · <em>com.neulamcore.auctus</em></span>
+      <span class="vbadge">Versión 2.1 · Actualizado junio 2026</span>
     </div>
   </div>
 </div>
@@ -317,16 +317,16 @@ const indexItems = [
 
             <!-- HEADER -->
             <div class="rpt-header">
-              <span class="rpt-app">ASCEND — HABIT TRACKER</span>
+              <span class="rpt-app">AUCTUS — HABIT TRACKER</span>
               <span class="rpt-title">Análisis de Cumplimiento: Datos del Usuario (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (build 2) · Package: com.neulamcore.ascendhabittracker · Developer: Neulam Core</span>
+              <span>Versión: 1.0.0 (build 2) · Package: com.neulamcore.auctus · Developer: Neulam Core</span>
             </div>
 
             <!-- 01 -->
             <div class="rs" id="rs1">
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Resumen Ejecutivo</span></div>
-              <p class="rp">La aplicación Ascend - Habit Tracker es una app de seguimiento de hábitos personales con sincronización en la nube opcional.</p>
+              <p class="rp">La aplicación Auctus - Habit Tracker es una app de seguimiento de hábitos personales con sincronización en la nube opcional.</p>
               <p class="rp"><strong>ESTADO GENERAL:</strong> <span class="ok">APTA PARA PUBLICACIÓN CON OBSERVACIONES MENORES</span></p>
               <table class="rtable" style="margin-top:16px">
                 <tr><th>Elemento</th><th>Estado</th></tr>
@@ -394,6 +394,19 @@ const indexItems = [
                 <span class="rss-title">2.7 Datos de Crashlytics (solo con consentimiento)</span>
                 <p class="rp">Stack trace · Versión de app · Versión Android · Modelo de dispositivo. Claves personalizadas: <code>current_screen</code>, <code>authenticated</code>, <code>habit_count</code>, <code>is_premium</code>.</p>
               </div>
+              <div class="rss">
+                <span class="rss-title">2.8 Datos de Gamificación (sincronizados)</span>
+                <p class="rp">Generados por el sistema de progreso de la app. No son datos personales ni sensibles — solo reflejan el avance del usuario:</p>
+                <table class="rtable">
+                  <tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr>
+                  <tr><td><code>xp</code></td><td>int</td><td>Puntos de experiencia acumulados</td></tr>
+                  <tr><td><code>logros</code></td><td>List&lt;String&gt;</td><td>IDs de logros desbloqueados</td></tr>
+                  <tr><td><code>escudos</code></td><td>int</td><td>Escudos de racha disponibles</td></tr>
+                  <tr><td><code>slotsExtra</code></td><td>int</td><td>Slots de hábitos adicionales comprados</td></tr>
+                  <tr><td><code>pasesVacaciones</code></td><td>int</td><td>Pases de vacaciones disponibles</td></tr>
+                </table>
+                <p class="rp">Sincronizados como campos del documento <code>usuarios/{'{uid}'}</code> con merge aditivo. Se eliminan al borrar la cuenta.</p>
+              </div>
             </div>
 
             <!-- 03 -->
@@ -432,7 +445,17 @@ const indexItems = [
               </div>
               <div class="rss">
                 <span class="rss-title">4.3 Datos Financieros</span>
-                <p class="rp">IAP: <code>ascend_premium</code> (non-consumable, pago único). Toda transacción gestionada por Google Play — la app no maneja datos de tarjetas directamente.</p>
+                <p class="rp">La app ofrece compras dentro de la aplicación (modelo <strong>freemium</strong>). Toda transacción es gestionada íntegramente por <strong>Google Play Billing</strong> — la app <strong>no recibe, almacena ni procesa datos de tarjetas ni medios de pago</strong>.</p>
+                <table class="rtable">
+                  <tr><th>Producto (ID)</th><th>Tipo</th><th>Función</th></tr>
+                  <tr><td><code>auctus_premium</code></td><td>No consumible</td><td>Desbloqueo Premium (pago único)</td></tr>
+                  <tr><td><code>auctus_shield_pack</code></td><td>Consumible</td><td>Pack de escudos de racha</td></tr>
+                  <tr><td><code>auctus_streak_repair</code></td><td>Consumible</td><td>Reparador de racha</td></tr>
+                  <tr><td><code>auctus_habit_slots</code></td><td>Consumible</td><td>Slots de hábitos adicionales</td></tr>
+                  <tr><td><code>auctus_vacation_pass</code></td><td>Consumible</td><td>Pase de vacaciones (congela rachas)</td></tr>
+                  <tr><td><code>auctus_pdf_single</code></td><td>Consumible</td><td>Crédito de exportación PDF</td></tr>
+                </table>
+                <p class="rp">Solo se almacena el <strong>resultado</strong> de la compra (saldos como <code>escudos</code>, <code>slotsExtra</code>, <code>pasesVacaciones</code>) — nunca datos de pago. Las compras se restauran mediante Google Play.</p>
               </div>
             </div>
 
@@ -661,7 +684,7 @@ const indexItems = [
                 <tr><td>Analytics con default=true</td><td><span class="ok">RESUELTO</span></td><td>Corregido a <code>defaultValue: false</code> en crashlytics_service.dart:14</td></tr>
                 <tr><td>Eliminar datos sin eliminar cuenta</td><td><span class="warn">PENDIENTE</span></td><td>GDPR Art. 17 recomienda ofrecer borrado sin eliminar cuenta. No bloqueante para publicación.</td></tr>
                 <tr><td>Data Safety Form</td><td><span class="warn">PENDIENTE</span></td><td>Completar manualmente en Play Console con los datos de la sección 14.</td></tr>
-                <tr><td>google-services.json con package inválido</td><td><span class="ok">RESUELTO</span></td><td>Cliente <code>com.example.habit_tracker</code> eliminado. Solo existe <code>com.neulamcore.ascendhabittracker</code>.</td></tr>
+                <tr><td>google-services.json con package inválido</td><td><span class="ok">RESUELTO</span></td><td>Cliente <code>com.example.habit_tracker</code> eliminado. Solo existe <code>com.neulamcore.auctus</code>.</td></tr>
               </table>
             </div>
 
@@ -673,7 +696,7 @@ const indexItems = [
                 <ul class="cklist">
                   <li><span class="ck-warn">□</span><span>Completar el formulario "Seguridad de los datos" en Play Console → Contenido de la app → Seguridad de los datos.</span></li>
                   <li><span class="ck-warn">□</span><span>Registrar la URL de política de privacidad: <code>neulam-core.vercel.app/privacy</code> en Play Console → Ficha de la app.</span></li>
-                  <li><span class="ck-warn">□</span><span>Crear producto de pago en Play Console: ID exacto <code>ascend_premium</code> — tipo: pago único (non-consumable).</span></li>
+                  <li><span class="ck-warn">□</span><span>Crear producto de pago en Play Console: ID exacto <code>auctus_premium</code> — tipo: pago único (non-consumable).</span></li>
                   <li><span class="ck-warn">□</span><span>Subir el SHA-1 del keystore de release a Firebase Console para habilitar Google Sign-In en builds de release.</span></li>
                 </ul>
               </div>
@@ -699,7 +722,7 @@ const indexItems = [
                 <tr><td>Consentimiento Analytics / Crashlytics</td><td><span class="ok">✓ CUMPLE — opt-in, default=false</span></td></tr>
                 <tr><td>Eliminación de cuenta</td><td><span class="ok">✓ CUMPLE — completa (todos los datos)</span></td></tr>
                 <tr><td>Cifrado local y en tránsito</td><td><span class="ok">✓ CUMPLE — AES-256 + TLS 1.2+</span></td></tr>
-                <tr><td>Package name válido</td><td><span class="ok">✓ CUMPLE — com.neulamcore.ascendhabittracker</span></td></tr>
+                <tr><td>Package name válido</td><td><span class="ok">✓ CUMPLE — com.neulamcore.auctus</span></td></tr>
                 <tr><td>targetSdk / compileSdk</td><td><span class="ok">✓ CUMPLE — targetSdk=35, compileSdk=36</span></td></tr>
                 <tr><td>Sin SDKs de publicidad</td><td><span class="ok">✓ CUMPLE — ninguno detectado</span></td></tr>
                 <tr><td>Venta de datos</td><td><span class="ok">✓ NO VENDE — verificado en pubspec.yaml</span></td></tr>
@@ -735,10 +758,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">PERMISOS Y APIs QUE ACCEDEN A INFORMACIÓN SENSIBLE — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">PERMISOS Y APIs QUE ACCEDEN A INFORMACIÓN SENSIBLE — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Análisis de Cumplimiento: Permisos y APIs que Acceden a Información Sensible</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
             <!-- 01 -->
@@ -746,7 +769,7 @@ const indexItems = [
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Resumen ejecutivo</span></div>
               <div class="rss">
                 <span class="rss-title">Descripción de la aplicación</span>
-                <p class="rp">Ascend - Habit Tracker es una aplicación de productividad personal para crear, seguir y analizar hábitos diarios. Permite definir hábitos personalizados, marcarlos como completados, visualizar rachas y estadísticas, y recibir recordatorios programados.</p>
+                <p class="rp">Auctus - Habit Tracker es una aplicación de productividad personal para crear, seguir y analizar hábitos diarios. Permite definir hábitos personalizados, marcarlos como completados, visualizar rachas y estadísticas, y recibir recordatorios programados.</p>
               </div>
               <div class="rss">
                 <span class="rss-title">Funcionalidades principales</span>
@@ -805,7 +828,7 @@ const indexItems = [
 
               <div class="rss">
                 <span class="rss-title">com.android.vending.BILLING — Normal · <code>AndroidManifest.xml:4</code></span>
-                <p class="rp">Requerido por Google Play para acceder a la API de compras in-app. Producto: <code>ascend_premium</code> (pago único non-consumable). Implementado con <code>in_app_purchase ^3.2.0</code>.</p>
+                <p class="rp">Requerido por Google Play para acceder a la API de compras in-app. Producto: <code>auctus_premium</code> (pago único non-consumable). Implementado con <code>in_app_purchase ^3.2.0</code>.</p>
                 <p class="rp">Sin BILLING el botón "Obtener Premium" no puede completar transacciones. La app funciona completamente en modo gratuito.</p>
                 <p class="rp"><strong>Evidencia:</strong> <code>premium_service.dart:43-60</code> · <code>premium_paywall_sheet.dart</code></p>
               </div>
@@ -893,7 +916,7 @@ const indexItems = [
 
               <div class="rss">
                 <span class="rss-title">5.3 Cumplimiento de política Google Play</span>
-                <p class="rp">Google Play permite alarmas exactas para <em>"Alarmas y temporizadores"</em> — aplicaciones cuya función principal sea recordar al usuario una tarea en un momento específico. Ascend es una aplicación de productividad personal. El uso está directamente alineado con la categoría permitida.</p>
+                <p class="rp">Google Play permite alarmas exactas para <em>"Alarmas y temporizadores"</em> — aplicaciones cuya función principal sea recordar al usuario una tarea en un momento específico. Auctus es una aplicación de productividad personal. El uso está directamente alineado con la categoría permitida.</p>
                 <p class="rp"><strong>ESTADO: <span class="ok">CUMPLE</span> con la política de alarmas exactas de Google Play.</strong></p>
               </div>
             </div>
@@ -1096,7 +1119,7 @@ const indexItems = [
               </div>
               <div class="veredicto">
                 <div class="veredicto-title">VEREDICTO: APTO PARA PUBLICACIÓN EN GOOGLE PLAY</div>
-                <p>Ascend - Habit Tracker cumple con la política de "Permisos y APIs que Acceden a Información Sensible" de Google Play. Todos los permisos declarados tienen justificación técnica directamente relacionada con las funciones principales de la aplicación.</p>
+                <p>Auctus - Habit Tracker cumple con la política de "Permisos y APIs que Acceden a Información Sensible" de Google Play. Todos los permisos declarados tienen justificación técnica directamente relacionada con las funciones principales de la aplicación.</p>
                 <p style="margin-top:10px">Los dos riesgos detectados (<code>habit_id</code> en analytics y <code>minSdk</code> heredado) son menores y no bloquean la publicación.</p>
               </div>
               <p class="rp" style="margin-top:16px">Ver declaración completa de permisos: <a href="/permissions" style="color:var(--accent)">neulam-core.vercel.app/permissions</a></p>
@@ -1122,10 +1145,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">ABUSO DE REDES Y DISPOSITIVOS — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">ABUSO DE REDES Y DISPOSITIVOS — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Análisis de Cumplimiento: Abuso de Redes y Dispositivos (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android nativo</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
             </div>
 
             <!-- 01 -->
@@ -1485,10 +1508,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">AUDITORÍA DE COMPORTAMIENTO ENGAÑOSO — GOOGLE PLAY — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">AUDITORÍA DE COMPORTAMIENTO ENGAÑOSO — GOOGLE PLAY — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Auditoría de Comportamiento Engañoso (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
             <!-- 01 -->
@@ -1582,7 +1605,7 @@ const indexItems = [
                 <span class="rss-title">A) Estado del sistema de pagos</span>
                 <ul class="cklist">
                   <li><span class="ck-yes">✓</span><span>Google Play Billing implementado: <code>in_app_purchase ^3.2.0</code></span></li>
-                  <li><span class="ck-yes">✓</span><span>Producto configurado: <code>ascend_premium</code> (non-consumable)</span></li>
+                  <li><span class="ck-yes">✓</span><span>Producto configurado: <code>auctus_premium</code> (non-consumable)</span></li>
                   <li><span class="ck-yes">✓</span><span>Flujo real: <code>_iap.buyNonConsumable()</code> → listener de compra</span></li>
                   <li><span class="ck-yes">✓</span><span><code>PremiumService.activar()</code> se llama SOLO tras <code>PurchaseStatus.purchased</code> o <code>PurchaseStatus.restored</code> (<code>premium_service.dart:57-60</code>)</span></li>
                 </ul>
@@ -1638,7 +1661,7 @@ const indexItems = [
             <!-- 05 -->
             <div class="rs" id="p4-5">
               <div class="rs-head"><span class="rs-num">05</span><span class="rs-title">Manipulación de contenido multimedia</span></div>
-              <p class="rp">Ascend - Habit Tracker es una app de productividad personal. Las funciones multimedia detectadas son:</p>
+              <p class="rp">Auctus - Habit Tracker es una app de productividad personal. Las funciones multimedia detectadas son:</p>
               <ul class="cklist">
                 <li><span class="ck-yes">✓</span><span>Exportación PDF con gráficos de estadísticas propias del usuario</span></li>
                 <li><span class="ck-yes">✓</span><span>Exportación CSV de datos de hábitos propios del usuario</span></li>
@@ -1672,7 +1695,7 @@ const indexItems = [
               <div class="rs-head"><span class="rs-num">07</span><span class="rs-title">Metadatos de Play Store</span></div>
               <table class="rtable">
                 <tr><th>Elemento</th><th>Estado</th><th>Acción</th></tr>
-                <tr><td>Nombre: "Ascend - Habit Tracker"</td><td><span class="ok">✓ Claro, sin keyword stuffing</span></td><td>Listo</td></tr>
+                <tr><td>Nombre: "Auctus - Habit Tracker"</td><td><span class="ok">✓ Claro, sin keyword stuffing</span></td><td>Listo</td></tr>
                 <tr><td>Descripción</td><td><span class="warn">⚠️ Pendiente completar en Play Console</span></td><td>Basarla en funciones reales de sección 02; sin superlativos no demostrables</td></tr>
                 <tr><td>Capturas de pantalla</td><td><span class="warn">⚠️ No auditables aún</span></td><td>Capturar de dispositivo real; sin mockups de funciones inexistentes</td></tr>
                 <tr><td>Ícono</td><td><span class="warn">⚠️ No auditado visualmente</span></td><td>Verificar que no imite apps conocidas o marcas de Google</td></tr>
@@ -1765,7 +1788,7 @@ const indexItems = [
                 <ul class="cklist">
                   <li><span class="ck-warn">□</span><span>Proteger toggle Premium en <code>profile_screen.dart</code> con <code>kDebugMode</code> o eliminarlo de la build de release</span></li>
                   <li><span class="ck-warn">□</span><span>Verificar que <code>PremiumService.activar()</code> SOLO se llama desde <code>_onPurchaseUpdate</code> (después de compra verificada)</span></li>
-                  <li><span class="ck-warn">□</span><span>Crear el producto <code>ascend_premium</code> en Play Console (Monetización → Productos de pago)</span></li>
+                  <li><span class="ck-warn">□</span><span>Crear el producto <code>auctus_premium</code> en Play Console (Monetización → Productos de pago)</span></li>
                 </ul>
               </div>
               <div class="rss">
@@ -1833,10 +1856,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">TERGIVERSACIÓN — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">TERGIVERSACIÓN — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Análisis de Cumplimiento: Tergiversación (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
             <!-- 01 -->
@@ -1860,13 +1883,13 @@ const indexItems = [
               <table class="rtable">
                 <tr><th>Elemento</th><th>Valor detectado</th><th>Archivo</th><th>Estado</th></tr>
                 <tr><td>Nombre técnico (Dart)</td><td><code>habit_tracker</code></td><td>pubspec.yaml:1</td><td><span class="ok">Interno — no visible al usuario</span></td></tr>
-                <tr><td>Descripción</td><td>"Ascend Habit Tracker — Build better habits every day"</td><td>pubspec.yaml:2</td><td><span class="ok">✓ Exacto</span></td></tr>
-                <tr><td>applicationId / namespace</td><td><code>com.neulamcore.ascendhabittracker</code></td><td>build.gradle.kts:18,42</td><td><span class="ok">✓ Coherente</span></td></tr>
-                <tr><td>Etiqueta Android (label)</td><td>Ascend</td><td>AndroidManifest.xml:14</td><td><span class="ok">✓ Coherente</span></td></tr>
-                <tr><td>Título en la app</td><td>Ascend</td><td>lib/main.dart:64</td><td><span class="ok">✓ Coherente</span></td></tr>
-                <tr><td>Constante en Terms</td><td><code>_appName = 'Ascend'</code></td><td>terms_screen.dart:32</td><td><span class="ok">✓ Coherente</span></td></tr>
+                <tr><td>Descripción</td><td>"Auctus Habit Tracker — Build better habits every day"</td><td>pubspec.yaml:2</td><td><span class="ok">✓ Exacto</span></td></tr>
+                <tr><td>applicationId / namespace</td><td><code>com.neulamcore.auctus</code></td><td>build.gradle.kts:18,42</td><td><span class="ok">✓ Coherente</span></td></tr>
+                <tr><td>Etiqueta Android (label)</td><td>Auctus</td><td>AndroidManifest.xml:14</td><td><span class="ok">✓ Coherente</span></td></tr>
+                <tr><td>Título en la app</td><td>Auctus</td><td>lib/main.dart:64</td><td><span class="ok">✓ Coherente</span></td></tr>
+                <tr><td>Constante en Terms</td><td><code>_appName = 'Auctus'</code></td><td>terms_screen.dart:32</td><td><span class="ok">✓ Coherente</span></td></tr>
               </table>
-              <p class="rp"><strong>Evaluación:</strong> Todos los identificadores apuntan a la misma aplicación "Ascend" de seguimiento de hábitos con package <code>com.neulamcore.ascendhabittracker</code>. El nombre técnico Dart (<code>habit_tracker</code>) es interno y no visible para usuarios.</p>
+              <p class="rp"><strong>Evaluación:</strong> Todos los identificadores apuntan a la misma aplicación "Auctus" de seguimiento de hábitos con package <code>com.neulamcore.auctus</code>. El nombre técnico Dart (<code>habit_tracker</code>) es interno y no visible para usuarios.</p>
               <p class="rp"><strong>ESTADO: <span class="ok">CONSISTENTE</span></strong></p>
             </div>
 
@@ -1906,7 +1929,7 @@ const indexItems = [
                   ))}
                 </ul>
               </div>
-              <p class="rp">Al ver "Ascend - Habit Tracker" un usuario esperaría seguimiento de hábitos, recordatorios, estadísticas, sync en la nube y plan Premium — todo existe en el código.</p>
+              <p class="rp">Al ver "Auctus - Habit Tracker" un usuario esperaría seguimiento de hábitos, recordatorios, estadísticas, sync en la nube y plan Premium — todo existe en el código.</p>
               <p class="rp"><strong>ESTADO: <span class="ok">SIN DISCREPANCIA entre funcionalidad real y nombre/descripción</span></strong></p>
             </div>
 
@@ -1916,13 +1939,13 @@ const indexItems = [
               <table class="rtable">
                 <tr><th>Recurso</th><th>Ubicación</th><th>Riesgo</th></tr>
                 <tr><td>Ícono principal</td><td>assets/icon.png</td><td><span class="ok">Bajo</span></td></tr>
-                <tr><td>Ícono de marca</td><td>assets/Ascend icono.png</td><td><span class="ok">Bajo</span></td></tr>
+                <tr><td>Ícono de marca</td><td>assets/Auctus icono.png</td><td><span class="ok">Bajo</span></td></tr>
                 <tr><td>ic_launcher (mdpi–xxxhdpi)</td><td>res/mipmap-*/ic_launcher.png</td><td><span class="ok">Bajo</span></td></tr>
                 <tr><td>Icono notificación (vector)</td><td>res/drawable-v21/ic_notification.xml</td><td><span class="ok">Bajo</span></td></tr>
                 <tr><td>Color primario</td><td>#C9A84C (gold)</td><td><span class="ok">Paleta propia, no asociada a marcas</span></td></tr>
               </table>
               <ul class="cklist" style="margin-top:10px">
-                <li><span class="ck-yes">✓</span><span>"Ascend" es un término genérico en inglés — no está registrado exclusivamente en el sector de apps de productividad.</span></li>
+                <li><span class="ck-yes">✓</span><span>"Auctus" es un término genérico en inglés — no está registrado exclusivamente en el sector de apps de productividad.</span></li>
                 <li><span class="ck-yes">✓</span><span>Colores (dorado, oscuro) son paleta propia, no asociada a ninguna marca conocida.</span></li>
                 <li><span class="ck-no">✗</span><span>Sin logos de Google, Apple, Meta ni otras empresas en los recursos visuales del proyecto.</span></li>
               </ul>
@@ -1951,7 +1974,7 @@ const indexItems = [
               <div class="rnote"><strong>Nota:</strong> La aplicación aún no ha sido publicada. No existen archivos de listing generados en el repositorio (sin fastlane/, store_listing/, ni metadatos de Play Store).</div>
               <table class="rtable" style="margin-top:12px">
                 <tr><th>Elemento</th><th>Estado actual</th><th>Recomendación</th></tr>
-                <tr><td>Nombre</td><td><span class="ok">"Ascend" — detectado en Manifest y main.dart</span></td><td>Publicar como "Ascend - Habit Tracker" para mejor búsqueda</td></tr>
+                <tr><td>Nombre</td><td><span class="ok">"Auctus" — detectado en Manifest y main.dart</span></td><td>Publicar como "Auctus - Habit Tracker" para mejor búsqueda</td></tr>
                 <tr><td>Descripción corta</td><td><span class="warn">⚠️ NO CREADA</span></td><td>Basarla en <code>pubspec.yaml</code>: "Build better habits every day. Offline-first..."</td></tr>
                 <tr><td>Descripción completa</td><td><span class="warn">⚠️ NO CREADA</span></td><td>Describir funciones reales de sección 04 — sin superlativos no demostrables</td></tr>
                 <tr><td>Capturas de pantalla</td><td><span class="warn">⚠️ NO DISPONIBLES</span></td><td>Capturar de dispositivo real; mostrar funciones reales</td></tr>
@@ -1965,7 +1988,7 @@ const indexItems = [
             <div class="rs" id="p5-8">
               <div class="rs-head"><span class="rs-num">08</span><span class="rs-title">Capturas y material promocional</span></div>
               <p class="rp"><strong>ESTADO: <span class="warn">NO DISPONIBLE PARA AUDITORÍA</span></strong></p>
-              <p class="rp">No se encontraron archivos de capturas, mockups ni imágenes promocionales en el repositorio. Solo se encontraron como recursos visuales: <code>assets/icon.png</code> y <code>assets/Ascend icono.png</code>.</p>
+              <p class="rp">No se encontraron archivos de capturas, mockups ni imágenes promocionales en el repositorio. Solo se encontraron como recursos visuales: <code>assets/icon.png</code> y <code>assets/Auctus icono.png</code>.</p>
               <div class="rss">
                 <span class="rss-title">Capturas recomendadas antes de publicar</span>
                 <ul class="cklist">
@@ -2079,7 +2102,7 @@ const indexItems = [
                 <tr><td>Metadatos precisos</td><td><span class="warn">⚠️ PENDIENTE</span></td><td>Listing de Play Store aún no creado</td></tr>
                 <tr><td>Capturas representativas</td><td><span class="warn">⚠️ PENDIENTE</span></td><td>No existen capturas en el repositorio</td></tr>
                 <tr><td>País de origen consistente</td><td><span class="ok">✓ CUMPLE</span></td><td>Chile declarado en privacy_policy.html</td></tr>
-                <tr><td>Branding transparente</td><td><span class="ok">✓ CUMPLE</span></td><td>Marca "Ascend / Neulam Core" original</td></tr>
+                <tr><td>Branding transparente</td><td><span class="ok">✓ CUMPLE</span></td><td>Marca "Auctus / Neulam Core" original</td></tr>
                 <tr><td>Información de contacto clara</td><td><span class="warn">⚠️ BAJA PRIORIDAD</span></td><td>Dos correos distintos sin explicación</td></tr>
                 <tr><td>Sin afirmaciones no demostrables</td><td><span class="ok">✓ CUMPLE</span></td><td>Todas las funciones verificadas en código</td></tr>
                 <tr><td>Sin imitación de apps conocidas</td><td><span class="ok">✓ CUMPLE</span></td><td>Nombre, branding y dominio originales</td></tr>
@@ -2128,10 +2151,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">NIVEL DE API OBJETIVO — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">NIVEL DE API OBJETIVO — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Análisis de Cumplimiento: Política de Nivel de API Objetivo (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android nativo</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
             </div>
 
             <!-- 01 -->
@@ -2169,10 +2192,10 @@ const indexItems = [
               </table>
               <div class="rpt-header" style="margin-top:12px; font-size:11px">
                 android {'{'}<br/>
-                &nbsp;&nbsp;namespace  = "com.neulamcore.ascendhabittracker"<br/>
+                &nbsp;&nbsp;namespace  = "com.neulamcore.auctus"<br/>
                 &nbsp;&nbsp;compileSdk = 36<br/>
                 &nbsp;&nbsp;defaultConfig {'{'}<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;applicationId = "com.neulamcore.ascendhabittracker"<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;applicationId = "com.neulamcore.auctus"<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;minSdk    = flutter.minSdkVersion &nbsp;// línea 43<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;targetSdk = 35 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// línea 44<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;versionCode = flutter.versionCode &nbsp;&nbsp;// = 2<br/>
@@ -2429,10 +2452,10 @@ const indexItems = [
           </div>
           <div class="audit-content">
             <div class="rpt-header">
-              <span class="rpt-app">PERMISOS Y APIs QUE ACCEDEN A INFORMACIÓN SENSIBLE — ASCEND HABIT TRACKER</span>
+              <span class="rpt-app">PERMISOS Y APIs QUE ACCEDEN A INFORMACIÓN SENSIBLE — AUCTUS HABIT TRACKER</span>
               <span class="rpt-title">Análisis Exhaustivo: Permisos y APIs que Acceden a Información Sensible</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
-              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.ascendhabittracker · Flutter (Dart) — Android nativo</span>
+              <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
             </div>
 
             <!-- 01 -->
@@ -2599,7 +2622,7 @@ const indexItems = [
                 <tr><td><code>ScheduledNotificationReceiver</code> (Manifest:49-51)</td><td>Despachado por AlarmManager</td><td>Entrega puntual al usuario</td></tr>
                 <tr><td><code>ScheduledNotificationBootReceiver</code> (Manifest:37-46)</td><td>Reprograma en BOOT_COMPLETED</td><td>Restaurar alarmas tras reinicio</td></tr>
               </table>
-              <p class="rp">Google Play permite <code>USE_EXACT_ALARM</code> para "Alarmas, temporizadores y recordatorios". Ascend es una app cuya función principal incluye recordatorios programados por el usuario.</p>
+              <p class="rp">Google Play permite <code>USE_EXACT_ALARM</code> para "Alarmas, temporizadores y recordatorios". Auctus es una app cuya función principal incluye recordatorios programados por el usuario.</p>
               <p class="rp"><strong>ESTADO: <span class="ok">CUMPLE con la política de alarmas exactas de Google Play</span></strong></p>
             </div>
 
