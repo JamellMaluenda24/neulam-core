@@ -562,7 +562,7 @@ const indexItems = [
               </div>
               <div class="rss">
                 <span class="rss-title">11.2 Google Sign-In</span>
-                <p class="rp">El uso de cuenta Google es <strong>OPCIONAL</strong>. La app funciona sin cuenta (modo local). No existe forzado de autenticación para funciones básicas.</p>
+                <p class="rp">La app utiliza <strong>Google Sign-In</strong> como método de autenticación para acceder a sus funciones y sincronizar los datos del usuario en la nube. Es el único proveedor de identidad: no se solicitan ni almacenan contraseñas propias. Una vez iniciada la sesión, la app funciona de forma <strong>offline-first</strong> (los datos viven cifrados en el dispositivo y se sincronizan en segundo plano).</p>
               </div>
               <div class="rss">
                 <span class="rss-title">11.3 Notificaciones</span>
@@ -606,7 +606,7 @@ const indexItems = [
               <div class="rs-head"><span class="rs-num">14</span><span class="rs-title">Sección de Seguridad de Datos — Google Play</span></div>
               <table class="rtable">
                 <tr><th>Categoría</th><th>Tipo</th><th>Recopila</th><th>Comparte</th><th>Obligatorio</th></tr>
-                <tr><td>Información personal</td><td>Nombre, Email</td><td><span class="ok">SÍ</span></td><td><span class="ok">SÍ*</span></td><td>No (solo si usa cuenta)</td></tr>
+                <tr><td>Información personal</td><td>Nombre, Email</td><td><span class="ok">SÍ</span></td><td><span class="ok">SÍ*</span></td><td>Sí (requiere inicio de sesión)</td></tr>
                 <tr><td>Salud y bienestar</td><td>Estado de ánimo</td><td><span class="ok">SÍ</span></td><td><span class="ok">SÍ*</span></td><td>No (opcional)</td></tr>
                 <tr><td>Archivos y docs</td><td>Notas de texto</td><td><span class="ok">SÍ</span></td><td><span class="ok">SÍ*</span></td><td>No (opcional)</td></tr>
                 <tr><td>Actividad de app</td><td>Interacciones, errores</td><td><span class="ok">SÍ</span></td><td><span class="ok">SÍ*</span></td><td>No (opt-in)</td></tr>
@@ -822,7 +822,7 @@ const indexItems = [
               <div class="rss">
                 <span class="rss-title">android.permission.INTERNET — Normal · <code>AndroidManifest.xml:3</code></span>
                 <p class="rp">Requerido para: Firebase Authentication (Google Sign-In), Cloud Firestore (sync), Firebase Analytics (opt-in), Firebase Crashlytics (opt-in), Google Play Billing (validación).</p>
-                <p class="rp">Sin INTERNET la app funciona en modo local (Hive), pero la sincronización, el login y las compras Premium no están disponibles.</p>
+                <p class="rp">Se requiere conexión para iniciar sesión con Google la primera vez. Tras autenticarse, la app es <strong>offline-first</strong>: el uso diario funciona sin conexión sobre los datos cifrados en local (Hive), mientras que la sincronización y las compras Premium requieren conectividad.</p>
                 <p class="rp"><strong>Evidencia:</strong> <code>cloud_service.dart</code> · <code>auth_service.dart</code> · <code>analytics_service.dart</code> · <code>crashlytics_service.dart</code> · <code>premium_service.dart</code></p>
               </div>
 
