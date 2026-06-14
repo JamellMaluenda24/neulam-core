@@ -225,6 +225,12 @@ const indexItems = [
   .veredicto p { font-size: 13px; color: var(--muted); line-height: 1.75; }
   .veredicto p strong { color: var(--text); }
 
+  /* reviewer note — explicación clara para el equipo de revisión */
+  .rvw { background: rgba(0,212,200,.05); border: 1px solid rgba(0,212,200,.18); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 22px; margin-bottom: 34px; }
+  .rvw-label { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Sans',sans-serif; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+  .rvw p { font-size: 13px; color: var(--muted); line-height: 1.85; margin: 0; }
+  .rvw p strong { color: var(--text); font-weight: 500; }
+
   /* ── NAV ── */
   .snav { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; }
   .snav-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 100px; padding: 9px 20px; font-size: 13px; font-family: 'DM Sans',sans-serif; cursor: pointer; transition: all .2s; }
@@ -321,6 +327,11 @@ const indexItems = [
               <span class="rpt-title">Análisis de Cumplimiento: Datos del Usuario (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
               <span>Versión: 1.0.0 (build 2) · Package: com.neulamcore.auctus · Developer: Neulam Core</span>
+            </div>
+
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>Auctus aplica el principio de <strong>minimización de datos</strong>: solo recopila lo estrictamente necesario para funcionar —la identidad de Google Sign-In (nombre, email, UID) y el contenido de hábitos que el propio usuario crea—. <strong>Cómo se almacena:</strong> todo se guarda cifrado con AES-256 en el dispositivo (clave protegida por Android Keystore) y se sincroniza por TLS 1.2+ con Firebase, que actúa únicamente como proveedor de servicio bajo el control del usuario. <strong>Por qué se usa:</strong> exclusivamente para ofrecer la funcionalidad de la app (seguimiento, sincronización y recordatorios). Analytics y Crashlytics están <strong>desactivados por defecto</strong> y requieren consentimiento explícito (opt-in). Ningún dato se vende ni se emplea para publicidad, y el usuario puede eliminarlo por completo desde la propia app.</p>
             </div>
 
             <!-- 01 -->
@@ -764,6 +775,11 @@ const indexItems = [
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>La app solicita un <strong>conjunto mínimo de permisos</strong>, todos de bajo riesgo y atados a una función visible para el usuario. <strong>Qué pide y por qué:</strong> INTERNET (sincronización y login), POST_NOTIFICATIONS y alarmas exactas (recordatorios de hábitos a la hora elegida por el usuario), VIBRATE (alerta de la notificación) y BILLING (compras gestionadas íntegramente por Google Play). <strong>Cómo se cuida al usuario:</strong> cada permiso se solicita en contexto, con una explicación previa, y la app sigue funcionando si el usuario lo rechaza. <strong>Lo que NO solicita:</strong> ubicación, cámara, micrófono, contactos, SMS, almacenamiento externo ni sensores. No existe acceso a información sensible del dispositivo.</p>
+            </div>
+
             <!-- 01 -->
             <div class="rs" id="p2-1">
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Resumen ejecutivo</span></div>
@@ -1151,6 +1167,11 @@ const indexItems = [
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
             </div>
 
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>Auctus no realiza ninguna actividad de red abusiva. <strong>Cómo se transmiten los datos:</strong> todas las conexiones viajan por HTTPS/TLS 1.2+ hacia servicios de Google/Firebase documentados, nunca a endpoints opacos ni de terceros sin declarar. <strong>Cómo se cuida el rendimiento y el costo:</strong> la sincronización aplica un <em>debounce</em> de 800 ms para agrupar cambios y minimizar el tráfico, y el modelo <strong>offline-first</strong> reduce el uso de datos al mínimo (el dispositivo es la fuente de verdad). No hay procesos en segundo plano que consuman recursos sin justificación, ni descarga de código ejecutable, ni comportamiento que degrade el dispositivo, la batería o la red.</p>
+            </div>
+
             <!-- 01 -->
             <div class="rs" id="p3-1">
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Resumen ejecutivo</span></div>
@@ -1514,6 +1535,11 @@ const indexItems = [
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>La app hace <strong>exactamente lo que describe su ficha</strong>, tanto durante la revisión como en uso normal: no existe funcionalidad latente ni código activable de forma remota tras la aprobación. <strong>Transparencia con el usuario:</strong> no se emplean <em>dark patterns</em>; el estado Premium, los escudos y los consumibles se muestran con claridad en la interfaz. <strong>Cómo funcionan las compras:</strong> son deterministas —el usuario sabe con exactitud qué recibe—, sin cajas de botín ni elementos al azar, y la restauración de compras está siempre disponible. No se imita a ninguna otra marca ni se induce a error sobre el origen o la finalidad de la app.</p>
+            </div>
+
             <!-- 01 -->
             <div class="rs" id="p4-1">
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Comportamiento engañoso general</span></div>
@@ -1862,6 +1888,11 @@ const indexItems = [
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android</span>
             </div>
 
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>La identidad del desarrollador (<strong>Neulam Core</strong> — Jamell Maluenda) es pública, real y verificable, con datos de contacto válidos tanto en la ficha de Play Store como en este sitio. <strong>Veracidad de la información:</strong> la descripción de la app refleja con precisión su contenido y sus funciones reales, sin exageraciones ni promesas que no pueda cumplir. <strong>Integridad:</strong> no se manipulan reseñas, valoraciones, métricas de instalación ni posicionamiento, y no se suplanta a personas, marcas ni organizaciones.</p>
+            </div>
+
             <!-- 01 -->
             <div class="rs" id="p5-1">
               <div class="rs-head"><span class="rs-num">01</span><span class="rs-title">Resumen ejecutivo</span></div>
@@ -2155,6 +2186,11 @@ const indexItems = [
               <span class="rpt-title">Análisis de Cumplimiento: Política de Nivel de API Objetivo (Google Play)</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
+            </div>
+
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>La app compila contra el <strong>targetSdkVersion</strong> vigente exigido por Google Play y se mantiene al día en cada ciclo de requisitos. <strong>Cómo se construye y se protege el código:</strong> usa el toolchain estable de Flutter (Dart) sobre Android nativo, con <strong>minificación y ofuscación (R8/ProGuard) activadas</strong> en las builds de release para dificultar la ingeniería inversa. Las dependencias de Firebase y los demás SDK se mantienen en versiones soportadas y actualizadas, evitando APIs obsoletas o inseguras.</p>
             </div>
 
             <!-- 01 -->
@@ -2456,6 +2492,11 @@ const indexItems = [
               <span class="rpt-title">Análisis Exhaustivo: Permisos y APIs que Acceden a Información Sensible</span>
               <span>Auditor técnico: Claude Code (Anthropic) · Fecha: 2 de junio de 2026</span><br/>
               <span>Versión: 1.0.0 (versionCode 2) · Package: com.neulamcore.auctus · Flutter (Dart) — Android nativo</span>
+            </div>
+
+            <div class="rvw">
+              <span class="rvw-label">✦ Para el equipo de revisión</span>
+              <p>Auctus no contiene malware ni spyware, y no accede de forma encubierta al dispositivo. <strong>Comportamiento auditable:</strong> no hay ejecución dinámica de código descargado, ni elevación de privilegios, ni recolección silenciosa de datos; todo el comportamiento es verificable en el código fuente. <strong>Consultas declaradas:</strong> el bloque <code>&lt;queries&gt;</code> del manifiesto se limita a <code>PROCESS_TEXT</code> y <code>SENDTO</code> (mailto), ambos estándar y benignos. <strong>Cómo se cuidan los datos:</strong> permanecen cifrados (AES-256 en local, TLS 1.2+ en tránsito) y bajo el control del usuario en todo momento, con eliminación total disponible desde la app.</p>
             </div>
 
             <!-- 01 -->
