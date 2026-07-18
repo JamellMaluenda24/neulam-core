@@ -8,7 +8,7 @@ export const SITE = {
   appName: 'Auctus',
   url: 'https://neulam-core.vercel.app',
   ogImage: '/og-image.png', // 1200×630 — generado con scripts/generate-og.mjs
-  email: 'maluendajamell@gmail.com',
+  email: 'neulam.core@gmail.com',
   author: 'Jamell Maluenda',
   github: 'https://github.com/JamellMaluenda24',
 } as const;

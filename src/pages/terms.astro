@@ -1,0 +1,641 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PLAY_STORE_URL, SITE } from '../data/site';
+
+// Índice navegable: los ids coinciden con los de cada .p-block.
+const toc = [
+  { id: 'aceptacion', n: '01', t: 'Aceptación de los términos' },
+  { id: 'servicio', n: '02', t: 'Descripción del servicio' },
+  { id: 'cuenta', n: '03', t: 'Tu cuenta y requisitos de uso' },
+  { id: 'uso', n: '04', t: 'Uso aceptable' },
+  { id: 'premium', n: '05', t: 'Suscripción Premium' },
+  { id: 'datos', n: '06', t: 'Tus datos y contenidos' },
+  { id: 'propiedad', n: '07', t: 'Propiedad intelectual' },
+  { id: 'salud', n: '08', t: 'Aviso sobre salud y bienestar' },
+  { id: 'disponibilidad', n: '09', t: 'Disponibilidad y cambios' },
+  { id: 'terminacion', n: '10', t: 'Terminación' },
+  { id: 'responsabilidad', n: '11', t: 'Garantías y responsabilidad' },
+  { id: 'terceros', n: '12', t: 'Servicios de terceros' },
+  { id: 'ley', n: '13', t: 'Ley aplicable y consumidor' },
+  { id: 'cambios', n: '14', t: 'Cambios en los términos' },
+  { id: 'contacto', n: '15', t: 'Contacto' },
+];
+---
+
+<Layout
+  title="Términos y Condiciones — Auctus Habit Tracker | Neulam Core"
+  description="Términos y condiciones de uso de Auctus Habit Tracker: condiciones del servicio, cuenta de usuario, suscripción Premium, propiedad de tus datos, responsabilidades y ley aplicable."
+>
+<style>
+  .legal-hero {
+    padding: 140px 60px 60px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .legal-hero-inner { max-width: 800px; margin: 0 auto; }
+  .legal-hero .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 14px;
+  }
+  .legal-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .legal-hero-meta {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0,212,200,0.08);
+    border: 1px solid rgba(0,212,200,0.2);
+    color: var(--accent);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .legal-body { position: relative; z-index: 1; background: var(--bg); }
+  .legal-inner { max-width: 800px; margin: 0 auto; padding: 56px 60px 100px; }
+
+  .intro-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .intro-box strong { color: var(--text); font-weight: 500; }
+
+  /* ÍNDICE */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 52px;
+  }
+  .toc h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+  .toc a {
+    display: flex;
+    gap: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13.5px;
+    line-height: 1.7;
+    padding: 3px 0;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc a .tn { color: var(--accent); font-size: 11px; font-weight: 600; padding-top: 3px; }
+
+  .p-block {
+    border-left: 2px solid var(--border);
+    padding-left: 28px;
+    margin-bottom: 52px;
+    scroll-margin-top: 100px;
+    transition: border-color 0.3s ease;
+  }
+  .p-block:hover { border-color: rgba(0,212,200,0.35); }
+  .p-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .p-block h2 .section-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: rgba(0,212,200,0.1);
+    border: 1px solid rgba(0,212,200,0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .p-block p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .p-block p:last-child { margin-bottom: 0; }
+  .p-block p strong { color: var(--text); font-weight: 500; }
+  .p-block a { color: var(--accent); text-decoration: none; }
+  .p-block a:hover { text-decoration: underline; }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .check-list li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-list li strong { color: var(--text); font-weight: 500; }
+
+  /* Lista de prohibiciones: la marca ✓ no encaja semánticamente */
+  .x-list { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 10px; }
+  .x-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+  .x-list li::before {
+    content: '✕'; color: var(--accent3); font-weight: 700; font-size: 12px;
+    flex-shrink: 0; margin-top: 3px;
+  }
+  .x-list li strong { color: var(--text); font-weight: 500; }
+
+  .info-box {
+    background: rgba(0,212,200,0.05);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .info-box strong { color: var(--text); font-weight: 500; }
+
+  .warn-box {
+    background: rgba(255,107,107,0.06);
+    border-left: 3px solid var(--accent3);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .warn-box strong { color: var(--text); font-weight: 500; }
+
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 16px;
+    transition: border-color 0.3s ease;
+  }
+  .contact-box:hover { border-color: rgba(0,212,200,0.2); }
+  .contact-box p { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 6px; }
+  .contact-box p:last-child { margin-bottom: 0; }
+  .contact-box strong { color: var(--text); font-weight: 600; }
+  .contact-box a { color: var(--accent); text-decoration: none; }
+  .contact-box a:hover { text-decoration: underline; }
+
+  .see-also {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .see-also a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,200,0.06);
+    border: 1px solid rgba(0,212,200,0.15);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .see-also a:hover {
+    background: rgba(0,212,200,0.12);
+    border-color: rgba(0,212,200,0.3);
+    transform: translateY(-1px);
+  }
+  .see-also a.secondary {
+    background: rgba(255,255,255,0.03);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .see-also a.secondary:hover {
+    border-color: rgba(255,255,255,0.15);
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .legal-hero { padding: 120px 24px 48px; }
+    .legal-inner { padding: 40px 24px 72px; }
+    .toc ol { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .legal-hero { padding: 100px 20px 36px; }
+    .legal-hero h1 { letter-spacing: -1px; }
+    .legal-inner { padding: 32px 20px 60px; }
+    .p-block { padding-left: 18px; }
+    .p-block h2 { font-size: 17px; }
+    .intro-box, .contact-box, .toc { padding: 16px 18px; }
+  }
+</style>
+
+<div class="legal-hero">
+  <div class="legal-hero-inner">
+    <span class="label">Legal · Condiciones de uso</span>
+    <h1>Términos y Condiciones –<br/>Auctus Habit Tracker</h1>
+    <div class="legal-hero-meta">
+      <span>Auctus Habit Tracker · <em>com.neulamcore.auctus</em></span>
+      <span class="version-badge">Actualizado · julio 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="legal-inner">
+
+    <div class="intro-box">
+      <p>
+        Estos términos regulan el uso de <strong>Auctus Habit Tracker</strong>, la aplicación móvil
+        desarrollada por <strong>Neulam Core</strong>. Al descargar, instalar o usar la aplicación
+        aceptas lo que se describe a continuación. Están escritos para que se entiendan: si algo no
+        te queda claro, <a href="#contacto" style="color:var(--accent);">escríbenos</a> y te lo explicamos.
+      </p>
+    </div>
+
+    <nav class="toc" aria-label="Índice de contenidos">
+      <h2>Contenidos</h2>
+      <ol>
+        {toc.map(s => (
+          <li><a href={`#${s.id}`}><span class="tn">{s.n}</span><span>{s.t}</span></a></li>
+        ))}
+      </ol>
+    </nav>
+
+    <!-- 01 -->
+    <div class="p-block" id="aceptacion">
+      <h2><span class="section-icon">📄</span> 1. Aceptación de los términos</h2>
+      <p>
+        Al descargar, instalar, acceder o utilizar Auctus Habit Tracker (en adelante, <strong>«Auctus»</strong>
+        o <strong>«la aplicación»</strong>) aceptas quedar vinculado por estos Términos y Condiciones y por la
+        <a href="/privacy">Política de Privacidad</a>, que forma parte integrante de este documento.
+      </p>
+      <p>
+        Si no estás de acuerdo con alguna parte de estos términos, no utilices la aplicación y desinstálala
+        de tu dispositivo.
+      </p>
+      <p>
+        Auctus es desarrollada y operada por <strong>Neulam Core</strong>, proyecto de desarrollo de software
+        independiente con domicilio en Calama, Región de Antofagasta, Chile.
+      </p>
+    </div>
+
+    <!-- 02 -->
+    <div class="p-block" id="servicio">
+      <h2><span class="section-icon">📱</span> 2. Descripción del servicio</h2>
+      <p>
+        Auctus es una aplicación de <strong>seguimiento de hábitos personales</strong> que te permite registrar
+        hábitos, mantener rachas de constancia, acumular experiencia y rangos, recibir recordatorios y consultar
+        estadísticas sobre tu progreso.
+      </p>
+      <p>
+        La aplicación funciona <strong>sin conexión a internet</strong> («offline-first»): tus datos se almacenan
+        cifrados en tu dispositivo. Si inicias sesión, se sincronizan además con la nube para que puedas
+        recuperarlos o usarlos en otro dispositivo.
+      </p>
+      <div class="info-box">
+        Auctus se distribuye exclusivamente a través de
+        <a href={PLAY_STORE_URL} target="_blank" rel="noopener" style="color:var(--accent);">Google Play</a>
+        para dispositivos Android. No distribuimos la aplicación por otros canales; si la obtienes fuera de
+        Google Play, no podemos garantizar su integridad ni su seguridad.
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="p-block" id="cuenta">
+      <h2><span class="section-icon">👤</span> 3. Tu cuenta y requisitos de uso</h2>
+      <p>
+        Puedes usar buena parte de Auctus sin registrarte. Para sincronizar tus datos en la nube necesitas
+        iniciar sesión mediante <strong>Google Sign-In</strong>.
+      </p>
+      <ul class="check-list">
+        <li><strong>Edad mínima.</strong> Debes tener al menos 13 años, o la edad mínima legal para usar servicios digitales en tu país si es superior.</li>
+        <li><strong>Menores de 18 años.</strong> Si eres menor de 18, necesitas la autorización de tu padre, madre o tutor legal.</li>
+        <li><strong>Capacidad legal.</strong> Debes tener capacidad para celebrar contratos vinculantes según la legislación de tu país de residencia.</li>
+        <li><strong>Veracidad.</strong> La información asociada a tu cuenta debe ser real y estar actualizada.</li>
+        <li><strong>Seguridad.</strong> Eres responsable de mantener el acceso a tu cuenta de Google y de la actividad que se realice desde tu dispositivo.</li>
+        <li><strong>Una cuenta por persona.</strong> Las cuentas son personales e intransferibles.</li>
+      </ul>
+      <p style="margin-top:16px;">
+        Puedes <a href="/delete-account">eliminar tu cuenta y todos tus datos</a> en cualquier momento
+        y de forma permanente desde la propia aplicación, sin necesidad de solicitárnoslo.
+      </p>
+    </div>
+
+    <!-- 04 -->
+    <div class="p-block" id="uso">
+      <h2><span class="section-icon">⚖️</span> 4. Uso aceptable</h2>
+      <p>Al usar Auctus te comprometes a no:</p>
+      <ul class="x-list">
+        <li>Utilizar la aplicación con fines <strong>ilícitos</strong> o contrarios a estos términos.</li>
+        <li><strong>Descompilar, aplicar ingeniería inversa</strong> o intentar extraer el código fuente de la aplicación, salvo en la medida en que la ley lo permita expresamente.</li>
+        <li>Interferir en el funcionamiento del servicio, sobrecargar la infraestructura o <strong>eludir mecanismos de seguridad</strong>, límites de uso o verificación de compras.</li>
+        <li>Acceder a datos de otros usuarios o intentar suplantar su identidad.</li>
+        <li>Distribuir, revender o sublicenciar la aplicación, o comercializar el acceso a funciones Premium.</li>
+        <li>Usar sistemas automatizados para extraer datos del servicio de forma masiva.</li>
+      </ul>
+      <p style="margin-top:16px;">
+        El incumplimiento de esta sección puede conllevar la suspensión o cancelación de tu acceso al servicio,
+        conforme a la sección 10.
+      </p>
+    </div>
+
+    <!-- 05 -->
+    <div class="p-block" id="premium">
+      <h2><span class="section-icon">⭐</span> 5. Suscripción Premium</h2>
+      <p>
+        Auctus ofrece funciones gratuitas y una <strong>suscripción Premium opcional</strong> que desbloquea
+        funcionalidades adicionales, como escudos de racha, pase de vacaciones, análisis avanzados y exportación
+        de informes.
+      </p>
+      <ul class="check-list">
+        <li><strong>Planes y precios.</strong> La suscripción se ofrece en modalidad mensual y anual. El precio vigente, en tu moneda local e impuestos incluidos, es el que se muestra en la aplicación y en Google Play antes de confirmar la compra.</li>
+        <li><strong>Cobro y gestión.</strong> El pago se procesa a través de <strong>Google Play</strong>. Neulam Core no accede a los datos de tu tarjeta ni a tu medio de pago en ningún momento.</li>
+        <li><strong>Renovación automática.</strong> La suscripción se renueva automáticamente al final de cada período, salvo que la canceles al menos 24 horas antes de la fecha de renovación.</li>
+        <li><strong>Cancelación.</strong> Puedes cancelar cuando quieras desde Google Play → Pagos y suscripciones. Conservarás el acceso Premium hasta el final del período que ya has pagado.</li>
+        <li><strong>Cambios de precio.</strong> Si el precio cambia, se te notificará con antelación a través de Google Play y podrás cancelar antes de que se aplique.</li>
+      </ul>
+      <div class="info-box">
+        <strong>Reembolsos.</strong> Las devoluciones se rigen por la política de reembolsos de Google Play,
+        que es quien procesa el pago. Si crees que te corresponde un reembolso, solicítalo primero en Google Play.
+        Si tienes un problema que Google Play no resuelve, <a href="#contacto" style="color:var(--accent);">escríbenos</a>
+        y lo revisamos contigo.
+      </div>
+      <p>
+        Si tu suscripción termina, conservas todos tus hábitos, registros y tu historial: simplemente dejan de
+        estar disponibles las funciones exclusivas de Premium. <strong>No borramos tus datos por dejar de pagar.</strong>
+      </p>
+    </div>
+
+    <!-- 06 -->
+    <div class="p-block" id="datos">
+      <h2><span class="section-icon">🔒</span> 6. Tus datos y contenidos</h2>
+      <p>
+        <strong>Los datos que introduces en Auctus son tuyos.</strong> Tus hábitos, registros, notas y
+        anotaciones de ánimo te pertenecen y no reclamamos ningún derecho de propiedad sobre ellos.
+      </p>
+      <p>
+        Nos concedes únicamente el permiso técnico imprescindible para prestar el servicio: almacenar, cifrar,
+        sincronizar y mostrarte tus propios datos. Ese permiso termina cuando eliminas tu cuenta.
+      </p>
+      <ul class="check-list">
+        <li><strong>No vendemos tus datos</strong> a terceros ni los cedemos con fines publicitarios.</li>
+        <li>Tus datos se almacenan cifrados con <strong>AES-256</strong> en el dispositivo y se transmiten cifrados.</li>
+        <li>Puedes exportar tu progreso y eliminar tu cuenta y todos tus datos en cualquier momento.</li>
+      </ul>
+      <p style="margin-top:16px;">
+        El tratamiento de datos personales se detalla en la <a href="/privacy">Política de Privacidad</a>
+        y los permisos solicitados en la <a href="/permissions">Declaración de Permisos</a>.
+      </p>
+    </div>
+
+    <!-- 07 -->
+    <div class="p-block" id="propiedad">
+      <h2><span class="section-icon">©</span> 7. Propiedad intelectual</h2>
+      <p>
+        La aplicación —incluyendo su código, diseño, interfaz, marca, logotipo, textos y demás elementos—
+        es propiedad de <strong>Neulam Core</strong> y está protegida por la legislación de propiedad
+        intelectual aplicable.
+      </p>
+      <p>
+        Se te concede una licencia <strong>personal, limitada, revocable, no exclusiva y no transferible</strong>
+        para usar la aplicación conforme a estos términos. Esta licencia no implica cesión de derechos de
+        propiedad intelectual sobre la aplicación.
+      </p>
+      <p>
+        Las marcas de terceros mencionadas (Google, Google Play, Android, Firebase) pertenecen a sus
+        respectivos titulares.
+      </p>
+    </div>
+
+    <!-- 08 -->
+    <div class="p-block" id="salud">
+      <h2><span class="section-icon">🩺</span> 8. Aviso sobre salud y bienestar</h2>
+      <div class="warn-box">
+        <strong>Auctus no es un producto sanitario ni sustituye el consejo profesional.</strong>
+        La aplicación es una herramienta de organización y seguimiento personal, no un servicio médico,
+        psicológico ni terapéutico.
+      </div>
+      <p>
+        Auctus permite registrar hábitos y estados de ánimo, y muestra estadísticas y correlaciones basadas
+        en lo que tú registras. Esa información tiene <strong>carácter meramente informativo</strong> y no
+        constituye un diagnóstico, tratamiento ni recomendación clínica.
+      </p>
+      <p>
+        Si tienes dudas sobre tu salud física o mental, o si atraviesas una situación de malestar emocional,
+        acude a un profesional sanitario cualificado. <strong>No pospongas ni sustituyas una consulta
+        profesional</strong> por lo que muestre la aplicación.
+      </p>
+      <p>
+        Antes de iniciar hábitos que impliquen ejercicio físico, cambios de alimentación, ayuno o modificaciones
+        del descanso, consulta con un profesional si tienes alguna condición médica previa.
+      </p>
+    </div>
+
+    <!-- 09 -->
+    <div class="p-block" id="disponibilidad">
+      <h2><span class="section-icon">🔧</span> 9. Disponibilidad y cambios en el servicio</h2>
+      <p>
+        Trabajamos para que Auctus esté disponible y funcione correctamente, pero <strong>no garantizamos
+        una disponibilidad ininterrumpida</strong>. El servicio puede verse afectado por mantenimientos,
+        actualizaciones, fallos técnicos o incidencias de proveedores externos.
+      </p>
+      <p>
+        Podemos añadir, modificar o retirar funciones de la aplicación para mejorarla, corregir problemas o
+        adaptarla a requisitos legales o técnicos. Si un cambio afecta de forma significativa a funciones
+        incluidas en una suscripción activa, te lo comunicaremos con antelación razonable.
+      </p>
+      <div class="info-box">
+        Como Auctus funciona sin conexión y guarda tus datos en tu dispositivo, una caída de la
+        sincronización <strong>no te impide seguir usando la aplicación</strong>.
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="p-block" id="terminacion">
+      <h2><span class="section-icon">🚪</span> 10. Terminación</h2>
+      <p>
+        <strong>Puedes dejar de usar Auctus cuando quieras</strong>, desinstalando la aplicación o eliminando
+        tu cuenta desde <a href="/delete-account">la propia app</a>. No hay permanencia ni penalización.
+      </p>
+      <p>
+        Podemos suspender o cancelar tu acceso si incumples de forma grave o reiterada estos términos —en
+        particular la sección 4— o si es necesario para cumplir una obligación legal. Salvo que resulte
+        imposible, te avisaremos antes e indicaremos el motivo.
+      </p>
+      <p>
+        Si cancelamos tu cuenta sin causa que te sea imputable y tenías una suscripción activa, te
+        corresponderá el reembolso de la parte proporcional no disfrutada, gestionado a través de Google Play.
+      </p>
+    </div>
+
+    <!-- 11 -->
+    <div class="p-block" id="responsabilidad">
+      <h2><span class="section-icon">🛡</span> 11. Garantías y limitación de responsabilidad</h2>
+      <p>
+        Auctus se proporciona <strong>«tal cual»</strong>, con las funcionalidades descritas en su ficha de
+        Google Play y en esta web. Ponemos un cuidado razonable en que funcione correctamente, pero no podemos
+        garantizar que esté libre de errores en todo momento ni en cualquier dispositivo.
+      </p>
+      <p>
+        En la máxima medida permitida por la ley, Neulam Core no será responsable de daños indirectos,
+        incidentales o consecuenciales derivados del uso o la imposibilidad de uso de la aplicación,
+        como la pérdida de beneficios o de oportunidades.
+      </p>
+      <p>
+        <strong>Copias de seguridad.</strong> Aunque sincronizamos tus datos en la nube cuando inicias sesión,
+        te recomendamos exportar periódicamente tu progreso si esa información es importante para ti. No
+        respondemos de pérdidas de datos causadas por fallos del dispositivo, desinstalación de la aplicación
+        o eliminación voluntaria de la cuenta.
+      </p>
+      <div class="info-box">
+        Nada en estos términos excluye o limita nuestra responsabilidad en los casos en que la ley no lo
+        permita, incluidos el dolo, la culpa grave o los <strong>derechos que te correspondan como
+        consumidor</strong>.
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="p-block" id="terceros">
+      <h2><span class="section-icon">🔗</span> 12. Servicios de terceros</h2>
+      <p>
+        Auctus se apoya en servicios de terceros para funcionar. Cada uno se rige por sus propios términos
+        y políticas de privacidad:
+      </p>
+      <ul class="check-list">
+        <li><strong>Google Play</strong> — distribución de la aplicación y procesamiento de pagos.</li>
+        <li><strong>Google Firebase</strong> — autenticación, base de datos en la nube y sincronización.</li>
+        <li><strong>RevenueCat</strong> — gestión técnica del estado de las suscripciones.</li>
+      </ul>
+      <p style="margin-top:16px;">
+        No controlamos estos servicios y no respondemos de sus interrupciones o cambios. El detalle de qué
+        datos se comparten con cada uno está en la <a href="/privacy">Política de Privacidad</a>.
+      </p>
+    </div>
+
+    <!-- 13 -->
+    <div class="p-block" id="ley">
+      <h2><span class="section-icon">⚖</span> 13. Ley aplicable y resolución de conflictos</h2>
+      <p>
+        Estos términos se rigen por las <strong>leyes aplicables con carácter internacional</strong>,
+        respetando en todo caso las disposiciones de orden público del país de residencia del usuario.
+      </p>
+      <p>
+        <strong>Resolución amistosa.</strong> Ante cualquier discrepancia, ambas partes nos comprometemos a
+        intentar resolverla de buena fe en primera instancia. Escríbenos a
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> y lo revisamos contigo.
+      </p>
+      <p>
+        Si no se alcanza una solución amistosa en un plazo razonable, la controversia podrá someterse a los
+        mecanismos legales disponibles en el país de residencia del usuario.
+      </p>
+      <div class="info-box">
+        Si utilizas Auctus como consumidor, <strong>conservas íntegramente los derechos que te reconoce la
+        normativa de consumo de tu país</strong> de residencia. Ninguna cláusula de estos términos limita
+        esos derechos.
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="p-block" id="cambios">
+      <h2><span class="section-icon">🔄</span> 14. Cambios en los términos</h2>
+      <p>
+        Podemos actualizar estos términos para reflejar cambios en la aplicación, en los servicios que
+        utilizamos o en la legislación aplicable. La fecha de la última actualización siempre figura en la
+        cabecera de esta página.
+      </p>
+      <p>
+        Si los cambios son sustanciales, te avisaremos dentro de la aplicación o por correo electrónico antes
+        de que entren en vigor. Si continúas usando Auctus después de esa fecha, entenderemos que aceptas la
+        nueva versión; si no estás de acuerdo, puedes dejar de usar la aplicación y eliminar tu cuenta.
+      </p>
+    </div>
+
+    <!-- 15 -->
+    <div class="p-block" id="contacto">
+      <h2><span class="section-icon">✉</span> 15. Contacto</h2>
+      <p>Para cualquier duda sobre estos términos o sobre la aplicación, puedes escribirnos:</p>
+      <div class="contact-box">
+        <p><strong>Neulam Core</strong></p>
+        <p>Desarrollador independiente &nbsp;·&nbsp; Calama, Región de Antofagasta, Chile</p>
+        <p>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        <p>App: Auctus Habit Tracker &nbsp;·&nbsp; <em>com.neulamcore.auctus</em></p>
+      </div>
+    </div>
+
+    <div class="see-also">
+      <a href="/privacy">Ver Política de Privacidad →</a>
+      <a href="/permissions">Ver Permisos de la App →</a>
+      <a href="/delete-account">Eliminar cuenta →</a>
+      <a href="/" class="secondary">← Volver al inicio</a>
+    </div>
+
+  </div>
+</div>
+</Layout>

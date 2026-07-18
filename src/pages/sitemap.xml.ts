@@ -9,6 +9,7 @@ import { SITE } from '../data/site';
 const pages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/privacy', priority: '0.6', changefreq: 'monthly' },
+  { path: '/terms', priority: '0.5', changefreq: 'monthly' },
   { path: '/permissions', priority: '0.5', changefreq: 'monthly' },
   { path: '/delete-account', priority: '0.5', changefreq: 'monthly' },
 ];

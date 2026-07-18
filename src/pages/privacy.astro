@@ -1274,7 +1274,7 @@ const indexItems = [
                 <tr><td>WebView en Dart</td><td><span class="ok">No encontrado en ningún archivo .dart</span></td></tr>
               </table>
               <p class="rp">Para la política de privacidad, la app usa <code>url_launcher ^6.3.2</code> que abre el navegador externo del dispositivo (no un WebView interno). Esto es más seguro que un WebView embebido.</p>
-              <p class="rp">URLs abiertas externamente: <code>neulam-core.vercel.app/privacy</code> y <code>mailto:maluendajamell@gmail.com</code></p>
+              <p class="rp">URLs abiertas externamente: <code>neulam-core.vercel.app/privacy</code> y <code>mailto:neulam.core@gmail.com</code></p>
               <p class="rp"><strong>CUMPLIMIENTO: <span class="ok">Sin WebViews. No aplica el riesgo de ejecución remota de contenido. CUMPLE.</span></strong></p>
             </div>
 
@@ -1903,7 +1903,7 @@ const indexItems = [
               <p class="rp">App de productividad personal offline-first. Desarrollada por Neulam Core (Calama, Chile). Los servicios de Firebase/Google están correctamente declarados. No suplanta entidades reconocidas.</p>
               <table class="rtable" style="margin-top:12px">
                 <tr><th>Hallazgo</th><th>Nivel</th><th>Descripción</th></tr>
-                <tr><td>Dos correos de contacto sin explicación</td><td><span class="warn">⚠️ BAJO</span></td><td><code>maluendajamell@gmail.com</code> (términos) vs <code>neulam.core@gmail.com</code> (soporte)</td></tr>
+                <tr><td>Dos correos de contacto sin explicación</td><td><span class="ok">✓ RESUELTO</span></td><td>Unificado a <code>neulam.core@gmail.com</code> en app, web y documentos legales</td></tr>
                 <tr><td>Archivos plantilla con placeholders en raíz</td><td><span class="warn">⚠️ BAJO</span></td><td><code>POLITICA_DE_PRIVACIDAD.txt</code> y <code>TERMINOS_Y_CONDICIONES.txt</code> con <code>[NOMBRE_APP]</code> sin rellenar</td></tr>
                 <tr><td>Metadatos de Play Store no creados</td><td><span class="warn">⚠️ PENDIENTE</span></td><td>Descripción, capturas y categoría pendientes de creación</td></tr>
               </table>
@@ -1935,13 +1935,13 @@ const indexItems = [
                 <tr><td>Nombre del desarrollador</td><td>Neulam Core</td><td>README.md, terms_screen.dart, privacy_policy.html</td><td><span class="ok">✓ Consistente</span></td></tr>
                 <tr><td>Tipo</td><td>Desarrollador independiente</td><td>privacy_policy.html</td><td><span class="ok">✓</span></td></tr>
                 <tr><td>Ubicación</td><td>Calama, Región de Antofagasta, Chile</td><td>privacy_policy.html</td><td><span class="ok">✓ Declarada</span></td></tr>
-                <tr><td>Correo principal</td><td><code>maluendajamell@gmail.com</code></td><td>terms_screen.dart:33, README.md:48</td><td><span class="ok">✓</span></td></tr>
-                <tr><td>Correo de soporte</td><td><code>neulam.core@gmail.com</code></td><td>profile_screen.dart:~388</td><td><span class="warn">⚠️ Segundo correo no explicado</span></td></tr>
+                <tr><td>Correo principal</td><td><code>neulam.core@gmail.com</code></td><td>terms_screen.dart:33</td><td><span class="ok">✓ Único</span></td></tr>
+                <tr><td>Correo de soporte</td><td><code>neulam.core@gmail.com</code></td><td>profile_screen.dart:~388</td><td><span class="ok">✓ Unificado</span></td></tr>
                 <tr><td>URL pública</td><td>neulam-core.vercel.app</td><td>profile_screen.dart, README.md</td><td><span class="ok">✓ Activo</span></td></tr>
               </table>
-              <div class="rnote"><strong>Discrepancia detectada:</strong> Dos correos distintos sin explicación en la interfaz. Ambos parecen del mismo desarrollador ("neulam" en ambos), pero puede generar confusión. <strong>Acción:</strong> Unificar a un único correo o aclarar en la app que ambos pertenecen a Neulam Core.</div>
+              <div class="rnote"><strong>Discrepancia resuelta:</strong> anteriormente convivían dos correos de contacto distintos, lo que podía generar confusión. <strong>Acción aplicada:</strong> se unificó el contacto en <code>neulam.core@gmail.com</code> para la app, la web y todos los documentos legales.</div>
               <p class="rp" style="margin-top:10px">El nombre "Neulam Core" es original y no imita ninguna entidad conocida.</p>
-              <p class="rp"><strong>ESTADO: <span class="ok">CUMPLE</span> — con recomendación menor de unificar correo de contacto</strong></p>
+              <p class="rp"><strong>ESTADO: <span class="ok">CUMPLE</span> — correo de contacto unificado</strong></p>
             </div>
 
             <!-- 04 -->
