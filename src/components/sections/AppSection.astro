@@ -169,16 +169,17 @@ import { features } from '../../data/features';
   }
 </style>
 
-<section class="app-section" id="app">
+<section class="app-section" id="app" aria-labelledby="app-title">
   <div class="section-header">
-<h2>Auctus Habit Tracker</h2>
-    <p>Más que un tracker. Una herramienta de construcción personal diseñada para hacerte consistente, no solo motivado.</p>
+    <span class="label">Funciones</span>
+    <h2 id="app-title">Auctus Habit Tracker: seguimiento de hábitos y progreso</h2>
+    <p>Más que un habit tracker: una herramienta de crecimiento personal diseñada para hacerte consistente, no solo motivado. Estas son sus funciones.</p>
   </div>
 
   <div class="features-grid">
     <div class="feature-card big">
       <div class="feature-visual">
-        <div class="app-mockup">
+        <div class="app-mockup" role="img" aria-label="Vista previa de Auctus: rango nivel 4 Comprometido, cuatro hábitos del día — meditar 10 minutos con racha de 12 días completado, leer 30 páginas con racha de 7 días completado, tomar 2 litros de agua y ejercicio pendientes — 2 de 4 completados y 45 XP ganados hoy.">
           <div class="mockup-header">
             <div class="mockup-dots">
               <span class="d1"></span><span class="d2"></span><span class="d3"></span>
@@ -239,6 +240,7 @@ import { features } from '../../data/features';
 </section>
 
 <script>
+  if (typeof gsap !== 'undefined') {
   gsap.utils.toArray('.feature-card').forEach((el, i) => {
     gsap.to(el, {
       scrollTrigger: { trigger: el, start: 'top 88%' },
@@ -254,4 +256,5 @@ import { features } from '../../data/features';
       opacity: 0, y: 30, duration: 0.7, ease: 'power2.out'
     });
   });
+  }
 </script>

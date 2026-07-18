@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Recursos estáticos generados por Astro
+Allow: /_astro/
+
+Sitemap: https://neulam-core.vercel.app/sitemap.xml

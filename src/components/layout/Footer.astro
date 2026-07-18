@@ -1,4 +1,6 @@
 ---
+import { PLAY_STORE_URL } from '../../data/site';
+const year = new Date().getFullYear();
 ---
 <style>
   footer {
@@ -21,7 +23,7 @@
   }
   .footer-logo span { color: var(--accent); }
   .footer-copy { color: var(--muted); font-size: 13px; }
-  .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; align-items: center; justify-content: center; }
   .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
   .footer-links .footer-legal { border-left: 1px solid var(--border); padding-left: 24px; margin-left: 4px; }
@@ -40,14 +42,20 @@
 </style>
 
 <footer>
-  <a href="/" class="footer-logo">Neulam<span>Core</span></a>
-  <ul class="footer-links">
-    <li><a href="/#about">Nosotros</a></li>
-    <li><a href="/#app">Auctus</a></li>
-    <li><a href="/#contact">Contacto</a></li>
-    <li class="footer-legal"><a href="/privacy">Privacidad</a></li>
-    <li><a href="/permissions">Permisos</a></li>
-    <li><a href="/delete-account">Eliminar cuenta</a></li>
-  </ul>
-  <span class="footer-copy">© 2026 Neulam Core · Hecho con ♥ en Chile 🇨🇱</span>
+  <a href="/" class="footer-logo" aria-label="Neulam Core — inicio">Neulam<span>Core</span></a>
+  <nav class="footer-nav" aria-label="Enlaces del pie de página">
+    <ul class="footer-links">
+      <li><a href="/#app">Auctus</a></li>
+      <li><a href="/#why">Por qué Auctus</a></li>
+      <li><a href="/#faq">Preguntas frecuentes</a></li>
+      <li><a href="/#about">Nosotros</a></li>
+      <li><a href="/#contact">Soporte</a></li>
+      <li><a href={PLAY_STORE_URL} target="_blank" rel="noopener" data-cta="footer">Google Play ↗</a></li>
+      <!-- Enlaces legales exigidos por Google Play: no cambiar estas rutas -->
+      <li class="footer-legal"><a href="/privacy">Política de privacidad</a></li>
+      <li><a href="/permissions">Permisos</a></li>
+      <li><a href="/delete-account">Eliminar cuenta</a></li>
+    </ul>
+  </nav>
+  <span class="footer-copy">© {year} Neulam Core · Hecho con ♥ en Chile 🇨🇱</span>
 </footer>

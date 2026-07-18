@@ -2,17 +2,53 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
 import Stats from '../components/sections/Stats.astro';
-import About from '../components/sections/About.astro';
+import Why from '../components/sections/Why.astro';
 import AppSection from '../components/sections/AppSection.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Faq from '../components/sections/Faq.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
+import About from '../components/sections/About.astro';
 import Privacy from '../components/sections/Privacy.astro';
 import Contact from '../components/sections/Contact.astro';
+import { faqs } from '../data/faq';
+import { SITE } from '../data/site';
+
+// FAQPage: elegible para rich results. Las preguntas del schema son las mismas
+// que se ven en la sección #faq, como exige Google.
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const webPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  url: SITE.url,
+  name: 'Neulam Core — Auctus Habit Tracker',
+  inLanguage: 'es',
+  publisher: { '@id': `${SITE.url}/#organization` },
+};
 ---
 
-<Layout title="Auctus - Habit Tracker">
+<Layout
+  title="Auctus — App de Hábitos y Disciplina Diaria | Gratis en Android"
+  description="Auctus es la app de seguimiento de hábitos para construir disciplina diaria: rachas, rangos y XP, recordatorios inteligentes, estadísticas e insights personalizados. Funciona sin conexión. Descárgala gratis en Google Play."
+  jsonLd={[faqJsonLd, webPageJsonLd]}
+>
   <Hero />
   <Stats />
-  <About />
+  <Why />
   <AppSection />
+  <Testimonials />
+  <Faq />
+  <FinalCta />
+  <About />
   <Privacy />
   <Contact />
 </Layout>

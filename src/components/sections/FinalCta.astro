@@ -1,0 +1,84 @@
+---
+import PlayStoreButton from '../ui/PlayStoreButton.astro';
+---
+<style>
+  .final-cta {
+    padding: 120px 60px;
+    position: relative;
+    z-index: 1;
+  }
+  .final-cta-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(0,212,200,0.09) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .final-cta > .final-cta-inner > p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    position: relative;
+  }
+  .final-cta-actions {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .final-cta-note {
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--muted);
+    position: relative;
+  }
+
+  @media (max-width: 900px) {
+    .final-cta { padding: 80px 24px; }
+    .final-cta-inner { padding: 44px 28px; border-radius: 22px; }
+  }
+  @media (max-width: 480px) {
+    .final-cta { padding: 60px 20px; }
+    .final-cta-inner { padding: 34px 20px; border-radius: 18px; }
+    .final-cta-actions { display: block; }
+  }
+  @media (max-width: 375px) {
+    .final-cta { padding: 48px 16px; }
+  }
+</style>
+
+<section class="final-cta" aria-labelledby="final-cta-title">
+  <div class="final-cta-inner">
+    <h2 id="final-cta-title">Tu primera racha empieza hoy</h2>
+    <p>
+      Descarga Auctus gratis, crea tu primer hábito en menos de un minuto y
+      empieza a construir la disciplina diaria que llevas tiempo posponiendo.
+    </p>
+    <div class="final-cta-actions">
+      <PlayStoreButton location="final" />
+    </div>
+    <p class="final-cta-note">Gratis · Sin anuncios · Android 5.0 o superior</p>
+  </div>
+</section>

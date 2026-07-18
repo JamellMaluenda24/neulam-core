@@ -68,6 +68,7 @@ import { stats } from '../../data/stats';
 </div>
 
 <script>
+  if (typeof gsap !== 'undefined') {
   gsap.utils.toArray('.stat-item').forEach((el, i) => {
     ScrollTrigger.create({
       trigger: el,
@@ -91,4 +92,5 @@ import { stats } from '../../data/stats';
       }
     });
   });
+  }
 </script>

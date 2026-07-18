@@ -117,14 +117,15 @@
   }
 </style>
 
-<section class="about" id="about">
+<section class="about" id="about" aria-labelledby="about-title">
   <div class="about-content">
-<h2>Una organización construida para crear.</h2>
+    <p class="about-label">Quiénes somos</p>
+    <h2 id="about-title">Neulam Core: la organización detrás de Auctus</h2>
     <p>Neulam Core es la organización indie detrás de Auctus y futuros proyectos digitales. Fundada con una misión clara: crear herramientas útiles, bien diseñadas y accesibles para todos.</p>
     <p>Operamos desde Chile, construyendo software con propósito. Cada producto nace de una necesidad real y se desarrolla con atención al detalle.</p>
     <p style="color: var(--text); font-size: 14px; margin-top: 24px;">
       Desarrollado por <strong>Jamell Maluenda</strong> — Desarrollador Full Stack &amp; Diseñador UI/UX.<br>
-      <a href="https://portafolio-jamell-maluenda.vercel.app/" target="_blank" class="about-link">Ver portafolio completo →</a>
+      <a href="#contact" class="about-link">Hablar con nosotros →</a>
     </p>
   </div>
   <div class="about-visual">
@@ -151,12 +152,14 @@
 </section>
 
 <script>
-  gsap.from('.about-content', {
-    scrollTrigger: { trigger: '.about', start: 'top 70%' },
-    opacity: 0, x: -40, duration: 0.8, ease: 'power2.out'
-  });
-  gsap.from('.about-visual', {
-    scrollTrigger: { trigger: '.about', start: 'top 70%' },
-    opacity: 0, x: 40, duration: 0.8, ease: 'power2.out'
-  });
+  if (typeof gsap !== 'undefined') {
+    gsap.from('.about-content', {
+      scrollTrigger: { trigger: '.about', start: 'top 70%' },
+      opacity: 0, x: -40, duration: 0.8, ease: 'power2.out'
+    });
+    gsap.from('.about-visual', {
+      scrollTrigger: { trigger: '.about', start: 'top 70%' },
+      opacity: 0, x: 40, duration: 0.8, ease: 'power2.out'
+    });
+  }
 </script>

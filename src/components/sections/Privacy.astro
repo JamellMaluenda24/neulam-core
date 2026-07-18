@@ -1,210 +1,347 @@
-﻿---
+---
+// Cada tarjeta responde a "¿cómo cubre Neulam Core esta área?" — la política de
+// Google Play como etiqueta, y nuestra respuesta concreta como contenido.
 const items = [
-  { num: '01', title: 'Datos del Usuario',                               desc: 'Recopilación mínima, transparente y con consentimiento explícito.' },
-  { num: '02', title: 'Permisos y API — Información Sensible',           desc: '6 permisos, todos justificados y solicitados contextualmente.' },
-  { num: '03', title: 'Abuso de Redes y Dispositivos',                   desc: 'Sin procesos abusivos en segundo plano ni consumo excesivo de red.' },
-  { num: '04', title: 'Comportamiento Engañoso',                         desc: 'La app hace exactamente lo que describe. Sin dark patterns.' },
-  { num: '05', title: 'Tergiversación',                                  desc: 'Ficha de Google Play precisa. Identidad del desarrollador pública.' },
-  { num: '06', title: 'Política de Nivel de API Objetivo',               desc: 'API objetivo siempre actualizada según los requisitos de Google Play.' },
-  { num: '07', title: 'Engaño y Abuso de Dispositivos',                  desc: 'Sin malware, spyware ni accesos encubiertos al dispositivo.' },
+  {
+    num: '01',
+    icon: '🔍',
+    title: 'Tus datos personales',
+    desc: 'Solo pedimos lo que la app necesita para funcionar, te explicamos para qué y lo confirmas tú. Nada se recoge en silencio.',
+  },
+  {
+    num: '02',
+    icon: '🔑',
+    title: 'Permisos del dispositivo',
+    desc: 'Seis permisos, cada uno justificado por escrito y solicitado en el momento en que lo usas, nunca de golpe al instalar.',
+  },
+  {
+    num: '03',
+    icon: '📶',
+    title: 'Uso de red y batería',
+    desc: 'La app trabaja offline y sincroniza en ráfagas cortas. Sin procesos ocultos gastando tu batería ni tus datos móviles.',
+  },
+  {
+    num: '04',
+    icon: '🎯',
+    title: 'Transparencia en la app',
+    desc: 'Auctus hace exactamente lo que promete. Sin dark patterns, sin cobros sorpresa y con la suscripción cancelable en un toque.',
+  },
+  {
+    num: '05',
+    icon: '👤',
+    title: 'Quién está detrás',
+    desc: 'Desarrollador identificable, contacto directo y una ficha de Google Play que describe la app tal cual es. Sin empresas fantasma.',
+  },
+  {
+    num: '06',
+    icon: '🔄',
+    title: 'Actualizaciones y seguridad',
+    desc: 'Mantenemos el nivel de API que Google Play exige, para que Auctus siga recibiendo las protecciones más recientes de Android.',
+  },
+  {
+    num: '07',
+    icon: '🔐',
+    title: 'Integridad de tu dispositivo',
+    desc: 'Sin malware, sin spyware y sin accesos encubiertos. Tus hábitos y notas se guardan cifrados con AES-256 en tu teléfono.',
+  },
 ];
 ---
 
 <style>
   .privacy {
+    /* Ocupa la pantalla completa: la privacidad es un argumento de venta,
+       no una nota al pie. */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 120px 60px;
-    background: var(--surface);
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(0,212,200,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(0,181,170,0.06) 0%, transparent 55%),
+      var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     position: relative;
     z-index: 1;
+    overflow: hidden;
   }
-  .privacy-inner { max-width: 860px; margin: 0 auto; }
+  .privacy-inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
 
+  /* Texto secundario más claro que el --muted global: esta sección es densa
+     y se lee de corrido, así que gana legibilidad (contraste ~9:1). */
+  .privacy { --privacy-body: #b8c2d0; }
+
+  /* ── CABECERA ── */
   .privacy-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 64px;
   }
   .privacy-head .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 500;
-    display: block;
-    margin-bottom: 10px;
+    background: rgba(0,212,200,0.07);
+    border: 1px solid rgba(0,212,200,0.2);
+    border-radius: 100px;
+    padding: 7px 16px;
+    margin-bottom: 24px;
+  }
+  .privacy-head .label::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
   }
   .privacy-head h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 3.5vw, 42px);
+    font-size: clamp(32px, 4.5vw, 56px);
     font-weight: 800;
-    letter-spacing: -1.5px;
-    line-height: 1.1;
+    letter-spacing: -2px;
+    line-height: 1.08;
+    margin-bottom: 20px;
   }
-  .privacy-head-sub {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
-    max-width: 220px;
-    text-align: right;
+  .privacy-head h2 .accent { color: var(--accent); }
+  .privacy-intro {
+    color: var(--privacy-body);
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 400;
   }
 
-  /* LIST */
-  .policy-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  /* ── REJILLA ── */
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    list-style: none;
   }
-  .policy-row {
+
+  .policy-card {
+    position: relative;
+    background: rgba(255,255,255,0.022);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px 28px 28px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    /* Estado inicial de la animación de entrada (ver script) */
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .policy-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0,212,200,0.10), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .policy-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0,212,200,0.28);
+    background: rgba(255,255,255,0.04);
+  }
+  .policy-card:hover::before { opacity: 1; }
+
+  /* Número grande como marca de agua */
+  .policy-num {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.09);
+    transition: -webkit-text-stroke-color 0.3s ease;
+    pointer-events: none;
+    user-select: none;
+  }
+  .policy-card:hover .policy-num { -webkit-text-stroke-color: rgba(0,212,200,0.35); }
+
+  .policy-icon {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--border);
-    opacity: 0;
-    transform: translateX(-16px);
-    transition: background 0.2s;
-    cursor: default;
-  }
-  .policy-row:first-child { border-top: 1px solid var(--border); }
-  .policy-row:hover .policy-title { color: var(--accent); }
-
-  .policy-num {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    width: 28px;
-    flex-shrink: 0;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: rgba(0,212,200,0.08);
+    border: 1px solid rgba(0,212,200,0.18);
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
   }
   .policy-title {
     font-family: 'Syne', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text);
-    transition: color 0.2s;
-    flex: 1;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    position: relative;
   }
   .policy-desc {
-    font-size: 13px;
-    color: var(--muted);
-    flex: 1.2;
-    line-height: 1.5;
-  }
-  .policy-arrow {
-    color: var(--border);
     font-size: 14px;
-    flex-shrink: 0;
-    transition: color 0.2s, transform 0.2s;
-  }
-  .policy-row:hover .policy-arrow {
-    color: var(--accent);
-    transform: translateX(4px);
+    color: var(--privacy-body);
+    line-height: 1.7;
+    position: relative;
   }
 
-  /* CTA */
-  .privacy-cta {
+  /* ── TARJETA CTA (completa la rejilla 4×2) ── */
+  .policy-card.cta {
+    background: linear-gradient(150deg, rgba(0,212,200,0.10), rgba(0,181,170,0.04));
+    border-color: rgba(0,212,200,0.25);
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 36px;
+    flex-direction: column;
+    justify-content: center;
   }
-  .privacy-cta-btn {
-    display: inline-flex;
+  .policy-card.cta:hover { border-color: rgba(0,212,200,0.45); }
+  .policy-card.cta h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .policy-card.cta > p {
+    font-size: 13.5px;
+    color: var(--privacy-body);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .cta-links { display: flex; flex-direction: column; gap: 9px; }
+  .cta-links a {
+    display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(0,212,200,0.07);
-    border: 1px solid rgba(0,212,200,0.2);
-    color: var(--accent);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 100px;
+    justify-content: space-between;
+    gap: 10px;
     font-size: 13px;
     font-weight: 500;
-    transition: all 0.2s ease;
+    color: var(--accent);
+    text-decoration: none;
+    background: rgba(0,212,200,0.07);
+    border: 1px solid rgba(0,212,200,0.2);
+    border-radius: 10px;
+    padding: 11px 15px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
-  .privacy-cta-btn:hover {
-    background: rgba(0,212,200,0.13);
-    border-color: rgba(0,212,200,0.35);
-    transform: translateY(-1px);
+  .cta-links a:hover {
+    background: rgba(0,212,200,0.14);
+    border-color: rgba(0,212,200,0.4);
+    transform: translateX(3px);
   }
-  .privacy-cta-btn.secondary {
-    background: rgba(255,255,255,0.03);
-    border-color: var(--border);
-    color: var(--muted);
-  }
-  .privacy-cta-btn.secondary:hover {
-    border-color: rgba(255,255,255,0.15);
-    color: var(--text);
-  }
+  .cta-links a span[aria-hidden] { opacity: 0.7; }
 
+  /* ── CIERRE ── */
+  .privacy-outro {
+    max-width: 760px;
+    margin: 56px auto 0;
+    text-align: center;
+    color: var(--privacy-body);
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  .privacy-outro strong { color: var(--text); font-weight: 500; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1200px) {
+    .policy-grid { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 900px) {
-    .privacy { padding: 80px 24px; }
-    .privacy-head { align-items: flex-start; flex-direction: column; gap: 12px; }
-    .privacy-head-sub { text-align: left; max-width: none; }
-    .policy-desc { display: none; }
+    /* Sin min-height forzado en móvil: el contenido ya sobra para llenar la pantalla */
+    .privacy { min-height: 0; padding: 80px 24px; display: block; }
+    .policy-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .privacy-head { margin-bottom: 44px; }
+    .policy-card { padding: 26px 22px 24px; }
+    .policy-num { font-size: 44px; }
   }
-
+  @media (max-width: 620px) {
+    .policy-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 480px) {
     .privacy { padding: 60px 20px; }
-    .privacy-head h2 { letter-spacing: -0.5px; }
-    .policy-row { gap: 12px; padding: 14px 0; }
-    .policy-num { font-size: 10px; width: 22px; }
-    .policy-title { font-size: 13px; }
-    .privacy-cta { flex-direction: column; }
-    .privacy-cta-btn { width: 100%; justify-content: center; text-align: center; }
+    .privacy-head { margin-bottom: 36px; }
+    .privacy-intro { font-size: 15px; }
+    .policy-card { padding: 22px 20px; border-radius: 16px; }
+    .policy-icon { width: 40px; height: 40px; font-size: 18px; margin-bottom: 16px; }
+    .policy-title { font-size: 16px; }
+    .policy-desc { font-size: 13.5px; }
+    .privacy-outro { margin-top: 36px; font-size: 14px; }
   }
-
   @media (max-width: 375px) {
     .privacy { padding: 48px 16px; }
-    .policy-title { font-size: 12px; }
+    .policy-card { padding: 20px 18px; }
+    .policy-num { font-size: 38px; top: 12px; right: 16px; }
   }
 </style>
 
-<section class="privacy" id="privacy">
+<section class="privacy" id="privacy" aria-labelledby="privacy-title">
   <div class="privacy-inner">
 
     <div class="privacy-head">
-      <div>
-        <span class="label">Google Play · Cumplimiento</span>
-        <h2>Privacidad &<br/>Políticas</h2>
-      </div>
-      <p class="privacy-head-sub">7 áreas de política que cubre Auctus Habit Tracker.</p>
+      <span class="label">Google Play · Cumplimiento</span>
+      <h2 id="privacy-title">Así cuidamos <span class="accent">tus datos</span></h2>
+      <p class="privacy-intro">
+        Una app de hábitos conoce tu rutina, tus horarios y tu estado de ánimo. Es información
+        personal y la tratamos como tal. Estas son las siete áreas que exige Google Play y,
+        frente a cada una, lo que hacemos concretamente en Auctus. Sin letra pequeña.
+      </p>
     </div>
 
-    <div class="policy-list">
+    <ul class="policy-grid" role="list">
       {items.map(item => (
-        <div class="policy-row">
-          <span class="policy-num">{item.num}</span>
-          <span class="policy-title">{item.title}</span>
-          <span class="policy-desc">{item.desc}</span>
-          <span class="policy-arrow">→</span>
-        </div>
+        <li class="policy-card">
+          <span class="policy-num" aria-hidden="true">{item.num}</span>
+          <span class="policy-icon" aria-hidden="true">{item.icon}</span>
+          <h3 class="policy-title">{item.title}</h3>
+          <p class="policy-desc">{item.desc}</p>
+        </li>
       ))}
-    </div>
 
-    <div class="privacy-cta">
-      <a href="/privacy" class="privacy-cta-btn">Ver política detallada →</a>
-      <a href="/permissions" class="privacy-cta-btn secondary">Declaración de permisos →</a>
-    </div>
+      <li class="policy-card cta">
+        <h3>¿Quieres el detalle completo?</h3>
+        <p>Todo lo anterior está documentado por escrito y es público. Léelo tú mismo.</p>
+        <div class="cta-links">
+          <a href="/privacy">Política de privacidad <span aria-hidden="true">→</span></a>
+          <a href="/permissions">Los 6 permisos <span aria-hidden="true">→</span></a>
+          <a href="/delete-account">Eliminar mi cuenta <span aria-hidden="true">→</span></a>
+        </div>
+      </li>
+    </ul>
+
+    <p class="privacy-outro">
+      Y si algún día quieres irte, no hay que pedir permiso a nadie:
+      <strong>borras tu cuenta y todos tus datos desde la propia app</strong>, de forma permanente.
+    </p>
 
   </div>
 </section>
 
 <script>
-  gsap.utils.toArray('.policy-row').forEach((el, i) => {
-    gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 92%' },
-      opacity: 1, x: 0,
-      duration: 0.4,
-      delay: i * 0.06,
-      ease: 'power2.out',
+  if (typeof gsap !== 'undefined') {
+    gsap.utils.toArray('.policy-card').forEach((el, i) => {
+      gsap.to(el, {
+        scrollTrigger: { trigger: el, start: 'top 92%' },
+        opacity: 1, y: 0,
+        duration: 0.5,
+        delay: (i % 4) * 0.07,
+        ease: 'power2.out',
+      });
     });
-  });
+  }
 </script>
-

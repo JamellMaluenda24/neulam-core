@@ -5,12 +5,16 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "gen:icons": "node scripts/generate-icons.mjs",
+    "gen:og": "node scripts/generate-og.mjs",
+    "gen:assets": "npm run gen:icons && npm run gen:og"
   },
   "dependencies": {
     "astro": "^4.11.0"
   },
   "devDependencies": {
-    "playwright": "^1.60.0"
+    "playwright": "^1.60.0",
+    "sharp": "^0.33.5"
   }
 }

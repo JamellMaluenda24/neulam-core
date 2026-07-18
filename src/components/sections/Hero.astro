@@ -1,4 +1,5 @@
 ---
+import PlayStoreButton from '../ui/PlayStoreButton.astro';
 ---
 <style>
   .hero {
@@ -41,7 +42,8 @@
     line-height: 0.95;
     letter-spacing: -3px;
     margin-bottom: 32px;
-    opacity: 0;
+    /* Sin opacity:0 a propósito: el h1 es el elemento LCP. Si esperara a GSAP
+       (que ahora carga diferido) el LCP se retrasaría cientos de ms. */
   }
   .hero h1 em {
     font-style: normal;
@@ -66,10 +68,23 @@
     opacity: 0;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 400px;
+    max-width: 460px;
     margin-left: auto;
     margin-right: auto;
   }
+  /* Señales de confianza bajo el CTA */
+  .hero-trust {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 28px;
+    list-style: none;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .hero-trust li { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-trust li::before { content: '✓'; color: var(--accent); font-weight: 700; }
   .freemium-note {
     width: 100%;
     text-align: center;
@@ -114,6 +129,8 @@
     .hero h1 { letter-spacing: -1.5px; }
     .hero-sub { font-size: 15px; margin-bottom: 28px; }
     .hero-actions { max-width: 100%; gap: 10px; }
+    .hero-trust { font-size: 12px; gap: 6px 14px; margin-top: 20px; }
+    .btn-store { width: 100%; justify-content: center; }
     .hero-scroll { display: none; }
     .hero-badge { font-size: 11px; padding: 6px 12px; margin-bottom: 28px; }
   }
@@ -125,38 +142,50 @@
   }
 </style>
 
-<section class="hero">
-  <div class="orb1"></div>
-  <div class="orb2"></div>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="orb1" aria-hidden="true"></div>
+  <div class="orb2" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-badge">Neulam Core — Auctus v1.0</div>
-    <h1>
-      Construye hábitos.<br>
-      <span class="accent-word">Crece</span><br>
-      <em>sin límites.</em>
+    <p class="hero-badge">App de hábitos · Android · Gratis</p>
+    <h1 id="hero-title">
+      La app de hábitos<br>
+      que construye tu <span class="accent-word">disciplina</span><br>
+      <em>día a día.</em>
     </h1>
-    <p class="hero-sub">Auctus —del latín <span style="font-style:italic;color:var(--text);">crecimiento</span>— es un rastreador de hábitos para quienes toman en serio su progreso. Sube de rango, protege tus rachas y mide tu disciplina. <span style="color:var(--text);font-weight:400;">Gratis para empezar.</span></p>
+    <p class="hero-sub">
+      <strong style="color:var(--text);font-weight:500;">Auctus</strong> —del latín <em style="color:var(--text);">crecimiento</em>— es un
+      <strong style="color:var(--text);font-weight:400;">habit tracker</strong> para quienes se toman en serio su desarrollo personal.
+      Sigue tus hábitos diarios, protege tus rachas, sube de rango y mide tu progreso con estadísticas reales.
+      <span style="color:var(--text);font-weight:400;">Gratis para empezar.</span>
+    </p>
     <div class="hero-actions">
-      <a href="#app" class="btn-primary">Explorar Auctus ↓</a>
+      <PlayStoreButton location="hero" />
       <p class="freemium-note"><span>Gratis</span> para siempre · Desbloquea más con <span>Premium</span></p>
     </div>
+    <ul class="hero-trust">
+      <li>Funciona sin conexión</li>
+      <li>Sin anuncios</li>
+      <li>Datos cifrados AES-256</li>
+      <li>Hecho en Chile 🇨🇱</li>
+    </ul>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
 </section>
 
 <script>
-  gsap.registerPlugin(ScrollTrigger);
-  const tl = gsap.timeline({ delay: 0.2 });
-  tl.to('.hero-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-    .to('.hero h1', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-    .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4');
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    const tl = gsap.timeline({ delay: 0.15 });
+    tl.to('.hero-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+      .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.35')
+      .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4');
 
-  gsap.to('.hero h1', {
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
-    y: 80
-  });
+    gsap.to('.hero h1', {
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+      y: 80
+    });
+  }
 </script>

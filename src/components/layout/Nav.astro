@@ -1,4 +1,5 @@
 ---
+import { PLAY_STORE_URL } from '../../data/site';
 ---
 <style>
   nav {
@@ -31,9 +32,11 @@
 
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 28px;
+    align-items: center;
     list-style: none;
   }
+  @media (min-width: 1200px) { .nav-links { gap: 36px; } }
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
@@ -107,13 +110,16 @@
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    /* visibility evita que los enlaces del panel cerrado sigan siendo
+       alcanzables con Tab fuera de pantalla. */
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
   }
   .nav-drawer.open {
     pointer-events: all;
   }
   .nav-drawer.open .nav-backdrop { opacity: 1; }
-  .nav-drawer.open .nav-panel { transform: translateX(0); }
+  .nav-drawer.open .nav-panel { transform: translateX(0); visibility: visible; }
 
   .nav-drawer ul {
     list-style: none;
@@ -162,30 +168,54 @@
   }
 </style>
 
-<nav id="navbar">
-  <a href="/" class="nav-logo">Neulam<span>Core</span></a>
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="/" class="nav-logo" aria-label="Neulam Core — inicio">Neulam<span>Core</span></a>
   <ul class="nav-links">
-    <li><a href="/#about">Nosotros</a></li>
     <li><a href="/#app">Auctus</a></li>
+    <li><a href="/#why">Por qué Auctus</a></li>
+    <li><a href="/#faq">Preguntas</a></li>
+    <li><a href="/#about">Nosotros</a></li>
     <li><a href="/privacy">Privacidad</a></li>
     <li><a href="/#contact">Contacto</a></li>
-    <li><a href="https://portafolio-jamell-maluenda.vercel.app/" target="_blank" class="nav-cta">Portafolio →</a></li>
+    <li>
+      <a
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noopener"
+        class="nav-cta"
+        data-cta="nav"
+      >Descargar gratis</a>
+    </li>
   </ul>
-  <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
-    <span></span><span></span><span></span>
+  <button
+    class="nav-burger"
+    id="navBurger"
+    aria-label="Abrir menú de navegación"
+    aria-expanded="false"
+    aria-controls="navDrawer"
+  >
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
   </button>
 </nav>
 
 <div class="nav-drawer" id="navDrawer">
   <div class="nav-backdrop" id="navBackdrop"></div>
-  <div class="nav-panel">
+  <div class="nav-panel" role="dialog" aria-modal="true" aria-label="Menú de navegación">
     <ul>
-      <li><a href="/#about" class="drawer-link">Nosotros</a></li>
       <li><a href="/#app" class="drawer-link">Auctus</a></li>
+      <li><a href="/#why" class="drawer-link">Por qué Auctus</a></li>
+      <li><a href="/#faq" class="drawer-link">Preguntas frecuentes</a></li>
+      <li><a href="/#about" class="drawer-link">Nosotros</a></li>
       <li><a href="/privacy" class="drawer-link">Privacidad</a></li>
       <li><a href="/#contact" class="drawer-link">Contacto</a></li>
     </ul>
-    <a href="https://portafolio-jamell-maluenda.vercel.app/" target="_blank" class="drawer-cta">Ver Portafolio →</a>
+    <a
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener"
+      class="drawer-cta"
+      data-cta="drawer"
+    >Descargar en Google Play →</a>
   </div>
 </div>
 
@@ -198,6 +228,11 @@
     burger.classList.toggle('open', open);
     drawer.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    // Estado accesible del menú para lectores de pantalla.
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+    if (open) drawer.querySelector('a')?.focus();
+    else burger.focus();
   }
 
   burger.addEventListener('click', () => toggleMenu(!drawer.classList.contains('open')));
@@ -206,7 +241,19 @@
     link.addEventListener('click', () => toggleMenu(false));
   });
 
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 40);
+  // Cerrar con Escape: requisito básico de navegación por teclado.
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) toggleMenu(false);
   });
+
+  // El scroll dispara muy seguido; rAF evita layout thrashing (INP).
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 40);
+      ticking = false;
+    });
+  }, { passive: true });
 </script>

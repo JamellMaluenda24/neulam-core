@@ -1,0 +1,28 @@
+---
+import { PLAY_STORE_URL } from '../../data/site';
+
+interface Props {
+  /** Identificador para medir qué CTA convierte (se envía a dataLayer). */
+  location: string;
+  label?: string;
+  class?: string;
+}
+
+const { location, label = 'Google Play', class: className = '' } = Astro.props;
+---
+<a
+  href={PLAY_STORE_URL}
+  class={`btn-store ${className}`}
+  data-cta={location}
+  target="_blank"
+  rel="noopener"
+  aria-label="Descargar Auctus gratis en Google Play (se abre en una pestaña nueva)"
+>
+  <svg width="22" height="24" viewBox="0 0 512 512" aria-hidden="true" focusable="false" fill="currentColor">
+    <path d="M48 59.49v393a4.33 4.33 0 0 0 7.37 3.07L260 256 55.37 56.42A4.33 4.33 0 0 0 48 59.49ZM345.8 174 89.22 32.64l-.16-.09c-4.42-2.4-8.62 3.58-5 7.06l201.13 192.32ZM84.08 472.39c-3.64 3.48.56 9.46 5 7.06l.16-.09L345.8 338l-60.61-57.95ZM456.9 231.21l-72.36-39.83L318.16 256l66.38 64.62 72.36-39.83a28.34 28.34 0 0 0 0-49.58Z"/>
+  </svg>
+  <span class="btn-store-text">
+    <span class="btn-store-top">Descárgala gratis en</span>
+    <span class="btn-store-bottom">{label}</span>
+  </span>
+</a>
