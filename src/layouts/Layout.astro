@@ -86,8 +86,6 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
 <body>
   <a href="#main" class="skip-link">Saltar al contenido principal</a>
 
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
   <canvas id="canvas-bg" aria-hidden="true"></canvas>
 
   <Nav />
@@ -123,12 +121,14 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 40;
-        const count = 1200;
+        // Menos partículas y más tenues: el fondo debe sugerir profundidad,
+        // no competir con el contenido.
+        const count = 700;
         const positions = new Float32Array(count * 3);
         for (let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 120;
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const mat = new THREE.PointsMaterial({ color: 0x00d4c8, size: 0.15, transparent: true, opacity: 0.5 });
+        const mat = new THREE.PointsMaterial({ color: 0x00d4c8, size: 0.13, transparent: true, opacity: 0.32 });
         const particles = new THREE.Points(geo, mat);
         scene.add(particles);
         const gridGeo = new THREE.BufferGeometry();
@@ -173,31 +173,6 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
       }
       if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 2500 });
       else window.addEventListener('load', () => setTimeout(load, 300));
-    })();
-
-    // ── Cursor personalizado ───────────────────────────────────────────────
-    // Solo en dispositivos con puntero fino: en táctil no aporta nada y gasta CPU.
-    (function () {
-      if (!window.matchMedia('(pointer: fine)').matches) return;
-      const cursor = document.getElementById('cursor');
-      const ring = document.getElementById('cursor-ring');
-      let rx = 0, ry = 0;
-      document.addEventListener('mousemove', e => {
-        cursor.style.left = e.clientX - 6 + 'px';
-        cursor.style.top = e.clientY - 6 + 'px';
-        rx += (e.clientX - 20 - rx) * 0.12;
-        ry += (e.clientY - 20 - ry) * 0.12;
-      });
-      function animRing() {
-        requestAnimationFrame(animRing);
-        ring.style.left = rx + 'px';
-        ring.style.top = ry + 'px';
-      }
-      animRing();
-      document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; ring.style.transform = 'scale(1.5)'; });
-        el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; });
-      });
     })();
 
     // ── Medición de conversión ─────────────────────────────────────────────

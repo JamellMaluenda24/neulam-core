@@ -15,6 +15,28 @@
   --muted: #8b95a5;
   --border: rgba(255,255,255,0.07);
   --glow: rgba(0, 212, 200, 0.15);
+
+  /* Ritmo vertical único para todas las secciones. Antes cada una elegía su
+     propio padding (140/120/80px) y el scroll se sentía irregular. */
+  --section-y: 120px;
+  --section-x: 60px;
+  --gutter: 20px;
+
+  /* Radios unificados */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+}
+
+@media (max-width: 900px) {
+  :root { --section-y: 80px; --section-x: 24px; }
+}
+@media (max-width: 480px) {
+  :root { --section-y: 60px; --section-x: 20px; }
+}
+@media (max-width: 375px) {
+  :root { --section-y: 48px; --section-x: 16px; }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,34 +48,14 @@ body {
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* El cursor personalizado solo tiene sentido con puntero de precisión.
-   Ocultarlo en táctil evitaba antes que se perdiera el cursor del sistema. */
-@media (pointer: fine) {
-  body { cursor: none; }
-}
-
-/* CURSOR */
-.cursor {
-  width: 12px; height: 12px;
-  background: var(--accent);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.1s ease;
-  mix-blend-mode: difference;
-}
-.cursor-ring {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(0,212,200,0.4);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: all 0.15s ease;
-}
+/* El cursor personalizado se retiró a propósito: ocultar el puntero del
+   sistema perjudica la usabilidad (no se distingue qué es clicable, molesta
+   con lupas y lectores de pantalla) y resta credibilidad en un sitio que
+   pide confianza sobre datos personales. */
 
 /* BUTTONS */
 .btn-primary {
@@ -201,9 +203,6 @@ section { position: relative; z-index: 1; }
 }
 
 @media (max-width: 900px) {
-  body { cursor: auto; }
-  .cursor, .cursor-ring { display: none; }
-
   .btn-primary, .btn-secondary {
     padding: 14px 28px;
     font-size: 14px;
@@ -311,6 +310,5 @@ html:not(.js) .reveal {
     transform: none !important;
   }
 
-  .cursor, .cursor-ring, #canvas-bg { display: none !important; }
-  body { cursor: auto; }
+  #canvas-bg { display: none !important; }
 }
