@@ -63,9 +63,11 @@ const trust = [
   .quote-author strong { font-family: 'Syne', sans-serif; font-weight: 700; display: block; }
   .quote-author span { color: var(--muted); }
 
+  @media (max-width: 1080px) {
+    .trust-grid, .quotes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 900px) {
     .trust-section { padding: 80px 24px; }
-    .trust-grid, .quotes-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .trust-grid, .quotes-grid { grid-template-columns: 1fr; }

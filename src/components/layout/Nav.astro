@@ -154,11 +154,26 @@ import { PLAY_STORE_URL } from '../../data/site';
   }
   .nav-drawer .drawer-cta:hover { background: #fff; }
 
-  @media (max-width: 900px) {
-    nav { padding: 16px 20px; }
+  /* Los seis enlaces + el CTA necesitan ~880px de ancho propio; con el padding
+     de 60px la barra dejaba de caber por debajo de ~1020px y el menú se
+     montaba sobre el logo. Entre 1081 y 1200 se compacta, y por debajo de
+     1080 (todas las tablets) se pasa al cajón lateral. */
+  @media (max-width: 1200px) {
+    nav { padding: 20px 40px; }
+    .nav-links { gap: 22px; }
+    .nav-links a { font-size: 13px; }
+    .nav-cta { padding: 9px 18px; }
+  }
+
+  @media (max-width: 1080px) {
+    nav { padding: 18px 32px; }
     .nav-links { display: none; }
     .nav-burger { display: flex; }
     .nav-drawer { display: block; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
   }
 
   @media (max-width: 375px) {

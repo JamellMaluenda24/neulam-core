@@ -10,6 +10,9 @@
     gap: 100px;
     align-items: center;
   }
+  /* Sin esto los items de la reja no bajan de su min-content y la tarjeta
+     desbordaba ~30px en pantallas de 320px. */
+  .about > * { min-width: 0; }
   .about-label {
     font-size: 11px;
     letter-spacing: 0.15em;
@@ -96,6 +99,11 @@
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
   }
+  /* A dos columnas con 100px de canal, en tablet cada lado bajaba a ~350px y
+     el texto quedaba en líneas de 4–5 palabras. */
+  @media (max-width: 1080px) {
+    .about { grid-template-columns: 1fr; gap: 48px; max-width: 720px; }
+  }
   @media (max-width: 900px) {
     .about { grid-template-columns: 1fr; gap: 40px; padding: 80px 24px; max-width: 100%; }
     .about h2 { letter-spacing: -1px; }
@@ -104,6 +112,8 @@
 
   @media (max-width: 480px) {
     .about { padding: 60px 20px; gap: 32px; }
+    /* El mínimo de 32px del clamp no cabía en pantallas estrechas. */
+    .about h2 { font-size: clamp(24px, 7.5vw, 34px); }
     .about p { font-size: 15px; }
     .org-card { padding: 20px; border-radius: 18px; }
     .org-icon { width: 44px; height: 44px; font-size: 20px; }
@@ -153,13 +163,22 @@
 
 <script>
   if (typeof gsap !== 'undefined') {
-    gsap.from('.about-content', {
-      scrollTrigger: { trigger: '.about', start: 'top 70%' },
-      opacity: 0, x: -40, duration: 0.8, ease: 'power2.out'
+    const mm = gsap.matchMedia();
+    const trigger = { trigger: '.about', start: 'top 70%' };
+
+    // En escritorio las dos mitades entran desde los lados.
+    mm.add('(min-width: 1081px)', () => {
+      gsap.from('.about-content', { scrollTrigger: trigger, opacity: 0, x: -40, duration: 0.8, ease: 'power2.out' });
+      gsap.from('.about-visual', { scrollTrigger: trigger, opacity: 0, x: 40, duration: 0.8, ease: 'power2.out' });
     });
-    gsap.from('.about-visual', {
-      scrollTrigger: { trigger: '.about', start: 'top 70%' },
-      opacity: 0, x: 40, duration: 0.8, ease: 'power2.out'
+
+    // Apiladas, el desplazamiento horizontal empujaba el contenido fuera del
+    // viewport y aparecía scroll lateral (scrollWidth 806 con viewport 768).
+    // Verticalmente el efecto es el mismo sin ensanchar la página.
+    mm.add('(max-width: 1080px)', () => {
+      gsap.from('.about-content, .about-visual', {
+        scrollTrigger: trigger, opacity: 0, y: 30, duration: 0.7, stagger: 0.1, ease: 'power2.out'
+      });
     });
   }
 </script>

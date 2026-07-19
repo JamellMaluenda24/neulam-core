@@ -120,10 +120,17 @@ const year = new Date().getFullYear();
   .fbadge::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 11px; }
   .fbadge.flag::before { content: none; }
 
-  @media (max-width: 1000px) {
-    .footer-main { grid-template-columns: 1fr 1fr 1fr; gap: 44px 32px; padding: 60px 24px 48px; }
+  @media (max-width: 1080px) {
+    .footer-main { grid-template-columns: 1fr 1fr 1fr; gap: 44px 32px; padding: 60px 40px 48px; }
     .footer-brand { grid-column: 1 / -1; }
     .footer-tagline { max-width: 460px; }
+  }
+  @media (max-width: 1080px) {
+    .footer-bottom-inner { padding: 26px 40px; }
+  }
+  @media (max-width: 900px) {
+    .footer-main { padding: 60px 24px 48px; }
+    .footer-bottom-inner { padding: 24px; }
   }
   @media (max-width: 640px) {
     .footer-main { grid-template-columns: 1fr 1fr; gap: 36px 24px; }

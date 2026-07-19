@@ -10,6 +10,10 @@ import PlayStoreButton from '../ui/PlayStoreButton.astro';
     text-align: center;
     padding: 120px 40px 80px;
     position: relative;
+    /* Los orbes se posicionan fuera del borde y ensanchaban el documento
+       (scrollWidth 806 con viewport 768); solo lo tapaba el overflow-x del
+       body. `clip` los recorta sin crear un contenedor de scroll. */
+    overflow: clip;
   }
   .hero-inner { max-width: 900px; }
   .hero-badge {
@@ -42,6 +46,9 @@ import PlayStoreButton from '../ui/PlayStoreButton.astro';
     line-height: 0.95;
     letter-spacing: -3px;
     margin-bottom: 32px;
+    /* "disciplina" es la palabra más larga y no se puede partir: sin esto
+       desbordaba ~32px en pantallas de 320px. */
+    overflow-wrap: break-word;
     /* Sin opacity:0 a propósito: el h1 es el elemento LCP. Si esperara a GSAP
        (que ahora carga diferido) el LCP se retrasaría cientos de ms. */
   }
@@ -126,7 +133,9 @@ import PlayStoreButton from '../ui/PlayStoreButton.astro';
   @media (max-width: 480px) {
     .hero { padding: 90px 20px 60px; }
     .hero-inner { width: 100%; }
-    .hero h1 { letter-spacing: -1.5px; }
+    /* Fluido en vez de un salto fijo: a 320px el mínimo de 52px del clamp
+       original no cabía, y el escalón de 44px en 375px seguía desbordando. */
+    .hero h1 { font-size: clamp(34px, 11vw, 52px); letter-spacing: -1.5px; }
     .hero-sub { font-size: 15px; margin-bottom: 28px; }
     .hero-actions { max-width: 100%; gap: 10px; }
     .hero-trust { font-size: 12px; gap: 6px 14px; margin-top: 20px; }
@@ -137,7 +146,7 @@ import PlayStoreButton from '../ui/PlayStoreButton.astro';
 
   @media (max-width: 375px) {
     .hero { padding: 80px 16px 50px; }
-    .hero h1 { font-size: 44px; letter-spacing: -1px; }
+    .hero h1 { letter-spacing: -1px; }
     .hero-sub { font-size: 14px; }
   }
 </style>

@@ -29,6 +29,12 @@
   --r-xl: 28px;
 }
 
+/* Banda tablet (901–1080). Antes saltaba directo de escritorio a móvil: entre
+   esos anchos las rejillas de 3 columnas y el gutter de 60px quedaban
+   apretados y la barra de navegación se solapaba con el logo. */
+@media (max-width: 1080px) {
+  :root { --section-y: 96px; --section-x: 40px; }
+}
 @media (max-width: 900px) {
   :root { --section-y: 80px; --section-x: 24px; }
 }
@@ -40,6 +46,10 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Red de seguridad: los títulos usan palabras largas ("organización",
+   "disciplina") que a 320px desbordaban el contenedor en vez de partirse. */
+h1, h2, h3 { overflow-wrap: break-word; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
@@ -202,6 +212,10 @@ section { position: relative; z-index: 1; }
   to { width: 78%; }
 }
 
+@media (max-width: 1080px) {
+  .section-header { margin-bottom: 60px; }
+}
+
 @media (max-width: 900px) {
   .btn-primary, .btn-secondary {
     padding: 14px 28px;
@@ -260,6 +274,30 @@ summary:focus-visible,
 
 /* El ancla de scroll no debe quedar bajo la barra fija */
 :target { scroll-margin-top: 100px; }
+@media (max-width: 900px) { :target { scroll-margin-top: 80px; } }
+
+/* Objetivos táctiles: en pantallas de dedo los enlaces de texto quedaban de
+   18–20px de alto (columnas del footer, enlaces en línea), muy por debajo del
+   mínimo de 44px recomendado. Se amplía el área activa sin mover el diseño:
+   el padding va en el pseudo-elemento, no en la caja del enlace. */
+@media (pointer: coarse) {
+  .fcol a,
+  .about-link,
+  .footer-legal a {
+    position: relative;
+  }
+  .fcol a::after,
+  .about-link::after,
+  .footer-legal a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 44px;
+    min-width: 44px;
+  }
+}
 
 /* Solo para lectores de pantalla */
 .visually-hidden {

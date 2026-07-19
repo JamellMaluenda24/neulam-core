@@ -218,13 +218,20 @@
 
 <script>
   if (typeof gsap !== 'undefined') {
-    gsap.from('.contact-info', {
-      scrollTrigger: { trigger: '.contact-wrap', start: 'top 70%' },
-      opacity: 0, x: -30, duration: 0.7, ease: 'power2.out'
+    const mm = gsap.matchMedia();
+    const trigger = { trigger: '.contact-wrap', start: 'top 70%' };
+
+    mm.add('(min-width: 901px)', () => {
+      gsap.from('.contact-info', { scrollTrigger: trigger, opacity: 0, x: -30, duration: 0.7, ease: 'power2.out' });
+      gsap.from('.contact-form', { scrollTrigger: trigger, opacity: 0, x: 30, duration: 0.7, ease: 'power2.out' });
     });
-    gsap.from('.contact-form', {
-      scrollTrigger: { trigger: '.contact-wrap', start: 'top 70%' },
-      opacity: 0, x: 30, duration: 0.7, ease: 'power2.out'
+
+    // Apiladas, la entrada horizontal generaba scroll lateral en móvil y
+    // tablet; en vertical el efecto es equivalente sin ensanchar la página.
+    mm.add('(max-width: 900px)', () => {
+      gsap.from('.contact-info, .contact-form', {
+        scrollTrigger: trigger, opacity: 0, y: 26, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+      });
     });
   }
 
