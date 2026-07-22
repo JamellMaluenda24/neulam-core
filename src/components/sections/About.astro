@@ -22,7 +22,7 @@
     font-weight: 500;
   }
   .about h2 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: clamp(32px, 4vw, 52px);
     font-weight: 800;
     line-height: 1.1;
@@ -53,11 +53,15 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(0,212,200,0.06) 0%, transparent 60%);
+    background: radial-gradient(circle at 30% 20%, rgba(53,214,255,0.06) 0%, transparent 60%);
   }
   .org-icon {
     width: 56px; height: 56px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    /* Chip de icono como en la app: superficie neutra con borde, el color
+       lo pone el icono, no el relleno. */
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--accent);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -66,7 +70,7 @@
     margin-bottom: 20px;
   }
   .org-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -154,7 +158,7 @@
     <div class="status-card">
       <div>
         <div style="font-size: 12px; color: var(--muted); margin-bottom: 4px;">Proyecto activo</div>
-        <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;">Auctus — Habit Tracker</div>
+        <div style="font-family: var(--font); font-weight: 700; font-size: 15px;">Auctus — Habit Tracker</div>
       </div>
       <div class="status-dot"></div>
     </div>

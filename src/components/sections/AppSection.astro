@@ -4,7 +4,7 @@ import { features } from '../../data/features';
 <style>
   .app-section {
     padding: var(--section-y) var(--section-x);
-    background: radial-gradient(ellipse at 50% 0%, rgba(0,212,200,0.04) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(53,214,255,0.04) 0%, transparent 60%);
   }
   .features-grid {
     display: grid;
@@ -26,20 +26,20 @@ import { features } from '../../data/features';
   }
   .feature-card:hover {
     transform: translateY(-4px) !important;
-    border-color: rgba(0,212,200,0.2);
+    border-color: rgba(53,214,255,0.2);
   }
   .feature-card::before {
     content: '';
     position: absolute;
     inset: 0;
     opacity: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(0,212,200,0.08), transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(53,214,255,0.08), transparent 60%);
     transition: opacity 0.3s;
   }
   .feature-card:hover::before { opacity: 1; }
   .feature-icon { font-size: 32px; margin-bottom: 20px; display: block; }
   .feature-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 12px;
@@ -56,15 +56,18 @@ import { features } from '../../data/features';
     padding: 4px 10px;
     border-radius: 100px;
   }
+  /* Free queda en superficie neutra y Premium en invertido, igual que la
+     insignia PRO de la app. Al pasar el oro a celeste ambos quedaban del
+     mismo color y la distinción se perdía. */
   .badge-free {
-    background: rgba(0,212,200,0.1);
-    border: 1px solid rgba(0,212,200,0.2);
-    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
   }
   .badge-premium {
-    background: rgba(212,160,23,0.12);
-    border: 1px solid rgba(212,160,23,0.3);
-    color: var(--accent);
+    background: var(--invertido);
+    border: 1px solid var(--invertido);
+    color: var(--bg);
   }
 
   .feature-card.big {
@@ -92,9 +95,11 @@ import { features } from '../../data/features';
   }
   .mockup-dots { display: flex; gap: 6px; }
   .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
-  .d1 { background: #ff5f57; }
-  .d2 { background: #febc2e; }
-  .d3 { background: #28c840; }
+  /* Acromáticos: los tres puntos de colores del chrome falso eran la única
+     nota de color decorativo que quedaba en la maqueta. */
+  .d1 { background: #3A3A3A; }
+  .d2 { background: #4A4A4A; }
+  .d3 { background: #5C5C5C; }
   .habit-row {
     display: flex;
     align-items: center;
@@ -105,7 +110,7 @@ import { features } from '../../data/features';
     margin-bottom: 8px;
   }
   .habit-name { color: var(--text); font-size: 13px; }
-  .habit-streak { color: var(--accent); font-weight: 600; font-size: 12px; font-family: 'Syne', sans-serif; }
+  .habit-streak { color: var(--accent); font-weight: 600; font-size: 12px; font-family: var(--font); }
   .habit-check {
     width: 22px; height: 22px;
     border-radius: 6px;
@@ -135,7 +140,7 @@ import { features } from '../../data/features';
     margin-top: 8px;
   }
   .mockup-footer span:first-child { color: var(--muted); font-size: 11px; }
-  .mockup-footer span:last-child { color: var(--accent); font-size: 11px; font-weight: 600; font-family: 'Syne', sans-serif; }
+  .mockup-footer span:last-child { color: var(--accent); font-size: 11px; font-weight: 600; font-family: var(--font); }
 
   /* En tablet las tres columnas dejaban tarjetas de ~250px y el mockup de la
      tarjeta grande bajaba a 200px de ancho, ilegible. Dos columnas con la
@@ -195,7 +200,7 @@ import { features } from '../../data/features';
             <div class="mockup-dots">
               <span class="d1"></span><span class="d2"></span><span class="d3"></span>
             </div>
-            <span style="display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;font-family:'Syne',sans-serif;color:var(--accent);background:rgba(0,212,200,0.1);border:1px solid rgba(0,212,200,0.2);border-radius:100px;padding:3px 9px;">🎖️ Nv.4 · Comprometido</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;font-family:var(--font);color:var(--accent);background:rgba(53,214,255,0.1);border:1px solid rgba(53,214,255,0.2);border-radius:100px;padding:3px 9px;">🎖️ Nv.4 · Comprometido</span>
           </div>
           <div class="habit-row">
             <span class="habit-name">🌅 Meditar 10 min</span>

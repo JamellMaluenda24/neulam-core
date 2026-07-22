@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
   footer {
     border-top: 1px solid var(--border);
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(0,212,200,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(53,214,255,0.05) 0%, transparent 55%),
       var(--surface);
     position: relative;
     z-index: 1;
@@ -30,13 +30,14 @@ const year = new Date().getFullYear();
   }
   .footer-brand-logo img { width: 34px; height: 34px; display: block; }
   .footer-brand-logo .name {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-weight: 800;
     font-size: 19px;
     letter-spacing: -0.4px;
     color: var(--text);
   }
-  .footer-brand-logo .name span { color: var(--accent); }
+  /* En muted, no en acento: el acento se reserva al progreso. */
+  .footer-brand-logo .name span { color: var(--muted); }
   .footer-tagline {
     color: var(--muted);
     font-size: 14px;
@@ -48,8 +49,8 @@ const year = new Date().getFullYear();
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(0,212,200,0.08);
-    border: 1px solid rgba(0,212,200,0.22);
+    background: rgba(53,214,255,0.08);
+    border: 1px solid rgba(53,214,255,0.22);
     color: var(--accent);
     text-decoration: none;
     border-radius: 12px;
@@ -59,14 +60,14 @@ const year = new Date().getFullYear();
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
   .footer-store:hover {
-    background: rgba(0,212,200,0.14);
-    border-color: rgba(0,212,200,0.42);
+    background: rgba(53,214,255,0.14);
+    border-color: rgba(53,214,255,0.42);
     transform: translateY(-2px);
   }
 
   /* ── Columnas de enlaces ── */
   .fcol-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -150,7 +151,7 @@ const year = new Date().getFullYear();
 
     <div class="footer-brand">
       <a href="/" class="footer-brand-logo" aria-label="Neulam Core — inicio">
-        <img src="/logo.png" alt="" width="34" height="34" loading="lazy" decoding="async" />
+        <img src="/logo.svg" alt="" width="34" height="34" loading="lazy" decoding="async" />
         <span class="name">Neulam<span>Core</span></span>
       </a>
       <p class="footer-tagline">

@@ -40,7 +40,7 @@ const reasons = [
     padding: var(--section-y) var(--section-x);
     position: relative;
     z-index: 1;
-    background: radial-gradient(ellipse at 50% 100%, rgba(0,212,200,0.04) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 100%, rgba(53,214,255,0.04) 0%, transparent 60%);
   }
   .why-grid {
     display: grid;
@@ -58,11 +58,11 @@ const reasons = [
   }
   .why-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(0,212,200,0.2);
+    border-color: rgba(53,214,255,0.2);
   }
   .why-card .why-icon { font-size: 28px; display: block; margin-bottom: 16px; }
   .why-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: 17px;
     font-weight: 700;
     line-height: 1.3;

@@ -32,7 +32,8 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
   <link rel="canonical" href={canonical} />
   <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
   <meta name="author" content="Neulam Core" />
-  <meta name="theme-color" content="#09101e" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="msapplication-TileColor" content="#000000" />
   <meta name="color-scheme" content="dark" />
 
   <!-- Open Graph -->
@@ -64,12 +65,14 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Fuentes: preconnect + carga directa (antes iban por @import encadenado en el CSS) -->
+  <!-- Fuentes: Roboto, la misma que la app usa en Android por ser la del
+       sistema. Antes se cargaban Syne (títulos) + DM Sans (texto), que no
+       aparecen en ninguna pantalla del producto. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
   />
 
   <!-- Marca la página como "con JS" cuanto antes: sin esto, el contenido animado
@@ -128,7 +131,9 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
         for (let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 120;
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const mat = new THREE.PointsMaterial({ color: 0x00d4c8, size: 0.13, transparent: true, opacity: 0.32 });
+        // Blanco, no acento: el acento significa progreso y no debe gastarse
+        // en decoración de fondo (ver el sistema Mono en global.css).
+        const mat = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.12, transparent: true, opacity: 0.22 });
         const particles = new THREE.Points(geo, mat);
         scene.add(particles);
         const gridGeo = new THREE.BufferGeometry();
@@ -138,7 +143,7 @@ const schemas = [appJsonLd, orgJsonLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jso
           gridVerts.push(-60, -30, i * 5, 60, -30, i * 5);
         }
         gridGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(gridVerts), 3));
-        const gridMat = new THREE.LineBasicMaterial({ color: 0x00d4c8, transparent: true, opacity: 0.04 });
+        const gridMat = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.035 });
         scene.add(new THREE.LineSegments(gridGeo, gridMat));
         let mouse = { x: 0, y: 0 };
         document.addEventListener('mousemove', e => {

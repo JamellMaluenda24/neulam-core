@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Auctus">
+  <title>Auctus</title>
+  <!--
+    La "A" facetada de Auctus: dos astas que no se cierran abajo y una cuña
+    transversal que apunta al asta derecha. El interior queda vacío a
+    propósito — es lo que da la lectura de flecha hacia arriba.
+
+    Cada asta se parte en dos caras con degradados distintos para marcar el
+    pliegue central. Sin filtros ni sombras: escala a cualquier tamaño y se
+    recolorea cambiando solo los stops.
+  -->
+  <defs>
+    <linearGradient id="cara-clara" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EDEDED"/>
+    </linearGradient>
+    <linearGradient id="cara-media" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2F2F2"/>
+      <stop offset="1" stop-color="#B9B9B9"/>
+    </linearGradient>
+    <linearGradient id="cara-honda" x1="0.2" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#DCDCDC"/>
+      <stop offset="1" stop-color="#8E8E8E"/>
+    </linearGradient>
+    <linearGradient id="cara-cuna" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.55" stop-color="#E4E4E4"/>
+      <stop offset="1" stop-color="#AFAFAF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Asta izquierda ─────────────────────────────────────────────
+       Cara externa: del vértice a la punta inferior izquierda. -->
+  <path d="M258 88 L96 416 L118 404 L258 176 Z" fill="url(#cara-clara)"/>
+  <!-- Cara interna, un tono por debajo: marca el pliegue del asta. -->
+  <path d="M258 176 L118 404 L152 386 L258 210 Z" fill="url(#cara-honda)"/>
+
+  <!-- ── Asta derecha ───────────────────────────────────────────────
+       Es la más ancha: sostiene el peso visual del logo. -->
+  <path d="M258 88 L428 414 L392 404 L258 176 Z" fill="url(#cara-clara)"/>
+  <path d="M258 176 L392 404 L350 372 L258 210 Z" fill="url(#cara-media)"/>
+
+  <!-- ── Cuña transversal ───────────────────────────────────────────
+       La punta apunta al asta derecha; el talón se funde con la punta
+       del asta izquierda. -->
+  <path d="M306 284 L142 386 L98 416 L232 344 Z" fill="url(#cara-cuna)"/>
+  <path d="M306 284 L232 344 L98 416 L188 378 Z" fill="url(#cara-media)"/>
+</svg>

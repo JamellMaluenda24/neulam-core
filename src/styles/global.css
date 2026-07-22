@@ -2,19 +2,37 @@
    desde Layout.astro. Un @import aquí encadenaba dos peticiones bloqueantes
    y retrasaba el LCP. */
 
+/* ─────────────────────────────────────────────────────────────────────────
+   SISTEMA MONO — el mismo de la app (lib/core/theme/mono.dart)
+
+   La superficie es acromática por diseño: fondo, tarjeta, borde y los tres
+   niveles de texto viven en escala de grises con saltos amplios. El único
+   color es --accent, y está reservado al progreso: barras, anillos, aros y
+   etiquetas de sección. Para acciones sólidas (CTA, chip activo, insignia
+   PRO) se usa --invertido: blanco sobre negro, no acento — así el acento no
+   compite con los botones.
+   ───────────────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #09101e;
-  --surface: #101c30;
-  --surface2: #162035;
-  --accent: #00d4c8;
-  --accent2: #00b5aa;
-  --accent3: #ff6b6b;
-  --text: #e8eaf6;
-  /* Antes #6b7280 → 3.8:1 sobre el fondo, por debajo del mínimo WCAG AA (4.5:1).
-     #8b95a5 da 6.0:1 manteniendo el mismo tono frío. */
-  --muted: #8b95a5;
-  --border: rgba(255,255,255,0.07);
-  --glow: rgba(0, 212, 200, 0.15);
+  --bg: #000000;
+  --surface: #171717;
+  --surface2: #232323;
+  /* Celeste neón: la paleta por defecto de la app. */
+  --accent: #35D6FF;
+  --accent2: #0FB6E0;
+  /* Rojo destructivo: borrar, y nada más. */
+  --accent3: #FF4444;
+  --text: #FFFFFF;
+  --muted: #A0A0A0;
+  /* Tercer nivel de texto: metadatos que no deben competir. */
+  --dim: #5C5C5C;
+  --border: #2E2E2E;
+  --glow: rgba(53,214,255, 0.15);
+  /* Relleno de superficies sólidas; el texto encima va en --bg. */
+  --invertido: #FFFFFF;
+
+  /* La app no empaqueta fuente propia: usa la del sistema, que en Android es
+     Roboto. Se replica la misma cascada para que la web se lea igual. */
+  --font: 'Roboto', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 
   /* Ritmo vertical único para todas las secciones. Antes cada una elegía su
      propio padding (140/120/80px) y el scroll se sentía irregular. */
@@ -22,11 +40,12 @@
   --section-x: 60px;
   --gutter: 20px;
 
-  /* Radios unificados */
-  --r-sm: 10px;
+  /* Radios: los mismos de Mono — radioChico 16, radio 26, pill 999. */
+  --r-sm: 12px;
   --r-md: 16px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  --r-lg: 26px;
+  --r-xl: 26px;
+  --r-pill: 999px;
 }
 
 /* Banda tablet (901–1080). Antes saltaba directo de escritorio a móvil: entre
@@ -54,7 +73,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font);
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -67,40 +86,40 @@ body {
    con lupas y lectores de pantalla) y resta credibilidad en un sitio que
    pide confianza sobre datos personales. */
 
-/* BUTTONS */
+/* BUTTONS
+   Van en --invertido, no en acento: en la app el botón sólido es blanco sobre
+   negro y el acento se guarda para el progreso. El halo de color también se
+   retira — en Mono no hay glow decorativo. */
 .btn-primary {
-  background: var(--accent);
+  background: var(--invertido);
   color: var(--bg);
   padding: 16px 36px;
-  border-radius: 100px;
-  font-weight: 600;
+  border-radius: var(--r-pill);
+  font-weight: 700;
   font-size: 15px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 40px rgba(0,212,200,0.3);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 60px rgba(0,212,200,0.5);
-  background: #fff;
+  opacity: 0.88;
 }
 .btn-secondary {
   color: var(--text);
   padding: 16px 36px;
-  border-radius: 100px;
-  font-weight: 400;
+  border-radius: var(--r-pill);
+  font-weight: 500;
   font-size: 15px;
   text-decoration: none;
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
 }
 .btn-secondary:hover {
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.05);
+  border-color: var(--muted);
+  background: var(--surface);
 }
 
 /* CTA principal a Google Play */
@@ -108,23 +127,21 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--accent);
+  background: var(--invertido);
   color: var(--bg);
   padding: 14px 30px;
-  border-radius: 100px;
+  border-radius: var(--r-pill);
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  box-shadow: 0 0 40px rgba(0,212,200,0.28);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 .btn-store:hover {
   transform: translateY(-2px);
-  background: #fff;
-  box-shadow: 0 0 60px rgba(0,212,200,0.45);
+  opacity: 0.88;
 }
 .btn-store svg { flex-shrink: 0; }
 .btn-store-text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
 .btn-store-top { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; }
-.btn-store-bottom { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+.btn-store-bottom { font-family: var(--font); font-size: 16px; font-weight: 700; }
 
 /* SECTION HEADER */
 .section-header {
@@ -132,19 +149,22 @@ body {
   max-width: 600px;
   margin: 0 auto 80px;
 }
+/* Sobretítulo: mismas métricas que el de MonoHeader en la app
+   (10px, w600, letterSpacing 1.6 ≈ 0.16em, en acento). */
 .section-header .label {
   font-size: 11px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 16px;
-  font-weight: 500;
+  font-weight: 600;
   display: block;
 }
+/* Titular: w700 con tracking negativo, como los títulos de pantalla. */
 .section-header h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font);
   font-size: clamp(32px, 4vw, 52px);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -1.5px;
   line-height: 1.1;
   margin-bottom: 16px;

@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
 
 // steps 02-07 rendered as static HTML below
@@ -34,13 +34,13 @@ const indexItems = [
     color: var(--accent); font-weight: 500; display: block; margin-bottom: 14px;
   }
   .lhero h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font);
     font-size: clamp(32px,5vw,56px); font-weight: 800;
     letter-spacing: -2px; line-height: 1.05; margin-bottom: 20px;
   }
   .lhero-meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
   .vbadge {
-    background: rgba(0,212,200,.08); border: 1px solid rgba(0,212,200,.2);
+    background: rgba(53,214,255,.08); border: 1px solid rgba(53,214,255,.2);
     color: var(--accent); border-radius: 100px; padding: 4px 14px; font-size: 11px; font-weight: 500;
   }
 
@@ -59,7 +59,7 @@ const indexItems = [
   }
   .srail::after {
     content: ''; position: absolute; top: 20px; left: 0;
-    height: 1px; background: linear-gradient(to right, var(--accent), rgba(0,212,200,.4));
+    height: 1px; background: linear-gradient(to right, var(--accent), rgba(53,214,255,.4));
     z-index: 0; transition: width .4s ease; width: var(--progress,0%);
   }
   .sbtn {
@@ -72,17 +72,17 @@ const indexItems = [
     background: var(--bg); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     font-size: 11px; font-weight: 600; color: var(--muted);
-    font-family: 'DM Sans', sans-serif; transition: all .25s ease;
+    font-family: var(--font); transition: all .25s ease;
   }
-  .sbtn:hover .sdot { border-color: rgba(0,212,200,.4); color: var(--text); }
+  .sbtn:hover .sdot { border-color: rgba(53,214,255,.4); color: var(--text); }
   .sbtn.active .sdot {
-    background: var(--accent); border-color: var(--accent); color: var(--bg);
-    box-shadow: 0 0 24px rgba(0,212,200,.45); font-weight: 700;
+    background: var(--invertido); border-color: var(--invertido); color: var(--bg);
+    font-weight: 700;
   }
-  .sbtn.done .sdot { background: rgba(0,212,200,.1); border-color: rgba(0,212,200,.3); color: var(--accent); }
+  .sbtn.done .sdot { background: rgba(53,214,255,.1); border-color: rgba(53,214,255,.3); color: var(--accent); }
   .sshort {
     font-size: 10px; color: var(--muted); text-align: center; line-height: 1.3;
-    max-width: 72px; transition: color .2s; font-family: 'DM Sans',sans-serif;
+    max-width: 72px; transition: color .2s; font-family: var(--font);
   }
   .sbtn.active .sshort { color: var(--accent); font-weight: 500; }
 
@@ -101,20 +101,20 @@ const indexItems = [
     border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
     transition: border-color .3s;
   }
-  .compact-grid:hover { border-color: rgba(0,212,200,.15); }
+  .compact-grid:hover { border-color: rgba(53,214,255,.15); }
   .cleft { padding: 36px; background: var(--surface); border-right: 1px solid var(--border); }
   .cright { padding: 36px; background: var(--surface2); }
-  .cnum { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: block; margin-bottom: 10px; font-family: 'DM Sans',sans-serif; }
-  .ctitle { font-family: 'Syne',sans-serif; font-size: clamp(16px,2vw,20px); font-weight: 800; letter-spacing: -.5px; line-height: 1.2; margin-bottom: 6px; color: var(--text); }
+  .cnum { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: block; margin-bottom: 10px; font-family: var(--font); }
+  .ctitle { font-family: var(--font); font-size: clamp(16px,2vw,20px); font-weight: 800; letter-spacing: -.5px; line-height: 1.2; margin-bottom: 6px; color: var(--text); }
   .clabel { font-size: 12px; color: var(--accent); opacity: .75; margin-bottom: 14px; }
   .csummary { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
-  .cidx-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; display: block; font-family: 'DM Sans',sans-serif; }
+  .cidx-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; display: block; font-family: var(--font); }
   .cidx { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
   .cidx li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.5; }
-  .cidx li::before { content: '—'; color: rgba(0,212,200,.4); font-size: 11px; flex-shrink: 0; }
+  .cidx li::before { content: '—'; color: rgba(53,214,255,.4); font-size: 11px; flex-shrink: 0; }
   .clink { display: inline-flex; align-items: center; gap: 5px; margin-top: 20px; color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none; opacity: .8; transition: opacity .2s; }
   .clink:hover { opacity: 1; text-decoration: underline; }
-  .cpts-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; display: block; font-family: 'DM Sans',sans-serif; }
+  .cpts-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; display: block; font-family: var(--font); }
   .cpts { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 13px; }
   .cpts li { font-size: 13px; color: var(--muted); line-height: 1.7; padding-left: 14px; position: relative; }
   .cpts li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: .6; }
@@ -147,7 +147,7 @@ const indexItems = [
   }
   .audit-sidebar-head .cnum { margin-bottom: 4px; }
   .audit-sidebar-head strong {
-    font-family: 'Syne',sans-serif;
+    font-family: var(--font);
     font-size: 14px; font-weight: 700; color: var(--text); display: block;
   }
   .audit-sidebar-head span { font-size: 11px; color: var(--muted); }
@@ -157,8 +157,8 @@ const indexItems = [
     padding: 7px 20px; font-size: 11px; color: var(--muted);
     text-decoration: none; transition: all .15s; line-height: 1.4;
   }
-  .audit-idx li a:hover { background: rgba(0,212,200,.05); color: var(--text); }
-  .audit-idx li a .idx-n { color: var(--accent); font-weight: 600; flex-shrink: 0; font-family: 'DM Sans',sans-serif; font-size: 10px; }
+  .audit-idx li a:hover { background: rgba(53,214,255,.05); color: var(--text); }
+  .audit-idx li a .idx-n { color: var(--accent); font-weight: 600; flex-shrink: 0; font-family: var(--font); font-size: 10px; }
 
   /* content */
   .audit-content { background: var(--surface2); padding: 36px; }
@@ -180,16 +180,16 @@ const indexItems = [
     border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 20px;
   }
   .rs-num {
-    background: rgba(0,212,200,.08); border: 1px solid rgba(0,212,200,.2);
+    background: rgba(53,214,255,.08); border: 1px solid rgba(53,214,255,.2);
     color: var(--accent); border-radius: 4px; padding: 2px 8px;
     font-size: 10px; font-weight: 700; letter-spacing: .08em;
-    font-family: 'DM Sans',sans-serif; white-space: nowrap;
+    font-family: var(--font); white-space: nowrap;
   }
-  .rs-title { font-family: 'Syne',sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
+  .rs-title { font-family: var(--font); font-size: 15px; font-weight: 700; color: var(--text); }
 
   /* sub-section */
   .rss { margin-bottom: 24px; }
-  .rss-title { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; display: block; font-family: 'DM Sans',sans-serif; }
+  .rss-title { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; display: block; font-family: var(--font); }
 
   /* para */
   .rp { font-size: 13px; color: var(--muted); line-height: 1.85; margin-bottom: 10px; }
@@ -201,7 +201,7 @@ const indexItems = [
   .cklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
   .cklist li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--muted); line-height: 1.65; }
   .ck-yes { color: var(--accent); font-weight: 700; flex-shrink: 0; }
-  .ck-no  { color: #ff6b6b; font-weight: 700; flex-shrink: 0; }
+  .ck-no  { color: #FF4444; font-weight: 700; flex-shrink: 0; }
   .ck-warn { color: #f5a623; font-weight: 700; flex-shrink: 0; }
   .ck-pend { color: #38bdf8; flex-shrink: 0; font-size: 12px; }
 
@@ -213,9 +213,9 @@ const indexItems = [
   .rtable tr:last-child td { border-bottom: none; }
 
   /* status badges */
-  .ok   { display: inline-flex; align-items: center; gap: 4px; background: rgba(0,212,200,.08); border: 1px solid rgba(0,212,200,.2); color: var(--accent); border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .ok   { display: inline-flex; align-items: center; gap: 4px; background: rgba(53,214,255,.08); border: 1px solid rgba(53,214,255,.2); color: var(--accent); border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
   .warn { display: inline-flex; align-items: center; gap: 4px; background: rgba(245,166,35,.08); border: 1px solid rgba(245,166,35,.25); color: #f5a623; border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
-  .err  { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,107,107,.08); border: 1px solid rgba(255,107,107,.25); color: #ff6b6b; border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .err  { display: inline-flex; align-items: center; gap: 4px; background: rgba(255,68,68,.08); border: 1px solid rgba(255,68,68,.25); color: #FF4444; border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
   .info { display: inline-flex; align-items: center; gap: 4px; background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25); color: #38bdf8; border-radius: 4px; padding: 1px 7px; font-size: 10px; font-weight: 600; white-space: nowrap; }
 
   /* note box */
@@ -223,29 +223,29 @@ const indexItems = [
   .rnote strong { color: var(--text); }
 
   /* veredicto */
-  .veredicto { background: rgba(0,212,200,.06); border: 1px solid rgba(0,212,200,.2); border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
-  .veredicto-title { font-family: 'Syne',sans-serif; font-size: 16px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+  .veredicto { background: rgba(53,214,255,.06); border: 1px solid rgba(53,214,255,.2); border-radius: 12px; padding: 20px 24px; margin-top: 24px; }
+  .veredicto-title { font-family: var(--font); font-size: 16px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
   .veredicto p { font-size: 13px; color: var(--muted); line-height: 1.75; }
   .veredicto p strong { color: var(--text); }
 
   /* reviewer note — explicación clara para el equipo de revisión */
-  .rvw { background: rgba(0,212,200,.05); border: 1px solid rgba(0,212,200,.18); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 22px; margin-bottom: 34px; }
-  .rvw-label { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Sans',sans-serif; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+  .rvw { background: rgba(53,214,255,.05); border: 1px solid rgba(53,214,255,.18); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 22px; margin-bottom: 34px; }
+  .rvw-label { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
   .rvw p { font-size: 13px; color: var(--muted); line-height: 1.85; margin: 0; }
   .rvw p strong { color: var(--text); font-weight: 500; }
 
   /* ── NAV ── */
   .snav { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; }
-  .snav-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 100px; padding: 9px 20px; font-size: 13px; font-family: 'DM Sans',sans-serif; cursor: pointer; transition: all .2s; }
-  .snav-btn:hover:not(:disabled) { border-color: rgba(0,212,200,.3); color: var(--text); }
+  .snav-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 100px; padding: 9px 20px; font-size: 13px; font-family: var(--font); cursor: pointer; transition: all .2s; }
+  .snav-btn:hover:not(:disabled) { border-color: rgba(53,214,255,.3); color: var(--text); }
   .snav-btn:disabled { opacity: .2; cursor: default; }
-  .snav-count { font-size: 13px; color: var(--muted); font-family: 'DM Sans',sans-serif; }
+  .snav-count { font-size: 13px; color: var(--muted); font-family: var(--font); }
   .snav-count strong { color: var(--accent); }
 
   /* ── BOTTOM ── */
   .see-also { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border); }
-  .see-also a { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,212,200,.06); border: 1px solid rgba(0,212,200,.15); color: var(--accent); text-decoration: none; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; transition: all .2s ease; }
-  .see-also a:hover { background: rgba(0,212,200,.12); border-color: rgba(0,212,200,.3); transform: translateY(-1px); }
+  .see-also a { display: inline-flex; align-items: center; gap: 8px; background: rgba(53,214,255,.06); border: 1px solid rgba(53,214,255,.15); color: var(--accent); text-decoration: none; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; transition: all .2s ease; }
+  .see-also a:hover { background: rgba(53,214,255,.12); border-color: rgba(53,214,255,.3); transform: translateY(-1px); }
   .see-also a.m { background: rgba(255,255,255,.03); border-color: var(--border); color: var(--muted); }
   .see-also a.m:hover { border-color: rgba(255,255,255,.15); color: var(--text); }
 
@@ -1555,8 +1555,8 @@ const indexItems = [
                 <tr><td>Descarga de código post-instalación</td><td><span class="ok">NO DETECTADO — sin OTA updates, sin DexClassLoader</span></td></tr>
               </table>
 
-              <div class="rnote" style="margin-top:16px; background:rgba(255,107,107,0.06); border-left-color:#ff6b6b;">
-                <strong style="color:#ff6b6b;">⛔ HALLAZGO CRÍTICO — Toggle Premium en ProfileScreen accesible sin compra real</strong><br/>
+              <div class="rnote" style="margin-top:16px; background:rgba(255,68,68,0.06); border-left-color:#FF4444;">
+                <strong style="color:#FF4444;">⛔ HALLAZGO CRÍTICO — Toggle Premium en ProfileScreen accesible sin compra real</strong><br/>
                 Archivo: <code>lib/screens/profile_screen.dart (~líneas 683-702)</code><br/><br/>
                 El código en la sección "PLAN" del perfil contiene un <code>GestureDetector</code> que llama directamente a <code>PremiumService.activar()</code> sin verificar compra en Google Play. Este toggle es visible en la build de release y permite al usuario activar el plan Premium sin realizar ninguna transacción.<br/><br/>
                 <strong>Impacto:</strong> Monetización engañosa · Bypass de IAP visible para el usuario · Comportamiento inconsistente entre lo publicitado y lo que ocurre.<br/>
@@ -1640,8 +1640,8 @@ const indexItems = [
                 </ul>
               </div>
 
-              <div class="rnote" style="background:rgba(255,107,107,0.06); border-left-color:#ff6b6b; margin-top:14px">
-                <strong style="color:#ff6b6b;">⛔ B) Toggle premium en ProfileScreen — RIESGO ALTO</strong><br/>
+              <div class="rnote" style="background:rgba(255,68,68,0.06); border-left-color:#FF4444; margin-top:14px">
+                <strong style="color:#FF4444;">⛔ B) Toggle premium en ProfileScreen — RIESGO ALTO</strong><br/>
                 Archivo: <code>lib/screens/profile_screen.dart (~líneas 675-702)</code><br/>
                 El toggle visible al usuario llama directamente a <code>PremiumService.activar()</code> sin verificar compra en Google Play. Permite acceso premium gratuito desde la UI de producción.
               </div>
@@ -1813,7 +1813,7 @@ const indexItems = [
             <div class="rs" id="p4-12">
               <div class="rs-head"><span class="rs-num">12</span><span class="rs-title">Checklist final para publicación</span></div>
               <div class="rss">
-                <span class="rss-title" style="color:#ff6b6b;">Crítico — NO publicar sin resolver</span>
+                <span class="rss-title" style="color:#FF4444;">Crítico — NO publicar sin resolver</span>
                 <ul class="cklist">
                   <li><span class="ck-warn">□</span><span>Proteger toggle Premium en <code>profile_screen.dart</code> con <code>kDebugMode</code> o eliminarlo de la build de release</span></li>
                   <li><span class="ck-warn">□</span><span>Verificar que <code>PremiumService.activar()</code> SOLO se llama desde <code>_onPurchaseUpdate</code> (después de compra verificada)</span></li>
@@ -1976,7 +1976,7 @@ const indexItems = [
                 <tr><td>Ícono de marca</td><td>assets/Auctus icono.png</td><td><span class="ok">Bajo</span></td></tr>
                 <tr><td>ic_launcher (mdpi–xxxhdpi)</td><td>res/mipmap-*/ic_launcher.png</td><td><span class="ok">Bajo</span></td></tr>
                 <tr><td>Icono notificación (vector)</td><td>res/drawable-v21/ic_notification.xml</td><td><span class="ok">Bajo</span></td></tr>
-                <tr><td>Color primario</td><td>#C9A84C (gold)</td><td><span class="ok">Paleta propia, no asociada a marcas</span></td></tr>
+                <tr><td>Color primario</td><td>#35D6FF (celeste neón)</td><td><span class="ok">Paleta propia, no asociada a marcas</span></td></tr>
               </table>
               <ul class="cklist" style="margin-top:10px">
                 <li><span class="ck-yes">✓</span><span>"Auctus" es un término genérico en inglés — no está registrado exclusivamente en el sector de apps de productividad.</span></li>
