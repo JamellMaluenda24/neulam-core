@@ -20,14 +20,16 @@ const kb = p => (statSync(p).size / 1024).toFixed(1) + ' KB';
 const BRAND_BG = { r: 9, g: 16, b: 30, alpha: 1 };
 
 const targets = [
-  // Favicons con transparencia
-  { name: 'favicon-16.png', size: 16, bg: null },
-  { name: 'favicon-32.png', size: 32, bg: null },
-  { name: 'favicon-48.png', size: 48, bg: null },
+  // Favicons sobre fondo de marca: el logo es blanco y sobre una pestaña
+  // clara con transparencia no se vería nada.
+  { name: 'favicon-16.png', size: 16, bg: BRAND_BG, pad: 0.06 },
+  { name: 'favicon-32.png', size: 32, bg: BRAND_BG, pad: 0.06 },
+  { name: 'favicon-48.png', size: 48, bg: BRAND_BG, pad: 0.06 },
   // Iconos de instalación / PWA sobre fondo de marca
   { name: 'apple-touch-icon.png', size: 180, bg: BRAND_BG, pad: 0.14 },
   { name: 'icon-192.png', size: 192, bg: BRAND_BG, pad: 0.12 },
   { name: 'icon-512.png', size: 512, bg: BRAND_BG, pad: 0.12 },
+  { name: 'favicon.png', size: 512, bg: BRAND_BG, pad: 0.12 },
 ];
 
 console.log('origen: logo.png', kb(src));
