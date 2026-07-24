@@ -4,4 +4,8 @@ Allow: /
 # Recursos estáticos generados por Astro
 Allow: /_astro/
 
+# Informe técnico de cumplimiento: no listado. Existe para enseñarlo si lo
+# piden, no para que aparezca en buscadores. La política pública es /privacy.
+Disallow: /cumplimiento
+
 Sitemap: https://neulam-core.vercel.app/sitemap.xml
