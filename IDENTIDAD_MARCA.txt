@@ -1,0 +1,251 @@
+================================================================
+AUCTUS — IDENTIDAD DE MARCA
+Documento de referencia · v1 · 2026-07-24
+================================================================
+
+Este documento define quién es Auctus. Todo material (video, redes,
+ficha de tienda, web, guiones) debe partir de aquí.
+
+
+----------------------------------------------------------------
+0. LA FRASE MAESTRA
+----------------------------------------------------------------
+
+    "Most apps record your behavior.
+     AUCTUS helps you understand it."
+
+    (ES) "La mayoría de las apps registran tu comportamiento.
+          AUCTUS te ayuda a entenderlo."
+
+Es creíble, amplia, difícil de copiar, y sostiene cada función
+Premium sin depender de un único truco de marketing.
+
+
+----------------------------------------------------------------
+1. EL NOMBRE
+----------------------------------------------------------------
+
+AUCTUS — latín, participio de "augēre": acrecentado, enriquecido,
+hecho más grande. Significa "la versión aumentada de ti" — la que
+aparece cuando por fin te entiendes.
+
+Es el ancla conceptual de toda la marca.
+
+
+----------------------------------------------------------------
+2. QUÉ SE COMPRA REALMENTE (el producto)
+----------------------------------------------------------------
+
+No se compra: seguimiento de hábitos, predicción, correlaciones,
+estadísticas. ESO SON MECANISMOS.
+
+Se compra: CLARIDAD.
+
+Entender por fin qué te funciona, por qué avanzas unas semanas y
+luego retrocedes, y qué hacer al respecto. La claridad elimina la
+frustración — y la claridad sí vale una suscripción mensual.
+
+
+----------------------------------------------------------------
+3. EL ENEMIGO
+----------------------------------------------------------------
+
+NO es la falta de disciplina ni de motivación.
+ES la incertidumbre sobre uno mismo:
+
+    "No sé por qué abandono."
+    "No sé qué funciona."
+    "No sé si estoy mejorando."
+
+Esa niebla es la verdadera fuente de frustración, y conecta con
+muchísima más gente que un sermón sobre fuerza de voluntad.
+Auctus existe para disolverla.
+
+
+----------------------------------------------------------------
+4. POSICIONAMIENTO / CATEGORÍA
+----------------------------------------------------------------
+
+Auctus es la herramienta que REVELA LO INVISIBLE de tu
+comportamiento.
+
+- NO competir como "otra app de hábitos con IA": ese terreno está
+  saturado (AI insights / AI coach / AI analysis) y ahí se pierde.
+- Posicionarse como inteligencia del comportamiento
+  ("Behavior Intelligence") EN EL MENSAJE.
+- Pero seguir siendo DESCUBRIBLE como "habit tracker" en la store,
+  donde la gente literalmente busca eso.
+
+Se descubre como app de hábitos; se recuerda como algo que te
+entiende.
+
+
+----------------------------------------------------------------
+5. AUDIENCIA
+----------------------------------------------------------------
+
+Gente metida en su propia superación, que ya lo intentó y quedó
+con una pregunta sin responder.
+
+- Disciplina sobre motivación, mentalidad, rutinas que componen.
+- Mayormente 18–35.
+- Probaron otras apps y las dejaron por infantiles o vacías.
+- No quieren que las feliciten: quieren pruebas de que están
+  cambiando, y saber por qué a veces no.
+
+
+----------------------------------------------------------------
+6. EL AUCTUS SCORE (activo de marca)
+----------------------------------------------------------------
+
+Las marcas memorables NOMBRAN sus conceptos, no los explican:
+Retina Display, Autopilot, PageRank, FICO Score, Copilot.
+
+El "puntaje de disciplina" se convierte en el AUCTUS SCORE.
+
+- Es la COLUMNA VERTEBRAL del producto, por encima de rachas y
+  rangos (que quedan subordinados para no diluir el héroe).
+- Un número que sube cuando te entiendes y actúas.
+- Meta: que la gente diga "hoy subí mi AUCTUS Score".
+- Todo lo demás (correlaciones, tendencias, riesgo de abandono)
+  existe para EXPLICAR ese número.
+
+
+----------------------------------------------------------------
+7. LA PREDICCIÓN = EVIDENCIA, NO HÉROE
+----------------------------------------------------------------
+
+La predicción (riesgo de abandono, proyecciones) NO es el "wow" ni
+el héroe. Es la PRUEBA.
+
+Narrativa:
+    Promesa      → We reveal the patterns behind your discipline.
+    Demostración → High abandonment risk detected.
+    Conclusión   → Now you understand why.
+
+La predicción deja de ser magia y se vuelve prueba. Y las pruebas
+venden. Ventaja: si una predicción falla, no rompe la credibilidad
+(es un dato más, no un truco).
+
+
+----------------------------------------------------------------
+8. PERSONALIDAD Y TONO
+----------------------------------------------------------------
+
+Adjetivos: Revelador · Claro · Perspicaz · Maduro · Honesto · Sobrio.
+
+Habla como un mentor que ve lo que tú no ves y te lo dice sin
+rodeos. Inteligente y firme, NO ruidoso.
+
+NO es: coach que grita motivación, ni juego que premia con
+animaciones y confeti.
+
+
+----------------------------------------------------------------
+9. VOZ (líneas de referencia / narración)
+----------------------------------------------------------------
+
+    "Most people don't fail because they lack discipline.
+     They fail because they never see the pattern."
+
+    "You can't improve what you can't understand."
+
+    "No cuentes los días, haz que los días cuenten."
+
+SÍ:
+- Frases cortas, verbos, segunda persona.
+- Revelar, no arengar. Mostrar el patrón.
+- Afirmar con evidencia, no prometer magia.
+
+NO:
+- Mencionar o insinuar "IA" (el análisis es estadística real).
+- Prometer motivación / disciplina / fuerza de voluntad.
+- Jerga técnica, diminutivos, tono de gurú.
+
+
+----------------------------------------------------------------
+10. IDENTIDAD VISUAL
+----------------------------------------------------------------
+
+Fuente de verdad: el CSS de la landing
+(C:\proyectos\neulam-core\src\styles\global.css).
+
+PALETA — negro puro + celeste neón como ÚNICO acento:
+    Negro            #000000   (fondo)
+    Superficies      #171717 / #232323
+    Borde            #2E2E2E
+    Celeste neón     #35D6FF   (acento principal)
+    Celeste profundo #0FB6E0
+    Glow             rgba(53,214,255,0.15)
+    Blanco           #FFFFFF   (texto)
+    Gris             #A0A0A0   (secundario)
+    Dim              #5C5C5C
+    Rojo             #FF4444   (SOLO destructivo: borrar; nunca decorativo)
+
+El celeste es luz eléctrica que aparece solo cuando algo SE REVELA
+(el patrón, el dato, el Score). Encaja con "inteligencia que se
+ilumina en la oscuridad", nunca con wellness pastel.
+
+TIPOGRAFÍA: Roboto / fuente de sistema (sin serifas), la misma que
+la app y la web.
+
+IMPORTANTE: el ORO #C9A84C que aparece en el código de la app
+(CLAUDE.md, PaletteService) NO es la marca — es solo una paleta
+alternativa desbloqueable. Para marca, SIEMPRE negro + celeste.
+
+
+----------------------------------------------------------------
+11. DIRECCIÓN DE VIDEO (cinematográfico e intenso)
+----------------------------------------------------------------
+
+Ambiente:   Nocturno. Negro profundo, contraste alto, resplandor
+            cian eléctrico como única luz. Grano fino.
+Música:     Tensión que crece y resuelve en el momento de la
+            revelación. Nada pop ni alegre.
+Ritmo:      Empieza en la niebla ("no entiendo qué me pasa") →
+            la data se enciende → claridad.
+Color:      Negros aplastados, neones cian. Casi monocromo; el
+            celeste es el único color vivo del cuadro.
+
+SECUENCIA SUGERIDA:
+    01. Negro. Texto tenue: "no entiendo por qué abandono."
+    02. Datos dispersos flotando en la oscuridad, sin sentido.
+    03. Una línea cian conecta los puntos: el PATRÓN aparece.
+        ("Retrocedes los lunes.")
+    04. El AUCTUS Score se enciende y sube, latiendo en cian.
+    05. Logo AUCTUS + "Most apps record your behavior.
+        AUCTUS helps you understand it."
+
+
+----------------------------------------------------------------
+12. QUÉ EVITAR
+----------------------------------------------------------------
+
+- Competir como "app con IA" (ahí Auctus es una más y pierde).
+- Vender la predicción como truco mágico (es prueba, no espectáculo).
+- Prometer motivación, disciplina o fuerza de voluntad.
+- Caricaturas, gamificación infantil (no somos Habitica).
+- Pastel, luz suave, vibra "wellness / mindfulness".
+- Derrochar el celeste: si todo se ilumina, nada se revela.
+
+
+----------------------------------------------------------------
+13. LA VISIÓN (estrella polar, NO roadmap)
+----------------------------------------------------------------
+
+A largo plazo Auctus no vende hábitos: vende AUTOCONOCIMIENTO
+CUANTIFICABLE.
+
+La misma promesa sostiene mañana sueño, estrés, entrenamiento,
+nutrición o tiempo de estudio — todo bajo "convertir tu
+comportamiento en información útil para mejorar".
+
+ADVERTENCIA: es estrella polar, no roadmap. Hoy se construye como
+una app de hábitos que se entiende a sí misma. La visión justifica
+la promesa; NO autoriza a dispersarse antes de lanzar.
+
+
+================================================================
+Fin del documento.
+Paleta y voz tomadas de la web y la app reales.
+================================================================
